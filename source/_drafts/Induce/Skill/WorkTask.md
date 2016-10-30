@@ -155,6 +155,8 @@ HTML、CSS中使用双引号，JS用单引号。
 
 [移动前端不得不了解的html5 head 头标签](http://www.css88.com/archives/5480/comment-page-1 "")
 
+[CSS3 Mask安利报告](https://aotu.io/notes/2016/10/19/2016-10-19-css3-mask/?o2src=juejin&o2layout=compat "")
+
 ### CSS3动画手册
 
 [CSS3动画手册](http://isux.tencent.com/css3/index.html)

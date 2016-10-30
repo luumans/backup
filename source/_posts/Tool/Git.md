@@ -14,23 +14,21 @@ permalink:
 　　** Git的使用技巧:**
 <!-- more -->
 
-## GitHub简介
-
-### 安装Git
-Linux - 打开控制台，然后通过包管理安装，在Ubuntu上命令是：
+## 安装Git
+#### Linux - 打开控制台，然后通过包管理安装，在Ubuntu上命令是：
 ```
 sudo apt-get install git-all
 ```
-Windows - 推荐使用git for 
+#### Windows - 推荐使用git for 
 windows，它包括了图形工具以及命令行模拟器。
 
-OS X - 最简单的方式是使用homebrew安装，命令行执行
+#### OS X - 最简单的方式是使用homebrew安装，命令行执行
 ```
 brew install git
 ```
 如果你是在是先用图形工具的话，那么推荐你使用Github desktop,Sourcetree。但我还是推荐你使用命令行，下面的内容就都是命令行的。
 
-### 配置Git
+## 配置Git
 
 安装完git,首要任务是配置我们的信息，最重要的是用户名及邮箱，打开终端，执行以下命令。
 ```
@@ -38,6 +36,28 @@ $ git config --global user.name "My Name"
 $ git config --global user.email myEmail@example.com
 ```
 配置好这两项，用户就能知道谁做了什么，并且一切都更有组织性了不是吗？
+
+### Git SSH Key
+
+```
+Linux
+
+$ ssh-keygen -t rsa -C "mail@gmail.com"
+
+//这的密码不是我们，GitHub的密码，而是Git SSH的密码
+
+//保存SSH密码
+$ eval "$(ssh-agent -s)" //Linux
+$ ssh-agent -s //Windows
+
+$ ssh-add ~/.ssh/id_rsa
+
+//打开Git生成的密码文件，将其复制到GitHub上
+$ vim ~/.ssh/id_rsa.pub
+
+//验证GitHub SSH是否成功
+$ ssh -T git@github.com
+```
 
 ### 创建一个新仓库 - git init
 git 会把所有文件以及历史记录保存在你的项目中，创建一个新的仓库，首先要去到项目路径，执行 git init。然后git会创建一个隐藏的文件夹.git，所有的信息都储存在其中。
@@ -48,7 +68,365 @@ $ git init
 ```
 OK，现在项目还什么都没有，新建一个 hello.txt 文件试试~
 
-### 检查状态 - git status
+
+
+
+### Git指令速查表
+
+#### 创建
+
+##### 复制一个已创建的仓库:
+
+```bash
+$ git clone ssh://user@domain.com/repo.git
+```
+##### 创建一个新的本地仓库:
+
+```bash
+$ git init
+```
+
+#### 本地修改
+
+##### 显示工作路径下已修改的文件
+
+```bash
+$ git status
+```
+
+##### 显示与上次提交版本文件的不同
+
+```bash
+$ git diff
+```
+
+##### 把当前所有修改添加到下次提交中
+
+```bash
+$ git add
+```
+
+##### 把对某个文件的修改添加到下次提交中
+
+```bash
+$ git add -p <file>
+```
+
+##### 提交本地的所有修改
+
+```bash
+$ git commit -a
+```
+
+##### 提交之前已标记的变化
+
+```bash
+$ git commit
+```
+
+##### 附加消息提交
+
+```bash
+$ git commit -m 'message here'
+```
+
+##### 提交，并将提交时间设置为之前的某个日期:
+
+```bash
+$ git commit --date="`date --date='n day ago'`" -am "Commit Message"
+```
+
+##### 修改上次提交请勿修改已发布的提交记录!
+
+```bash
+$ git commit --amend
+```
+
+##### 把当前分支中未提交的修改移动到其他分支
+
+```bash
+git stash
+git checkout branch2
+git stash pop
+搜索
+```
+
+##### 从当前目录的所有文件中查找文本内容
+
+```bash
+$ git grep "Hello"
+```
+
+##### 在某一版本中搜索文本
+
+```bash
+$ git grep "Hello" v2.5
+```
+
+#### 提交历史
+
+##### 从最新提交开始，显示所有的提交记录（显示hash， 作者信息，提交的标题和时间）
+
+```bash
+$ git log
+```
+
+##### 显示所有提交（仅显示提交的hash和message）
+
+```bash
+$ git log --oneline
+```
+
+##### 显示某个用户的所有提交
+
+```bash
+$ git log --author="username"
+```
+
+##### 查看该文件每次提交记录
+
+```bash
+$ git log <file>
+```
+
+##### 显示某个文件的所有修改
+
+```bash
+$ git log -p <file>
+```
+
+##### 查看最近两次详细修改内容的diff
+
+```bash
+$ git log -p -2
+```
+
+##### 查看提交统计信息
+
+```bash
+$ git log --stat
+```
+
+##### 谁，在什么时间，修改了文件的什么内容
+
+```bash
+$ git blame <file>
+```
+
+#### 分支与标签
+
+##### 列出所有的分支
+
+```bash
+$ git branch
+```
+
+##### 切换分支
+
+```bash
+$ git checkout <branch>
+```
+
+##### 创建并切换到新分支:
+
+```bash
+$ git checkout -b <branch>
+```
+
+##### 基于当前分支创建新分支
+
+```bash
+$ git branch <new-branch>
+```
+
+##### 基于远程分支创建新的可追溯的分支
+
+```bash
+$ git branch --track <new-branch> <remote-branch>
+```
+
+##### 删除本地分支:
+
+```bash
+$ git branch -d <branch>
+```
+
+##### 给当前版本打标签
+
+```bash
+$ git tag <tag-name>
+```
+
+#### 更新与发布
+
+##### 列出当前配置的远程端
+
+```bash
+$ git remote -v
+```
+
+##### 显示远程端的信息
+
+```bash
+$ git remote show <remote>
+```
+
+##### 添加新的远程端
+
+```bash
+$ git remote add <remote> <url>
+```
+
+##### 下载远程端版本，但不合并到HEAD中
+
+```bash
+$ git fetch <remote>
+```
+
+##### 下载远程端版本，并自动与HEAD版本合并
+
+```bash
+$ git remote pull <remote> <url>
+```
+
+##### 将远程端版本合并到本地版本中
+
+```bash
+$ git pull origin master
+```
+
+##### 将本地版本发布到远程端
+
+```bash
+$ git push remote <remote> <branch>
+```
+
+##### 删除远程端分支
+
+```bash
+$ git push <remote> :<branch> (since Git v1.5.0)
+或
+git push <remote> --delete <branch> (since Git v1.7.0)
+```
+
+##### 发布标签:
+
+```bash
+$ git push --tags
+```
+
+#### 合并与重置
+
+##### 将分支合并到当前HEAD中
+
+```bash
+$ git merge <branch>
+```
+
+##### 将当前HEAD版本重置到分支中:请勿重置已发布的提交!
+
+```bash
+$ git rebase <branch>
+```
+
+##### 退出重置:
+
+```bash
+$ git rebase --abort
+```
+
+##### 解决冲突后继续重置
+
+```bash
+$ git rebase --continue
+```
+
+##### 使用配置好的merge tool 解决冲突
+
+```bash
+$ git mergetool
+```
+
+##### 在编辑器中手动解决冲突后，标记文件为已解决冲突
+
+```bash
+$ git add <resolved-file>
+$ git rm <resolved-file>
+```
+
+#### 撤销
+
+##### 放弃工作目录下的所有修改
+
+```bash
+$ git reset --hard HEAD
+```
+
+##### 移除缓存区的所有文件（i.e. 撤销上次git add）
+
+```bash
+$ git reset HEAD
+```
+
+##### 放弃某个文件的所有本地修改
+
+```bash
+$ git checkout HEAD <file>
+```
+
+##### 重置一个提交（通过创建一个截然不同的新提交）
+
+```bash
+$ git revert <commit>
+```
+
+##### 将HEAD重置到指定的版本，并抛弃该版本之后的所有修改
+
+```bash
+$ git reset --hard <commit>
+```
+
+##### 将HEAD重置到上一次提交的版本，并将之后的修改标记为未添加到缓存区的修改
+
+```bash
+$ git reset <commit>
+```
+
+##### 将HEAD重置到上一次提交的版本，并保留未提交的本地修改
+
+```bash
+$ git reset --keep <commit>
+```
+
+## 相关资料：
+
+#### Github创建隐藏分支
+
+```
+git clone git@github.com:luumans/backup.git
+git branch -r
+git checkout -b data origin/data
+```
+
+[]( "")
+
+[Learn Git Branching](http://learngitbranching.js.org/?demo "是一个git仿真沙盒")
+[猴子都能懂的Git入门](http://backlogtool.com/git-guide/cn/ "")
+[Git指令速查表](https://www.git-tower.com/blog/git-cheat-sheet-cn "")
+[github快速入门](http://www.jianshu.com/p/da9bc509b1d2)
+[廖雪峰Git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000 "讲解过于复杂，而且还有很多广告")
+[图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html#conventions "")
+[git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html "")
+
+
+
+
+
+
+
+
+
+<!-- ### 检查状态 - git status
 git status 是另一个非常重要的命令，它会告诉我们创库的当前状态：是否为最新代码，有什么更新等等执行git status:
 ```
 $ git status
@@ -281,67 +659,7 @@ git有点复杂，并且有一大堆特性和技巧等着你去挖掘，这篇�
 怀挺！
 via：http://www.w3ctrain.com/2016/06/26/learn-git-in-30-minutes/
 
-
-[Learn Git Branching](http://learngitbranching.js.org/?demo "是一个git仿真沙盒")
-
-
-
-### Git SSH Key
-
-```
-Linux
-
-$ ssh-keygen -t rsa -C "mail@gmail.com"
-
-//这的密码不是我们，GitHub的密码，而是Git SSH的密码
-
-//保存SSH密码
-$ eval "$(ssh-agent -s)" //Linux
-$ ssh-agent -s //Windows
-
-$ ssh-add ~/.ssh/id_rsa
-
-//打开Git生成的密码文件，将其复制到GitHub上
-$ vim ~/.ssh/id_rsa.pub
-
-//验证GitHub SSH是否成功
-$ ssh -T git@github.com
-```
-
-## Git远程协作
-
-git clone
-
-//数据更新以及同步的协议
-git clone
-
-
-git fetch
-git pull
-
-
-
-## 相关资料：
-
-#### Github创建隐藏分支
-
-```
-git clone git@github.com:luumans/backup.git
-git branch -r
-git checkout -b data origin/data
-```
-
-[]( "")
-
-
-[Git指令速查表](https://www.git-tower.com/blog/git-cheat-sheet-cn "")
-[猴子都能懂的Git入门](http://backlogtool.com/git-guide/cn/ "")
-[github快速入门](http://www.jianshu.com/p/da9bc509b1d2)
-[Git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000 "")
-[图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html#conventions "")
-[git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html "")
-
-
+ -->
 
 
 
