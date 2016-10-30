@@ -21,7 +21,7 @@ permalink:
 
 [禅道](http://pms.jingqubao.com/ "景区宝项目管理系统")
 
-[API](http://doc.jingqubao.com/ "API Doc")
+[API文档](http://doc.jingqubao.com/ "API Doc")
 
 ### GitLab
 

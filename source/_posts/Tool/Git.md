@@ -318,3 +318,31 @@ git clone
 
 git fetch
 git pull
+
+
+
+## 相关资料：
+
+#### Github创建隐藏分支
+
+```
+git clone git@github.com:luumans/backup.git
+git branch -r
+git checkout -b data origin/data
+```
+
+[]( "")
+
+
+[Git指令速查表](https://www.git-tower.com/blog/git-cheat-sheet-cn "")
+[猴子都能懂的Git入门](http://backlogtool.com/git-guide/cn/ "")
+[GitHub极速入门-程序员必备技能](http://www.jianshu.com/p/da9bc509b1d2# "")
+[github快速入门](http://www.jianshu.com/p/da9bc509b1d2)
+
+
+
+
+
+
+
+

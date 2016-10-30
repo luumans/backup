@@ -108,7 +108,8 @@ HTML、CSS中使用双引号，JS用单引号。
 [gulp学习](http://javascript.ruanyifeng.com/tool/gulp.html)
 [gulp学习](http://www.cnblogs.com/2050/p/4198792.html)
 [使用 Yeoman + AngularJS + Gulp 搭建 Web 应用](http://www.tuicool.com/articles/Ybu6zan)
-[github快速入门](http://www.jianshu.com/p/da9bc509b1d2)
+
+
 [github上值得关注的前端项目](http://www.jianshu.com/p/6620f3a8ed46)
 
 ## vpn推荐
@@ -261,7 +262,7 @@ ajax请求后台进行倒计时。
 
 [看看大牛都在用什么前端框架](https://www.awesomes.cn/ "")
 
-[猴子都能懂的Git入门](http://backlogtool.com/git-guide/cn/ "")
+
 
 [前端跨域知识简介](http://gold.xitu.io/post/57a8ce852e958a0066b1a185?utm_source=gold_browser_extension "")
 
