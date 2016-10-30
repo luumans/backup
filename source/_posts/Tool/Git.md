@@ -336,11 +336,10 @@ git checkout -b data origin/data
 
 [Git指令速查表](https://www.git-tower.com/blog/git-cheat-sheet-cn "")
 [猴子都能懂的Git入门](http://backlogtool.com/git-guide/cn/ "")
-[GitHub极速入门-程序员必备技能](http://www.jianshu.com/p/da9bc509b1d2# "")
 [github快速入门](http://www.jianshu.com/p/da9bc509b1d2)
-
-
-
+[Git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000 "")
+[图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html#conventions "")
+[git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html "")
 
 
 
