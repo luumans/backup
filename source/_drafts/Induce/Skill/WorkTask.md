@@ -71,13 +71,17 @@ HTML、CSS中使用双引号，JS用单引号。
 [百度登录窗口]( "可以拖拽")
 [登录效果]( "可以拖拽")
 
-
 [分享](http://ask.imiker.com/question/6970)
 [分享](http://pamorama.net/2014/03/08/when-to-post-facebook-twitter-google-pinterest-linkedin-social-media/)
 我找到两个给你分享一下，看看行不行。
 
 
 [分享](https://www.icann.org/resources/pages/epp-status-codes-2014-06-16-en#OK)
+
+### 后台管理
+[滴答清单](https://dida365.com/#q/all/tasks "")
+[滴答清单](https://dida365.com/#q/all/tasks "")
+
 
 ```
 <section class="FooterSocial"><ul><li><a href="http://www.youtube.com/icannnews"><i class="fa fa-youtube"></i>You Tube</a></li><li><a href="https://www.twitter.com/icann"><i class="fa fa-twitter"></i>Twitter</a></li><li><a href="https://www.linkedin.com/company/icann"><i class="fa fa-linkedin"></i>LinkedIn</a></li><li><a href="http://www.flickr.com/photos/icann"><i class="fa fa-flickr"></i>Flickr</a></li><li><a href="http://www.facebook.com/icannorg"><i class="fa fa-facebook"></i>Facebook</a></li><li><a href="/en/news/rss"><i class="fa fa-rss"></i>RSS Feeds</a></li><li><a href="https://community.icann.org"><i class="fa fa-user"></i>Community Wiki</a></li><li><a href="/news/blog"><i class="fa fa-pencil"></i>ICANN Blog </a></li></ul></section>
@@ -116,7 +120,7 @@ HTML、CSS中使用双引号，JS用单引号。
 [代理](https://bluecloud.xyz/)
 
 
-[]( "")
+[自动录屏](http://macacajs.github.io/macaca/recorder.html "UI Recorder")
 
 # 文章收集
 

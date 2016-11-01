@@ -2,9 +2,9 @@ title: OmniMarkupPreviewer
 date: 2016-04-02 14:11:20
 description: 
 categories:
-- sublime
+- Sublime
 tags:
-- sublime
+- Sublime
 toc: true
 author:
 comments:

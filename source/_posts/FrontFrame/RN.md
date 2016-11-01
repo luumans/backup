@@ -227,19 +227,14 @@ Cmd + D 弹出菜单
 
 至此，应该能看到APP红屏报错，这是正常的，我们还需要让app能够正确访问pc端的packager服务。
 
-摇晃设备或按Menu键（Bluestacks模拟器按键盘上的菜单键，通常在右Ctrl的左边 或者左Windows键旁边），可以打开调试菜单，点击Dev Settings，选Debug server host for device，输入你的正在运行packager的那台电脑的局域网IP加:8081（同时要保证手机和电脑在同一网段，且没有防火墙阻拦），再按back键返回，再按Menu键，在调试菜单中选择Reload JS，就应该可以看到运行的结果了。
-
-如果真实设备白屏但没有弹出任何报错，可以在安全中心里看看是不是应用的“悬浮窗”的权限被禁止了。
+摇晃设备或按Menu键（Bluestacks模拟器按键盘上的菜单键，通常在右Ctrl的左边 或者左Windows键旁边），可以打开调试菜单，点击Dev Settings，选Debug server host for device，输入你的正在运行packager的那台电脑的局域网IP加:8081（同时要保证手机和电脑在同一网段，且没有防火墙阻拦），再按back键返回，再按Menu键，在调试菜单中选择Reload JS，就应该可以看到运行的结果了。如果真实设备白屏但没有弹出任何报错，可以在安全中心里看看是不是应用的“悬浮窗”的权限被禁止了。
 
 注：真机安装（打开开发者调试工具、文件传输）
 
-> 通过菜单“Reload js”实现刷新，通过“Dev Settings”设置
-“Debug server host & port for device”计算机网络IP地址。
-
-#### android 运行packager监控器
-可以用浏览器访问[android](http://localhost:8081/index.android.bundle?platform=android "link")看看是否可以看到打包后的脚本（看到很长的js代码就对了）。第一次访问通常需要十几秒，并且在packager的命令行可以看到形如[====]的进度条。
-
-如果你遇到了ERROR Watcher took too long to load的报错，请尝试修改node_modules/react-native/packager/react-packager/src/FileWatcher/index.js，将其中的MAX_WAIT_TIME 从25000改为更大的值（单位是毫秒）
+#### 启动Node服务
+```bash
+react-native start
+```
 
 ### 相关资料：
 [搭建开发环境](http://reactnative.cn/docs/0.31/getting-started.html "")
@@ -253,56 +248,142 @@ Cmd + D 弹出菜单
 ReactNative     (项目名称)
 |–node_modules                  node模块
     |–react-native              ReactNative引用工程文件
-|–__tests__                     Test页面
+|–app                           app页面
     |–index.android.js          android工程备份
     |–index.ios.js              ios工程备份
 |–index.android.js              android工程（开发文件）
 |–index.ios.js                  ios工程（开发文件）
 |–android              android项目
-    |–*.xcodeproj               Xcode启动文件
 |–ios                  ios项目
-    |–*.wxml              		页面结构
-    |–*.wxss              		页面样式表
-    |–*.json              		页面配置
-    |–*.js                		页面逻辑
+    |–*.xcodeproj               Xcode启动文件
 |–package.json         工程信息数据
-|–app.wxss      小程序公共样式表
 ```
-
 注：android与ios有什么区别？
 关于android与ios开发，大部分只要将开发好的文件相互拷贝，修改android与ios独有的部分控件即可。整体的逻辑思路保持一致即可。
 
-<!-- ```
-react引用声明
+### 设备调试工具
+摇晃设备或按Menu键
 
-引入控件
+| chance | 选项 |
+| -----| -----|
+| Reload    | 刷新 |
+| Debug Js Remotely    | 远程调试js |
+| Enable Live Reload    | 启动实时刷新 |
+| Enable Hot Reloading    | 启动热刷新 |
+| Toggle Inspector    | 标签调试 |
+| Show Perf Monitor    | 显示性能监视器 |
+| Capture Heap    |  |
+| Start/Stop Sampling Profiler    | 启动/停止检测器 |
+| Dev Settings    | 设备设置 |
 
-布局
 
-样式
+#### Debug Js Remotely   js远程调试
 
-将工程注册
+此时，会打开页面调试Tab页面[Tab页面](http://localhost:8081/debugger-ui "")，可以用浏览器访问[android](http://localhost:8081/index.android.bundle?platform=android "link")看看是否可以看到打包后的脚本（看到很长的js代码就对了）。第一次访问通常需要十几秒，并且在packager的命令行可以看到形如[====]的进度条。
+
+如果你遇到了ERROR Watcher took too long to load的报错，请尝试修改node_modules/react-native/packager/react-packager/src/FileWatcher/index.js，将其中的MAX_WAIT_TIME 从25000改为更大的值（单位是毫秒）
+
+#### Enable Live Reload   启动实时刷新
+
+#### Enable Hot Reloading   启动热刷新
+[React Native 热加载（Hot Reload）原理简介](http://mp.weixin.qq.com/s?__biz=MzAwMTYwNzE2Mg==&mid=2651036597&idx=1&sn=8169e1d806ebece54403ff6902b05e36#rd&utm_source=tuicool&utm_medium=referral "")
+
+#### Toggle Inspector   标签调试
+
+#### Show Perf Monitor   显示性能监视器
+
+#### Capture Heap   
+
+#### Start/Stop Sampling Profiler   启动/停止检测器
+
+#### Dev Settings   设备设置
+[]( "")
+Bebugging 调试
+Debug server host & port for device 调试服务器主机和端口
+
+#### 提示信息
+应用内的错误与警告提示（红屏和黄屏）#红屏或黄屏提示都只会在开发版本中显示，正式的离线包中是不会显示的。
+
+[React Native调试技巧与心得](http://blog.csdn.net/quanqinyang/article/details/52215652 "")
+
+#### 简单的列表Demo
+
 ```
+	import React, { Component } from 'react';
+	import {
+	  AppRegistry,
+	  StyleSheet,
+	  Text,
+	  View,
+	  ScrollView,
+	  Image,
+	} from 'react-native';
 
-#### 创建临时数据变量
+	export default class luumans extends Component {
+	  render() {
+	    return (
+	      <ScrollView style={styles.container}>
+	        <Image
+	          source={{uri: 'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20161013/2a7bf0a0-d94d-40d4-a244-20e5a5e359e6.jpg'}}
+	          style={styles.images}
+	        />
+	        <Text style={styles.title}>『微信小程序』从基础到实战</Text>
+	        <Text style={styles.teacher}>勾股</Text>
+	        <Text style={styles.time}>2013-07-11</Text>
+	        <Image
+	          source={{uri: 'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-59b4a27d-e431-4f49-aa25-6b94cccd8229.jpg'}}
+	          style={styles.images}
+	        />
+	        <Text style={styles.title}>基于Go语言的短链接服务实战</Text>
+	        <Text style={styles.teacher}>小鱼</Text>
+	        <Text style={styles.time}>2013-07-11</Text>
+	        <Image
+	          source={{uri: 'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-0da69660-4fcc-45d1-9b84-88271851f57f.jpg'}}
+	          style={styles.images}
+	        />
+	        <Text style={styles.title}>基于Python的静态爬虫实战</Text>
+	        <Text style={styles.teacher}>飞雪</Text>
+	        <Text style={styles.time}>2013-07-11</Text>
+	      </ScrollView>
+	    );
+	  }
+	}
 
+	const styles = StyleSheet.create({
+	  container: {
+	    flex: 1,
+	    backgroundColor: '#F2F2F2',
+	    margin: 5,
+	    borderWidth: 1,
+	    borderColor: '#d2d2d2',
+	  },
+	  title: {
+	    fontSize: 15,
+	    marginLeft: 10,
+	    color: '#333333',
+	    textAlign: 'left',
+	  },
+	  images: {
+	    height: 200,
+	    margin: 10,
+	  },
+	  teacher: {
+	    fontSize: 13,
+	    marginLeft: 10,
+	    color: '#525252',
+	    textAlign: 'left',
+	  },
+	  time: {
+	    fontSize: 13,
+	    marginLeft: 10,
+	    color: '#2d854a',
+	    textAlign: 'left',
+	  },
+	});
+
+
+	AppRegistry.registerComponent('luumans', () => luumans);
 ```
-var DATA = {
-	"id": "1",
-	"name": "Android Design Support Library",
-	"img": "",
-	"teacher": "luuman",
-	"add_time": "2013-07-11",
-	"url": "http://www.baidu.com"
-}
-{DATA.name}
-
-var MOCKED_MOVIES_DATA = [
-  {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
-];
-{MOCKED_MOVIES_DATA[0].name}
-``` -->
-
 列表控件Listview：
 
 ## Flexbox布局
@@ -645,6 +726,7 @@ stretch：如果指定侧轴大小的属性值为'auto'，则其值会使项目�
 收集了react-native一些学习资源，列表会继续更新，大家有好的资源欢迎Pull Requests！
 
 ### 官方文档
+[React Native](http://facebook.github.io/react-native/ "English")
 [React Native 中文网](http://reactnative.cn/ "最专业的翻译，最及时的资讯，最火爆的社区")
 [官方视频](https://www.youtube.com/watch?v=KVZ-P-ZI6W4 "")
 [react-native学习列表](https://github.com/joggerplus/ReactNativeRollingExamples/blob/master/react-native_Study_List.md "")
@@ -712,7 +794,8 @@ stretch：如果指定侧轴大小的属性值为'auto'，则其值会使项目�
 [安卓Back键的处理·基本+高级篇](http://bbs.reactnative.cn/topic/480/%E5%AE%89%E5%8D%93back%E9%94%AE%E7%9A%84%E5%A4%84%E7%90%86-%E5%9F%BA%E6%9C%AC-%E9%AB%98%E7%BA%A7%E7%AF%87 "")
 
 #### 音视频相机
-[react-native-barcodescanner](https://github.com/ideacreation/react-native-barcodescanner "二维码扫描组件") 
+[React Native 实现二维码扫描](http://gold.xitu.io/post/581755be2f301e005ce78a18?utm_source=gold_browser_extension "二维码扫描组件")
+[react-native-barcodescanner](https://github.com/ideacreation/react-native-barcodescanner "二维码扫描组件")
 [react-native-camera](https://github.com/lwansbrough/react-native-camera "相机组件")  
 [react-native-image-picker](https://github.com/marcshilling/react-native-image-picker "可以从相机或者相册选择图片")  
 

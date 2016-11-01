@@ -23,6 +23,8 @@ permalink:
 
 [API文档](http://doc.jingqubao.com/ "API Doc")
 
+[性能](http://perf.jingqubao.com/ "API Doc")
+
 ### GitLab
 
 [GitLab](http://192.168.1.208/ "Git版本")
