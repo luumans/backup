@@ -33,10 +33,157 @@ AppRegistry.registerComponent('luumans', () => luumans);
 
 #### registerRunnable(appKey:string,func:Function)  static静态方法 ，进行注册线程
 
+```
+AppRegistry.registerRunnable('wxs',function(){
+    console.log('was');
+})
+alert(AppRegistry.getAppKeys());
+```
+
 #### registerAppKeys()  static静态方法，进行获取所有组件的keys值
 
 #### runApplication(appKey:string,appParameters:any)  static静态方法, 进行运行应用
 
 #### unmountApplicationComponentAtRootTag()  static静态方法，结束应用
 
+## PixelRatio
+PixelRatio类提供了访问设备的像素密度的方法。
+
+### 使用情景
+
+```
+	'use strict';
+	import React, { Component } from 'react';
+	import {
+	  AppRegistry,
+	  StyleSheet,
+	  Text,
+	  PixelRatio,
+	  View,
+	} from 'react-native';
+
+	class luumans extends Component {
+	  render(){
+	    return (
+	      <View style={styles.flexs}>
+	        <View style={styles.container}>
+	          <View style = {[styles.item,styles.center]}><Text style={styles.title}>酒店</Text>
+	          </View>
+	          <View style = {[styles.item,styles.lineLeftRight]}>
+	            <View style={[styles.flexs,styles.center,styles.lineCenter]}><Text style={styles.title}>海外酒店</Text></View>
+	            <View style={[styles.flexs,styles.center]}><Text style={styles.title}>特色酒店</Text></View>
+	          </View>
+	          <View style = {styles.item}>
+	            <View style={[styles.flexs,styles.center,styles.lineCenter]}><Text style={styles.title}>团购</Text></View>
+	            <View style={[styles.flexs,styles.center]}><Text style={styles.title}>客栈、公寓</Text></View>
+	          </View>
+	        </View>
+	      </View>
+	    )
+	  }
+	}
+
+	const styles = StyleSheet.create({
+	  container:{
+	    flexDirection: 'row',
+	    height: 80,
+	    borderRadius: 5,
+	    marginTop: 200,
+	    marginLeft: 5,
+	    marginRight: 5,
+	    backgroundColor: '#FF0067',
+	  },
+	  item:{
+	    flex: 1,
+	    height: 80,
+	  },
+	  title:{
+	    fontSize: 16,
+	    fontWeight: 'bold',
+	    color: '#FFF',
+	  },
+	  center:{
+	    justifyContent: 'center',
+	    alignItems: 'center',
+	  },
+	  flexs:{
+	    flex: 1,
+	  },
+	  lineCenter: {
+	    borderBottomWidth: 1/PixelRatio.get(),
+	    borderColor: '#FFF',
+	  },
+	  lineLeftRight: {
+	    borderLeftWidth: 1/PixelRatio.get(),
+	    borderRightWidth: 1/PixelRatio.get(),
+	    borderColor: '#FFF',
+	  },
+	});
+
+	AppRegistry.registerComponent('luumans', () => luumans);
+```
+
+```
+var image = getImage({
+  width: PixelRatio.getPixelSizeForLayoutSize(200),
+  height: PixelRatio.getPixelSizeForLayoutSize(100),
+});
+<Image source={image} style={{width: 200, height: 100}} />
+```
+
+```
+	'use strict';
+	  import React, { Component } from 'react';
+	  import {
+	    AppRegistry,
+	    StyleSheet,
+	    Text,
+	    PixelRatio,
+	    Image,
+	    View,
+	  } from 'react-native';
+
+	  class luumans extends Component {
+	    render(){
+	      var image = ({
+	        uri: 'http://7u2psp.com2.z0.glb.qiniucdn.com/56ceb9c406041348950.jpg?imageView2/1/w/'+ 1600 * PixelRatio.get() +'/h/' + 1000 * PixelRatio.get() +'/q/100'
+	      });
+	      return (
+	        <View>
+	          <Image source={{uri: 'http://7u2psp.com2.z0.glb.qiniucdn.com/56ceb9c406041348950.jpg?imageView2/1/w/90/h/90/q/100'}} style={{width: 90,height: 90}} />
+	          <Image source={{uri: 'http://7u2psp.com2.z0.glb.qiniucdn.com/56ceb9c406041348950.jpg?imageView2/1/w/90/h/90/q/100'}} style={{height: 90}} />
+	          <Image source={{uri: 'http://7u2psp.com2.z0.glb.qiniucdn.com/56ceb9c406041348950.jpg?imageView2/1/w/480/h/90/q/100'}} style={{height: 30 * PixelRatio.get()}} />
+	          <Image source={image} style={{height: 100 * PixelRatio.get()}} />
+	        </View>
+	      );
+	    }
+	  }
+
+	  AppRegistry.registerComponent('luumans', () => luumans);
+```
+
+### 属性方法
+
+#### get() 返回设备的像素密度
+
+```
+PixelRatio.get() === 1
+	mdpi Android 设备 (160 dpi)
+PixelRatio.get() === 1.5
+	hdpi Android 设备 (240 dpi)
+PixelRatio.get() === 2
+	iPhone 4, 4S
+	iPhone 5, 5c, 5s
+	iPhone 6
+	xhdpi Android 设备 (320 dpi)
+PixelRatio.get() === 3
+	iPhone 6 plus
+	xxhdpi Android 设备 (480 dpi)
+PixelRatio.get() === 3.5
+	Nexus 6
+```
+
+#### getFontScale() 返回字体大小缩放比例
+#### getPixelSizeForLayoutSize() 将一个布局尺寸(dp)转换为像素尺寸(px)
+#### startDetecting() 本函数在移动设备上没有作用。
 []( "")

@@ -301,6 +301,13 @@ ReactNative     (项目名称)
 Bebugging 调试
 Debug server host & port for device 调试服务器主机和端口
 
+```
+adb devices 查询设备ID
+
+adb reverse tcp:8081 tcp:8081
+```
+
+
 #### 提示信息
 应用内的错误与警告提示（红屏和黄屏）#红屏或黄屏提示都只会在开发版本中显示，正式的离线包中是不会显示的。
 
@@ -704,6 +711,8 @@ stretch：如果指定侧轴大小的属性值为'auto'，则其值会使项目�
 [react-native 之布局篇](https://github.com/tmallfe/tmallfe.github.io/issues/19 "")
 [flexbox-CSS3弹性盒模型flexbox完整版教程](http://caibaojian.com/flexbox-guide.html "")
 [React-Native之flexbox布局篇](http://blog.csdn.net/u014486880/article/details/51385688 "")
+[React Native专题](http://www.lcode.org/react-native/ "qing")
+[React Native专题](http://godcoder.me/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/React-Native/ "非著名程序员")
 
 [Flexbox in the CSS specifications](http://www.w3.org/TR/css3-flexbox/)
 [Flexbox at MDN](https://developer.mozilla.org/en-US/docs/CSS/Tutorials/Using_CSS_flexible_boxes)
@@ -715,6 +724,9 @@ stretch：如果指定侧轴大小的属性值为'auto'，则其值会使项目�
 [http://devbryce.com/site/flexbox/](http://devbryce.com/site/flexbox/)
 [http://css.doyoe.com/properties/flex/index.htm](http://css.doyoe.com/properties/flex/index.htm)
 [http://css-tricks.com/snippets/css/a-guide-to-flexbox/](http://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+[样式测试](http://facebook.github.io/react-native/docs/style.html "")
+
+
 
 []( "")
 

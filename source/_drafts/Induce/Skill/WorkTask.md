@@ -210,6 +210,7 @@ HTML、CSS中使用双引号，JS用单引号。
 
 [JavaScript 与函数式编程](http://www.zcfy.cc/article/javascript-and-functional-programming-1013.html "")
 
+[JavaScript高级程序设计笔记之面向对象](http://www.cnblogs.com/MnCu8261/p/5965397.html?utm_source=gold_browser_extension "")
 
 [一步一步教你用Vue.js + Vuex制作专门收藏微信公众号的app](https://segmentfault.com/a/1190000005844155 "")
 

@@ -1,4 +1,4 @@
-title: React Native API
+title: React Native 实战封装组件
 date: 2016-12-26 18:29:00
 description: 
 categories:
@@ -22,10 +22,6 @@ Reactnative中没有DOM的概念，只有组件的概念，所以我们HTML标�
 ### 封装Box组件
 
 ```
-	/**
-	 * Sample React Native App
-	 * https://github.com/facebook/react-native
-	 */
 	'use strict';
 	import React, { Component } from 'react';
 	import {

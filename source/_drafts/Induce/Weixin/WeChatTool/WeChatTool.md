@@ -16,30 +16,43 @@ permalink:
 <!-- more -->
 微信小程序的最用，其实，之前我参见一些HTML5大会，就有所耳闻，那是叫做：“流应用”。页面通过模块加载，实现页面的“闪开”。确实感慨微信的力量，短短几天时间就被炒得这么火。
 
+[注册地址](https://mp.weixin.qq.com/wxopen/waregister?action=step1 "")
+
+## 代码逻辑：
+
+```
+WeApp     (项目名称)
+|–image              图片资源
+|–utils              存放utils文件，可require引入
+    |–*.js                页面逻辑
+|–page               页面文件
+    |–*.wxml              页面结构
+    |–*.wxss              页面样式表
+    |–*.json              页面配置
+    |–*.js                页面逻辑
+|–app.js        小程序逻辑
+|–app.json      小程序公共设置
+|–app.wxss      小程序公共样式表
+```
 
 
-## 环境搭建：
-人类的智慧还是伟大的，短短的几天时间，微信小程序就破解出来了。我也来上手试试。(现在都不需要破解了，API接口很少)
 
-![demo的动态图](http://img.blog.csdn.net/20160923011211416)
 
-下载：
-[【应用号】IDE + 破解 + Demo](https://github.com/gavinkwoe/weapp-ide-crack)
+[]( "")
 
-由于新版本的微信开发程序，取消了登录的界面。所以我们要先用0.7版本的登录后，覆盖安装0.9版本的程序。
+[让你的「微信小程序」运行在Chrome浏览器上，让我们使用WebStorm](http://mp.weixin.qq.com/s?__biz=MjM5Mjg4NDMwMA==&mid=2652974133&idx=1&sn=3b67419e8ac0bb8262ca4c1e3cdabb35#rd "")
 
-分别找到下面三个目录替换对应文件即可
-进入程序目录后，替换以下文件（只需要替换0.9版本里的，0.7版本用来登陆）：
 
-Windows：
-\package.nw\app\dist\components\create\createstep.js
-\package.nw\app\dist\stroes\projectStores.js
-\package.nw\app\dist\weapp\appservice\asdebug.js
+项目：
+[微信小应用-小程序-demo-仿芒果TV](https://github.com/web-Marker/wechat-Development "")
+[微信小程序资源汇总整理](https://github.com/Aufree/awesome-wechat-weapp "")
+[wechat app for dribbble](https://github.com/nicesu/wechat-dribbble "")
 
-Mac：
-/Resources/app.nw/app/dist/components/create/createstep.js
-/Resources/app.nw/app/dist/stroes/projectStores.js
-/Resources/app.nw/app/dist/weapp/appservice/asdebug.js
+
+
+
+
+
 
 [微信小程序开发资源汇总](https://github.com/justjavac/awesome-wechat-weapp "")
 
@@ -72,32 +85,30 @@ Mac：
 解决方案：先使用0.7版本的进行扫码登陆，登陆成功后，再用0.9的版本打开就直接进入了。
 0.7版本地址：http://dldir1.qq.com/WechatWebDev/release/0.7.0/wechat_web_devtools_0.7.0.dmg
 
-## 代码逻辑：
-
-```
-WeApp     (项目名称)
-|–image              图片资源
-|–utils              存放utils文件，可require引入
-    |–*.js                页面逻辑
-|–page               页面文件
-    |–*.wxml              页面结构
-    |–*.wxss              页面样式表
-    |–*.json              页面配置
-    |–*.js                页面逻辑
-|–app.js        小程序逻辑
-|–app.json      小程序公共设置
-|–app.wxss      小程序公共样式表
-```
 
 
 
 
-[]( "")
 
-[让你的「微信小程序」运行在Chrome浏览器上，让我们使用WebStorm](http://mp.weixin.qq.com/s?__biz=MjM5Mjg4NDMwMA==&mid=2652974133&idx=1&sn=3b67419e8ac0bb8262ca4c1e3cdabb35#rd "")
+## 环境搭建：
+人类的智慧还是伟大的，短短的几天时间，微信小程序就破解出来了。我也来上手试试。(现在都不需要破解了，API接口很少)
 
+![demo的动态图](http://img.blog.csdn.net/20160923011211416)
 
-项目：
-[微信小应用-小程序-demo-仿芒果TV](https://github.com/web-Marker/wechat-Development "")
-[微信小程序资源汇总整理](https://github.com/Aufree/awesome-wechat-weapp "")
-[wechat app for dribbble](https://github.com/nicesu/wechat-dribbble "")
+下载：
+[【应用号】IDE + 破解 + Demo](https://github.com/gavinkwoe/weapp-ide-crack)
+
+由于新版本的微信开发程序，取消了登录的界面。所以我们要先用0.7版本的登录后，覆盖安装0.9版本的程序。
+
+分别找到下面三个目录替换对应文件即可
+进入程序目录后，替换以下文件（只需要替换0.9版本里的，0.7版本用来登陆）：
+
+Windows：
+\package.nw\app\dist\components\create\createstep.js
+\package.nw\app\dist\stroes\projectStores.js
+\package.nw\app\dist\weapp\appservice\asdebug.js
+
+Mac：
+/Resources/app.nw/app/dist/components/create/createstep.js
+/Resources/app.nw/app/dist/stroes/projectStores.js
+/Resources/app.nw/app/dist/weapp/appservice/asdebug.js
