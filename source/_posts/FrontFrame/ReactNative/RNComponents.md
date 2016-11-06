@@ -14,6 +14,10 @@ permalink:
 
 　　**自用笔记：**本文属于自用笔记，不做详解，仅供参考。在此记录自己已理解并开始遵循的前端代码规范。What How Why
 <!-- more -->
+
+我们要想理解React Native应用的基本结构，我们首先需要先了解一些基本的React的概念，比如JSX语法、组件、state状态以及props属性。所以这篇我们重点讲讲Props，state和style样式。今天讲解的内容，都是根据React Native官方文档上的内容来的。
+
+
 ### 组件化：
 组件的颗粒度设计主要取决于应用的结构设计。将公共部分拆分复用，提供公共组件。
 
@@ -37,32 +41,6 @@ class luumans extends Component {
 ```
 
 
-### StyleSheet
-在React Native中，你并不需要学习什么特殊的语法来定义样式。我们仍然是使用JavaScript来写样式。所有的核心组件都接受名为style的属性。这些样式名基本上是遵循了web上的CSS的命名，只是按照JS的语法要求使用了驼峰命名法，例如将background-color改为backgroundColor。
-
-```
-const [name] = StyleSheet.create({
-  [name]: {
-  },
-});
-```
-#### 样式引入
-1. 外联
-```
-<View style = {styles.item}></View>
-```
-1. 内联
-```
-<View style = {{flex: 1,height: 80,borderWidth: 1,borderColor: '#000',}}></View>
-```
-1. 多个样式
-```
-<View style = {[styles.item,styles.items,{flex: 1,height: 80,borderWidth: 1,borderColor: '#000',}]}></View>
-```
-
-#### 图片样式
-Image组件必须设置图片高度，否则不会显示。宽度不设置则是百分之百。多余的图片则会被隐藏掉。不会压缩图片，使图片变形。
-React Native 布局样式的单位是不是 pt，而是 dp。
 
 ### View
 AppRegistry模式是React Native中最基本的模块，也是最常用的模块。

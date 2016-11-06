@@ -64,8 +64,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-# theme: spfk
-theme: hexo-theme-next
+theme: spfk
+# theme: hexo-theme-next
 
 # 自动生成sitemap
 sitemap:
