@@ -27,32 +27,130 @@ WeApp     (项目名称)
     |–*.js                页面逻辑
 |–page               页面文件
     |–*.wxml              页面结构
-    |–*.wxss              页面样式表
-    |–*.json              页面配置
-    |–*.js                页面逻辑
-|–app.js        小程序逻辑
-|–app.json      小程序公共设置
-|–app.wxss      小程序公共样式表
+    |–*.wxss              样式表文件
+    |–*.js                脚本文件
+    |–*.json              配置文件
+|–app.js        脚本代码
+|–app.json      全局配置
+|–app.wxss      公共样式表
 ```
-
 
 
 
 []( "")
 
-[让你的「微信小程序」运行在Chrome浏览器上，让我们使用WebStorm](http://mp.weixin.qq.com/s?__biz=MjM5Mjg4NDMwMA==&mid=2652974133&idx=1&sn=3b67419e8ac0bb8262ca4c1e3cdabb35#rd "")
+### 注册程序
+App() 函数用来注册一个小程序。接受一个 object 参数，其指定小程序的生命周期函数等。
+开发者可以添加任意的函数或数据到 Object 参数中，用 this 可以访问
 
+全局定义
+
+```
+getUserInfo:function(cb){
+  var that = this
+  if(this.globalData.userInfo){
+    typeof cb == "function" && cb(this.globalData.userInfo)
+  }else{
+    //调用登录接口
+    wx.login({
+      success: function () {
+        wx.getUserInfo({
+          success: function (res) {
+            that.globalData.userInfo = res.userInfo
+            typeof cb == "function" && cb(that.globalData.userInfo)
+          }
+        })
+      }
+    })
+  }
+},
+```
+
+getApp() 函数，可以获取到小程序实例。
+
+```
+var app = getApp()
+//调用应用实例的方法获取全局数据
+app.getUserInfo(function(userInfo){
+  //更新数据
+  that.setData({
+    userInfo:userInfo
+  })
+})
+```
+#### app.json
+
+### 发布
+
+
+
+
+### 注释：
+1. 代码不可以多逗号，直接报错。
+
+### WXSS
+#### rpx
+rpx（responsive pixel）: 可以根据屏幕宽度进行自适应。规定屏幕宽为750rpx。如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，则750rpx = 375px = 750物理像素，1rpx = 0.5px = 1物理像素。
+rem（root em）: 规定屏幕宽度为20rem；1rem = (750/20)rpx
+
+#### 样式导入
+使用@import语句可以导入外联样式表，@import后跟需要导入的外联样式表的相对路径，用;表示语句结束。
+> app.wxss 中的样式为全局样式、
+
+```
+/** common.wxss **/
+.small-p {
+  padding:5px;
+}
+```
+
+```
+/** app.wxss **/
+@import "common.wxss";
+.middle-p {
+  padding:15px;
+}
+```
+
+#### 内联样式
+框架组件上支持使用 style、class 属性来控制组件的样式。
+
+style：静态的样式统一写到 class 中。style 接收动态的样式，在运行时会进行解析，请尽量避免将静态的样式写进 style 中，以免影响渲染速度。
+```
+<view style="color:{{color}};" />
+```
+
+class：用于指定样式规则，其属性值是样式规则中类选择器名(样式类名)的集合，样式类名不需要带上.，样式类名之间用空格分隔。
+```
+<view class="normal_view" />
+```
+
+#### 选择器
+
+| 选择器 | 样例 | 样例描述 |
+| -----| -----| -----|
+|.class  |	.intro	| 选择所有拥有class="intro"的组件 |
+|#id     |	#firstname	| 选择拥有id="firstname"的组件 |
+|element | page、view	|	选择所有view组件 |
+|element,element |	view,checkbox	 | 选择所有文档的view组件和所有的 checkbox 组件 |
+|::after  |	view::after| 	在view组件后边插入内容 |
+|::before |	view::before| 	在view组件前边插入内容 |
+
+### DeBug：
+1. 代码不可以多逗号，直接报错。
+
+#### 多余文字隐藏
+不可以使用text，用view。
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+
+[让你的「微信小程序」运行在Chrome浏览器上，让我们使用WebStorm](http://mp.weixin.qq.com/s?__biz=MjM5Mjg4NDMwMA==&mid=2652974133&idx=1&sn=3b67419e8ac0bb8262ca4c1e3cdabb35#rd "")
 
 项目：
 [微信小应用-小程序-demo-仿芒果TV](https://github.com/web-Marker/wechat-Development "")
 [微信小程序资源汇总整理](https://github.com/Aufree/awesome-wechat-weapp "")
 [wechat app for dribbble](https://github.com/nicesu/wechat-dribbble "")
-
-
-
-
-
-
 
 [微信小程序开发资源汇总](https://github.com/justjavac/awesome-wechat-weapp "")
 
@@ -85,11 +183,6 @@ WeApp     (项目名称)
 解决方案：先使用0.7版本的进行扫码登陆，登陆成功后，再用0.9的版本打开就直接进入了。
 0.7版本地址：http://dldir1.qq.com/WechatWebDev/release/0.7.0/wechat_web_devtools_0.7.0.dmg
 
-
-
-
-
-
 ## 环境搭建：
 人类的智慧还是伟大的，短短的几天时间，微信小程序就破解出来了。我也来上手试试。(现在都不需要破解了，API接口很少)
 
@@ -112,3 +205,133 @@ Mac：
 /Resources/app.nw/app/dist/components/create/createstep.js
 /Resources/app.nw/app/dist/stroes/projectStores.js
 /Resources/app.nw/app/dist/weapp/appservice/asdebug.js
+
+## 组件
+
+### swiper
+
+```
+<swiper class="swiper-box" indicator-dots="{{swiper.indicatorDots}}" autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}" vertical="{{swiper.vertical}}">
+	<block wx:for="{{imgUrls}}">
+    <swiper-item>
+    	<navigator url="{{pageKey}}">
+			<image src="{{item}}" class="slide-image" width="355" height="150"/>
+    	</navigator>
+    </swiper-item>
+  </block>
+</swiper>
+```
+
+```
+swiper: {
+  indicatorDots: false,
+  autoplay: false,
+  interval: 5000,
+  duration: 1000,
+  vertical: false
+},
+imgUrls: [
+  'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+  'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+  'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+],
+```
+
+```
+.swiper-box{
+	height: 300rpx;
+}
+```
+### navigator
+```
+url="redirect?title=redirect" 页面重定向
+```
+
+## API:
+
+### setNavigationBarTitle 导航栏标题文字内容
+	wx.setNavigationBarTitle({
+	  title: options.title
+	})
+由此可见，这些页面设置都可以通过wx进行设置。
+
+### wx.request
+	wx.request({
+	  url: 'http://m.maoyan.com/movie/list.json',
+	  data: {
+	    offset: 0,
+	    type: 'hot',
+	    limit: 10
+	  },
+	  header: {
+	      'Content-Type': 'application/json'
+	  },
+	  success: function(res) {
+	    console.log(res.data)
+	    that.setData({
+	      films: res.data.data.movies
+	    })
+	  }
+	})
+
+### 数据请求
+	fetch('https://api.douban.com/v2/movie/subject/' + id).then(function(response){
+	  if(response.status !== 200){
+	      console.log("error："+ response.status);
+	      return;
+	  }
+	  response.json().then(function(data){
+	      that.setData({
+	        film: data
+	      })
+	  });
+	})
+
+接口：
+
+### 淘宝开放平台
+	http://open.taobao.com/
+
+### 优酷开放云平台
+	http://doc.open.youku.com/
+
+### 百度地图开放平台
+	http://lbsyun.baidu.com/index.php?title=%E9%A6%96%E9%A1%B5
+
+### 百度拼音
+	http://olime.baidu.com/py?py=ab&rn=0&pn=20&ol=1&t=1319602514208
+
+### 知乎数据API
+	https://github.com/shanelau/zhihu
+
+### 知乎日报 API 分析
+	https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90
+
+### 知乎banner
+	https://www.zhihu.com/node/Banner?loc=home_up
+
+### 豆瓣API
+	https://developers.douban.com/wiki/?title=guide
+
+### 爱搜索，爱生活，基于豆瓣API & Angular开发的web App（by vczero）
+	http://www.tuicool.com/articles/BzUfYvY
+
+### GithubApi
+	https://developer.github.com/v3/
+
+### 去哪儿网火车票
+	http://apistore.baidu.com/apiworks/servicedetail/697.html
+
+### 芒果TV
+	http://m.api.hunantv.com/channel/getDetail
+
+### dribbble
+	http://developer.dribbble.com/
+
+### 自用acfun解析api接口
+	http://www.iippcc.com/zi-yong-acfunjie-xi-apijie-kou.html
+
+### 猫眼热门电影列表
+	http://www.jianshu.com/p/9855610eb1d4
+
+
