@@ -1,5 +1,5 @@
 title: React Native开发工具
-date: 2016-12-28 18:29:00
+date: 2016-12-25 18:29:00
 description: 
 categories:
 - FrontFrame
@@ -17,7 +17,6 @@ permalink:
 
 ## Sublime 3
 
-Reactnative中没有DOM的概念，只有组件的概念，所以我们HTML标签、DOM操作是无效的。但是组件的生命周期、JSX语法、事件绑定、自定义属性等，ReactNative与React.js是一样的。
 
 ### [ReactJS](https://github.com/facebookarchive/sublime-react "")
 

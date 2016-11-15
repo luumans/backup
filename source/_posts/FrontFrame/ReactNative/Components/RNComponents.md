@@ -18,7 +18,7 @@ permalink:
 我们要想理解React Native应用的基本结构，我们首先需要先了解一些基本的React的概念，比如JSX语法、组件、state状态以及props属性。所以这篇我们重点讲讲Props，state和style样式。今天讲解的内容，都是根据React Native官方文档上的内容来的。
 
 
-### 组件化：
+### 组件化开发：
 组件的颗粒度设计主要取决于应用的结构设计。将公共部分拆分复用，提供公共组件。
 
 导出组件Header：
@@ -117,166 +117,7 @@ AppRegistry模式是React Native中最基本的模块，也是最常用的模块
 	AppRegistry.registerComponent('luumans', () => luumans);
 ```
 
-### Text
 
-案例：
-header.js
-```
-	'use strict';
-	import React, { Component } from 'react';
-	import {
-	  AppRegistry,
-	  StyleSheet,
-	  PixelRatio,
-	  Text,
-	  View,
-	} from 'react-native';
-
-	class Header extends Component {
-	  render(){
-	    return (
-	      <View style={styles.flexs}>
-	        <Text style={styles.title}>
-	          <Text style={styles.wangyi}>网易</Text>
-	          <Text style={styles.xinwen}>新闻</Text>
-	          <Text>有态度"</Text>
-	        </Text>
-	      </View>
-	    )
-	  }
-	}
-
-	const styles = StyleSheet.create({
-	  flexs:{
-	    marginTop: 25,
-	    height: 50,
-	    borderBottomWidth: 3/PixelRatio.get(),
-	    borderBottomColor: '#EF2D36',
-	    alignItems: 'center',
-	  },
-	  title:{
-	    fontSize: 25,
-	    fontWeight: 'bold',
-	    alignItems: 'center',
-	  },
-	  wangyi:{
-	    color: '#CD1D1C',
-	  },
-	  xinwen:{
-	    color: '#FFF',
-	    backgroundColor: '#CD1D1C',
-	  },
-	});
-
-	module.exports = Header;
-```
-index.android.js
-```
-	'use strict';
-	import React, { Component } from 'react';
-	import {
-	  AppRegistry,
-	  StyleSheet,
-	  Text,
-	  PixelRatio,
-	  View,
-	} from 'react-native';
-
-	// const Header = require('./header');
-	import Header from './header';
-
-
-	class List extends Component {
-	  render(){
-	    return(
-	      <View style={styles.listItem}>
-	        <Text style={styles.listItemFont}>{this.props.title}</Text>
-	      </View>
-	    );
-	  }
-	}
-
-	class ImportantNews extends Component {
-	  show(title){
-	    alert(title);
-	    console.log(title);
-	  }
-	  render(){
-	    var news = [];
-	    for(var i in this.props.news){
-	      var text=(
-	        <Text
-	          onPress={this.show.bind(this,this.props.news[i])}
-	          numberOfLines={1}
-	          style={styles.newsItem}
-	          key={i}
-	        >{this.props.news[i]}</Text>
-	      );
-	      news.push(text);
-	    }
-	    return(
-	      <View style={styles.flexs}>
-	        <Text style={styles.newsTitle}>今日要闻</Text>
-	        {news}
-	      </View>
-	    );
-	  }
-	}
-
-	class luumans extends Component {
-	  render(){
-	    return(
-	      <View style={styles.flexs}>
-	        <Header></Header>
-	        <List title='这些 Android 技术会很火'></List>
-	        <List title='为什么整个互联网行业都缺前端工程师？'></List>
-	        <List title='Android 开发中的日常积累'></List>
-	        <List title='一个神奇的控件'></List>
-	        <ImportantNews
-	          news={[
-	            '找到问题了 注解框架没有获取到控件id :sweat:',
-	            '我之前也遇到过，可能是一个bug吧，不知道怎么解决',
-	            '非常喜欢。准备看着你的打一遍，能看懂，但是自己就敲不出来了，谢谢分享',
-	            '不知道怎么上的首页',
-	          ]}>
-	        </ImportantNews>
-	      </View>
-	    );
-	  }
-	}
-
-	const styles = StyleSheet.create({
-	  flexs:{
-	    flex: 1,
-	  },
-	  listItem:{
-	    height: 40,
-	    marginLeft: 10,
-	    marginRight: 10,
-	    borderBottomWidth: 3/PixelRatio.get(),
-	    borderBottomColor: '#DDD',
-	    justifyContent: 'center',
-	  },
-	  listItemFont:{
-	    fontSize: 16,
-	  },
-	  newsTitle:{
-	    fontSize: 20,
-	    fontWeight: 'bold',
-	    color: '#CD1D1C',
-	    marginLeft: 10,
-	    marginTop: 10,
-	  },
-	  newsItem:{
-	    fontSize: 15,
-	    lineHeight: 40,
-	    marginLeft: 10,
-	    marginRight: 10,
-	  },
-	});
-
-	AppRegistry.registerComponent('luumans', () => luumans);
-```
 
 ### Navigator
 
@@ -456,3 +297,43 @@ defaultValue="Same BackgroundColor as View "
 
 
 []( "")
+
+
+
+### ActivityIndicator
+### ActivityIndicatorIOS
+### DatePickerIOS
+### DrawerLayoutAndroid
+### Image
+### KeyboardAvoidingView
+### ListView
+### MapView
+### Modal
+### Navigator
+### NavigatorIOS
+### Picker
+### PickerIOS
+### ProgressBarAndroid
+### ProgressViewIOS
+### RefreshControl
+### ScrollView
+### SegmentedControlIOS
+### Slider
+### SliderIOS
+### StatusBar
+### SnapshotViewIOS
+### Switch
+### SwitchAndroid
+### SwitchIOS
+### TabBarIOS
+### TabBarIOS.Item
+### Text
+### TextInput
+### ToolbarAndroid
+### TouchableHighlight
+### TouchableNativeFeedback
+### TouchableOpacity
+### TouchableWithoutFeedback
+### View
+### ViewPagerAndroid
+### WebView

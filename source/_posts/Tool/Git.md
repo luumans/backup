@@ -2,7 +2,7 @@ title: Git的使用技巧
 date: 2016-01-19 14:11:20
 description: 
 categories:
-- HTML
+- Tool
 tags:
 - Git
 toc: true
