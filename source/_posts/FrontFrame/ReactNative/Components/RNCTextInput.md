@@ -1,4 +1,4 @@
-title: React Native API
+title: React Native TextInput
 date: 2016-12-27 18:29:00
 description: 
 categories:
