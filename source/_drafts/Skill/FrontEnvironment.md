@@ -6,7 +6,7 @@ categories:
 tags:
 - 构建工具
 toc: flase
-author: luuman
+author: 
 comments:
 original:
 permalink: 
@@ -16,6 +16,7 @@ permalink:
 
 ```
 var equipment = {
+    '系统': 'MAC IOS',
     '输入法': '搜狗输入法',
     '浏览器': 'Chrome',
     'Chrome插件': [
@@ -88,42 +89,57 @@ var equipment = {
 
 ```
 var equipmentWin = {
+    '系统': 'Windows',
     '输入法': '搜狗输入法',
+    '办公': 'Office 2010' + 'PDF',
+    '音乐': 
+    '娱乐': [
+        'Clear.bat',
+        'VMware',
+        'RocketDock',
+        '微信',
+        'QQ',
+        'ADSafe',
+        '2345Pic',
+        '网易云音乐',
+    ],
+    '小工具': [
+        'TakeColor取色',
+        'PsQREdit 二维码',
+        'Teleport Ultra',
+        'InletexEMC屏幕共享',
+    ],
     '浏览器': 'Chrome' + 'Firefox' + '360极速浏览器',
     'Chrome插件': [
         '滴答清单',
         'Resize Window',
         '前端助手-二维码',
         'Web助手-FE',
-        'CSS Viewer',
-        'IE Tab',
-        'Clear Cache',
         'Axure RP',
-        '掘金',
         'LiveReload',
-        '',
-        '',
-        '',
-    ],
-    '办公': 'Office 2010',
-    '音乐': '网易云音乐',
-    '社交': [
-        '微信',
-        'QQ',    
-    ],
-    '下载': [
+        'ADB',
+        'Adblock Plus广告拦截器',
+        'AlloyDesigner前端重构开发辅助工具',
+        'Blipshot 截图',
+        'ClearCache',
+        'CSSViewer Css样式',
+        'DevToolsTheme 调试工具样式',
+        '掘金',
+        'Dribbble New Tab',
+        'EditThisCookie cookie管理器',
+        'EyeDropper 取色',
+        'IETab 以IE内核显示网页',
+        'IsometricContributions Github',
     ],
     'VPN': 'Lantern',
     '压缩': '360Zip',
-    '效率': [
-    ],
-    'Git': 'Git' + 'SourceTree',
-    'Editor': 'sublime' + 'Atom',
-    '抓包': 'Charles',
+    'Git': 'Git' + 'SourceTree' + 'node',
+    'Editor': 'Sublime Text 3' + 'Atom',
+    '抓包': 'Fiddler2' + 'Charles',
     '词典': '有道词典',
     '切图': [
         '马克鳗',
-        'Photoshop C',
+        'Photoshop C 2005' + 'cutterman',
     ]
     '录屏软件': 'Apowersoft',
     '数据库': 'Navicat',
@@ -131,3 +147,9 @@ var equipmentWin = {
     '代码比对': 'Beyond Compare',
 }
 ```
+
+
+### git
+    Options
+        Background 15 20 25
+        Foreground 191 191 191

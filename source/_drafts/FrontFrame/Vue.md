@@ -59,5 +59,8 @@ $ npm run dev
 [一个简单的 vue.js 实践教程](https://segmentfault.com/a/1190000006776243 "")
 [Vue.js 60 分钟快速入门](http://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651551140&idx=1&sn=5b791228d7978a837bb83063cf6e07d6&scene=0#wechat_redirect "")
 [vuepack](https://github.com/egoist/vuepack/tree/master "")
+[基于 Vue 的年会抽奖小 DEMO](https://ipudge.github.io/blog/2017/02/04/rollvue/#more "")
 []( "")
+
+
 []( "")
