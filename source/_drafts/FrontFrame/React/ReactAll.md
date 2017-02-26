@@ -119,6 +119,7 @@ React是一款非常优秀的前端框架，你要发挥它完全的性能，你
 - [听说你需要这样了解 Redux](https://github.com/rccoder/blog/issues/18)
 - [学习Redux刷新了我的前端App状态管理观](http://www.jianshu.com/p/94d8f8a36ab0)
 - [Learn React & Webpack by building a hacker news front page](https://github.com/theJian/build-a-hn-front-page)
+- [解读redux工作原理](https://segmentfault.com/a/1190000004236064 "")
 
 ### 开发工具
 
@@ -184,7 +185,6 @@ React是一款非常优秀的前端框架，你要发挥它完全的性能，你
 - [RubyChina demo](https://github.com/liuzhenangel/react-ruby-china "react react-dom react-router redux redux-thunk react-md-editor isomorphic-fetch react-paginate react-redux marked es6-promise classnames")
 - [React-Redux小应用（一）-React_Redux_Appointment](https://segmentfault.com/a/1190000007908006 "")
 - [小应用：预约](https://github.com/liliang-cn/react_redux_appointment "")
-- []( "")
 - []( "")
 - []( "")
 - []( "")

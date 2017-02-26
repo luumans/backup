@@ -1,10 +1,10 @@
-title: Vue.js前端框架
+title: Vue前端框架
 date: 2015-12-25 18:29:00
 description: 
 categories:
-- Report
+- Vue
 tags:
-- Report
+- Vue
 toc: true
 author:
 comments:

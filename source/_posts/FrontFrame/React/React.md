@@ -882,6 +882,16 @@ const listItems = numbers.map(function(number,keys){
 	)
 });
 ```
+### Array.forEach 遍历
+```
+Array.forEach((e) => {
+	alert(e);
+})
+
+Array.forEach(function(e){
+	alert(e);
+})
+```
 
 ```
 let repos = this.state.data.items;
@@ -901,6 +911,16 @@ let repoList = repos.map(function(repo,index){
     );
 });
 ```
+
+### Array.splice 删除
+
+### Array.filter
+方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素
+
+### Array.every
+
+### Array.push
+
 ## Handling Events绑定事件
 
 
@@ -1207,6 +1227,30 @@ ReactDOM.render(<HelloWorld />,$('#example')[0]);
 ### MarkdownEditor
 - [MarkDown](https://github.com/jonschlinkert/remarkable "Markdown解析器")
 
+## ReactDOM
+
+
+### render()
+```
+ReactDOM.render(
+	element,
+	container,
+	[callback]
+)
+```
+### unmountComponentAtNode()
+```
+ReactDOM.unmountComponentAtNode(container)
+```
+
+### findDOMNode()
+```
+ReactDOM.findDOMNode(component)
+```
+### 
+#### onkeypress
+/* 在实例中，我们使用了支持多浏览器的方法，因为 keyCode 属性无法再 Firefox 浏览器中工作。但是 which 属性可以。
+如果浏览器支持 event.which 则使用 event.which，否则使用 event.keyCode */
 
 ## ES6
 [ECMAScript 6 入门](http://es6.ruanyifeng.com/ "阮一峰")

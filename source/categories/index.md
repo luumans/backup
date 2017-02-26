@@ -1,4 +1,4 @@
-title: 标签
+title: 分类
 fancybox: false
 comments: false
 ---

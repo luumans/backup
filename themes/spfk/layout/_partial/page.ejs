@@ -24,52 +24,27 @@
         margin: 0;
     }
     #container .article-info-post.article-info {
-      display: none;
-      }
+        display: none;
+    }
     #container .article .article-title {
-    padding: 0;
+        padding: 0;
+    }
+    .count{
+        text-align: center;
     }
 </style>
-
 <% if (page.path === "tags/index.html"){ %>
     <!-- Tag Cloud Page -->
-    <hr>
-    <br>
-    <%- list_categories({
-        depth: 1,
-    }) %>
-
     <p class="count"></p>
-
     <div class="tags">
         <%- tagcloud({
-            min_font: 16, 
-            max_font: 35, 
-            amount: 999, 
-            color: true, 
-            start_color: 'gray', 
-            end_color: 'black',
+            min_font: 16,
+            max_font: 16,
+            amount: 999,
+            color: false,
         }) %>
     </div>
     <style>
-        .category-list li{
-            display: inline-block;
-            margin: 0 1em .5em 0;
-            padding: 4px;
-            border: 1px solid lightgray;
-            font-size: 1.2em;
-        }
-        .category-list a {
-            color: gray;
-        }
-        .category-list-item:hover a {
-            color: gray;
-            text-decoration: none;
-        }
-        .category-list-count {
-            margin-left: 2px;
-            font-size: .9em;
-        }
         .article-entry ul li:before{
             display: none;
         }
@@ -82,30 +57,66 @@
             margin-top: 0em;
         }
         .tags a {
-            margin-right: 1em;
-            line-height: 65px;
-            border-bottom: 1px solid gray;
-            white-space: nowrap;
+            display: inline-block;
+            margin: 10px;
+            color: #FFF;
         }
-        .tags a:hover {
-            border-bottom: 2px solid black;
-            text-decoration: none;
-            font-style: italic;
-        }
-        #count > span {
-            margin: auto .2em;
-            font-weight: bold;
+        .tags a:hover{
+            color: #bbb;
         }
     </style>
-
-    <!-- Count tags and categories -->
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-    <p id="count">
-            已有<span><script>document.write($(".category-list-item").length)</script></span>个分类，
-            共计<span><script>document.write($(".tags > a").length)</script></span>个标签。
-    </p>
+    <p id="count">目前共计<span><script>document.write($(".tags > a").length)</script></span>个标签</p>
     <script>
         $('#count').appendTo('.count');
     </script>
-
+<% } %>
+<% if (page.path === "categories/index.html"){ %>
+    <!-- categories Cloud Page -->
+    <p class="count"></p>
+    <div id="categories">
+        <%- list_categories({
+            depth: 1,
+        }) %>
+    </div>
+    <style>
+        .category-list{
+            margin-top: 20px;
+        }
+        .category-list li{
+            display: inline-block;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .category-list li:hover{
+            background: transparent;
+        }
+        #categories li:before{
+            display: none;
+        }
+        .category-list a {
+            color: #FFF;
+            padding-right: 5px;
+        }
+        .category-list-item:hover a {
+            color: #bbb;
+            text-decoration: none;
+        }
+        .category-list-count {
+            color: #bbb;
+        }
+        .category-list-count:after {
+            display: inline;
+            content: ") ";
+        }
+        .category-list-count:before {
+            display: inline;
+            content: " (";
+        }
+    </style>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <p id="count">目前共计<span><script>document.write($(".category-list > li").length)</script></span>个标签</p>
+    <script>
+        $('#count').appendTo('.count');
+    </script>
 <% } %>

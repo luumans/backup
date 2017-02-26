@@ -10,7 +10,6 @@ author: 世平阜康
 language: zh-Hans
 timezone:
 
-
 # URL #这项暂不配置，绑定域名后，欲创建sitemap.xml需要配置该项
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://luuman.github.io

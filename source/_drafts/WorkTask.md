@@ -27,6 +27,9 @@ permalink:
 4. 需求分析，流程分析
 
 执行Hexo $ hexo s --draft
+$ git push origin data:data
+hexo g --draft
+browser-sync start --server --files "css/*.css, *.html"
 <!-- more -->
 
 |  计划  | 工作日 |  周末  |
@@ -55,6 +58,8 @@ permalink:
 
 ### 2017年
 > - [react]( "学习react框架")
+> - [轮播图片切换]( "图片是多个方框，点击任意方框图片展出")
+> - [react]( "参照：淘宝——海贼王的3D特效，按照动漫的播放，图片来自漫画剪切。")
 
 > - [normCSS.md]( "CSS前端代码规范")
 > - [JSregular.md]( "正则匹配")
@@ -290,6 +295,8 @@ ajax请求后台进行倒计时。
 [滴答清单](https://dida365.com/#q/all/tasks "")
 [滴答清单](https://dida365.com/#q/all/tasks "")
 
+### SPA
+单页面应用
 
 ```
 <section class="FooterSocial"><ul><li><a href="http://www.youtube.com/icannnews"><i class="fa fa-youtube"></i>You Tube</a></li><li><a href="https://www.twitter.com/icann"><i class="fa fa-twitter"></i>Twitter</a></li><li><a href="https://www.linkedin.com/company/icann"><i class="fa fa-linkedin"></i>LinkedIn</a></li><li><a href="http://www.flickr.com/photos/icann"><i class="fa fa-flickr"></i>Flickr</a></li><li><a href="http://www.facebook.com/icannorg"><i class="fa fa-facebook"></i>Facebook</a></li><li><a href="/en/news/rss"><i class="fa fa-rss"></i>RSS Feeds</a></li><li><a href="https://community.icann.org"><i class="fa fa-user"></i>Community Wiki</a></li><li><a href="/news/blog"><i class="fa fa-pencil"></i>ICANN Blog </a></li></ul></section>
@@ -356,7 +363,8 @@ https://segmentfault.com/a/1190000007042914
 https://www.zhihu.com/question/46836466/answer/103214892
 https://www.zhihu.com/question/50477368#answer-45084031
 
-
-
-
 []( "")
+[]( "")
+[]( "")
+### cli
+[前端开发中提到的“脚手架”到底指什么，CLI？gulp 和 gulp-cli有什么区别](https://www.zhihu.com/question/47731497?sort=created "")

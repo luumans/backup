@@ -11,7 +11,7 @@ comments:
 original:
 permalink: 
 ---
-fjdfj
+  React Demo
 <!-- more -->
 
 #### TimeList
@@ -361,6 +361,56 @@ class Bend extends React.Component{
 
 ReactDOM.render(React.createElement(Bend,null,'This is a people!'),mountNode);
 ```
+
+#### 实例：
+```
+class ListTime extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            cur_time: 0
+        }
+    }
+    GetJson(){
+        $.ajax({
+            type: 'GET',
+            url: 'http://xxx',
+            success: function(date){
+                this.setState({
+                    cur_time: date.timestamp
+                })
+            },
+            complete: function(date){
+                this.setState({
+                    cur_time: date.parse(new Date())/1000
+                })
+            }
+        })
+    }
+    componentDidMount(){
+        setInterval(this.GetJson,1000)
+    }
+    render(){
+        return(
+            <div className='col-xs-12'>当前时间{this.state.cur_time}
+                <div className={this.state.cur_time % 2 == 0 ? 'hidden' : 'col-xs-6 alert alert-success'}>
+                    <span>最后一位奇数</span>
+                </div>
+                <div className={this.state.cur_time % 2 >= 0 ? 'hidden' : 'col-xs-6 alert alert-danger'}>
+                    <span>最后一位偶数</span>
+                </div>
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(<ListTime />,mountNode);
+```
+
+
+
+
+
 
 
 
