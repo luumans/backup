@@ -87,6 +87,23 @@ var equipment = {
 }
 ```
 
+### terminal
+
+> vim ~/.bash_profile
+
+a ：编辑模式
+esc ：命令模式
+:wq ：保存并退出
+
+```
+# for color
+export CLICOLOR=1
+# \h:\W \u\$
+export PS1='\[\033[01;33m\]\u@\h\[\033[01;31m\] \W\$\[\033[00m\] '
+# grep
+alias grep='grep --color=always'
+```
+
 ```
 var equipmentWin = {
     '系统': 'Windows',

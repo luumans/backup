@@ -71,7 +71,7 @@ theme: spfk
 sitemap:
 path: sitemap.xml
 baidusitemap:
-path: baidusitemap.xml
+# path: baidusitemap.xml
 
 
 # Deployment 站点部署到github要配置，上一节中已经讲过
