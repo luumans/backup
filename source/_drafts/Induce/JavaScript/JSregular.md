@@ -278,6 +278,26 @@ console.log(str.match(/([Jj]ava(?:[Ss]cript)?)\sis\s(fun\w*)/));
 console.log(str.match(/lll?/));
 // ["ll", index: 7, input: "Hwwwwwello orllld llll!"]
 ```
+#### 非捕获性分组
+```
+reg = /abc{2}/;
+// 将匹配abcc  
+reg = /(abc){2}/;
+// 将匹配abcabc  
+
+// 上面的分组都是捕获性分组  
+str = "abcabc ###";  
+arr = reg.exec(str);  
+alert(arr[1]);
+// abc  
+
+// 非捕获性分组 (?:)  
+reg = /(?:abc){2}/;  
+arr = reg.exec(str);  
+alert(arr[1]);
+// undefined
+```
+
 ### RegExp 对象方法
 #### source
 正则表达式文本
@@ -695,5 +715,8 @@ console.log(reg.test(date));
 ```
 
 []( "")
-[JAVASCRIPT学习笔记之正则表达式](https://smohan.im/blog/3g3lh0 "")
+[正则表达式的图形工具](https://regexper.com/ "")
 [精通JS正则表达式](http:// www.cnblogs.com/aaronjs/archive/2012/06/30/2570970.html "newraina")
+[JAVASCRIPT学习笔记之正则表达式](https://smohan.im/blog/3g3lh0 "")
+[正则表达式30分钟入门教程](http://deerchao.net/tutorials/regex/regex-1.htm "")
+[廖雪峰官网学习](http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499503920bb7b42ff6627420da2ceae4babf6c4f2000 "")

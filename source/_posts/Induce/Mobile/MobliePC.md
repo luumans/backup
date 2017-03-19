@@ -2,7 +2,7 @@ title:  关于移动端界面在PC端显示的实现
 date: 2016-02-27 14:11:20
 description: 
 categories:
-- Mobile
+- Induce
 tags:
 - Mobile
 toc:

@@ -1,0 +1,54 @@
+.
+├── _data/    		# 对应目录的数据目录
+├── _drafts/		# 草稿
+	├── Demo/		        # Demo
+	├── FrontFrame/		    # 框架
+		├── React/                    		# React
+		├── ReactNative/                    # ReactNative
+		├── Angular/                    	# Angular
+		├── Vue/                    		# Vue
+		├── Bootstrap/                   	# Bootstrap
+		├── FrontFrame/                   	# FrontFrame
+		├── Jquery/                   		# Jquery
+		├── JqueryFullpage/                 # JqueryFullpage
+		├── Lazyman/                   		# Lazyman 单元测试
+		├── QunarYo/                   		# QunarYo
+		└── Zepto/                   		# Zepto
+	├── Hobby/	    	    # 爱好
+	├── Hexo/	    	    # Hexo
+	├── Induce/	    	    # 笔记
+		├── Ajax/                    		# Ajax
+		├── CSS/                    		# CSS
+		├── HTML/                    		# HTML
+		├── JavaScript/                    	# JavaScript
+		├── Mobile/                    		# Mobile
+		├── Node/                    		# Node
+		├── Skill/                    		# Skill
+		└── Weixin/                    		# Weixin
+	├── Interview/		    # 面试
+	├── Module/	    	    # 模块
+	├── PHP/	    	    # PHP
+	├── Plug/	    	    # 插件
+		├── Gulp/                    		# Gulp
+		├── Sublime/                    	# Sublime
+		├── Webpack/                        # Webpack
+		└── ChromePlug/                   	# ChromePlug
+	├── Skill/	    	    # 技能
+		└── nrom/       	    	        # 规范
+	├── Tool/	    	    # 工具
+	├── WorkSummary.md	    # 工作纪要总结
+	└── WorkTask.md 	    # 日常计划规划表
+├── _posts/    		# 发布文章
+├── 404/    		# 404页面
+├── about/    		# about页面
+├── case/    		# case页面
+├── categories/		# categories页面
+├── instagram/		# instagram页面
+├── resoures/		# resoures页面
+├── search/    		# search页面
+├── tags/    		# tags页面
+├── themes/    		# themes页面
+├── user/    		# user页面
+├── works/    		# works页面
+└── README.md    	# 目录结构
+

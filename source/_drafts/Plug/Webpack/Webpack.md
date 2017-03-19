@@ -2,7 +2,7 @@ title: Webpack初探
 date: 2017-02-15 18:29:00
 description: 
 categories:
-- Webpack
+- Plug
 tags:
 - Webpack
 toc: true

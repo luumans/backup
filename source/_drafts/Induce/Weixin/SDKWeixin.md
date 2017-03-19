@@ -1,8 +1,7 @@
 ﻿title: 微信SDK
-date: 2015-12-25 18:29:00
 description: 
 categories:
-- WeChat
+- FrontFrame
 tags:
 - WeChatSDK
 toc: true
@@ -81,7 +80,6 @@ wx.ready(function(){
 	    }
 	});
 })
-
 ```
 
 | 名称        | 纬度   |  经度  |
@@ -101,5 +99,5 @@ wx.ready(function(){
 参考：北京市朝阳区朝外街道雅宝里社区
 
 [微信JS-SDK说明文档 地理位置](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115&token=&lang=zh_CN "")
-
 [测试地理位置](http://203.195.235.76/jssdk/#menu-location "")
+

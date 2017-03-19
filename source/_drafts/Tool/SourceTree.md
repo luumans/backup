@@ -2,7 +2,7 @@ title: SourceTree管理工具
 date: 2016-04-02 14:11:20
 description: 
 categories:
-- Git
+- Tool
 tags:
 - Git
 toc: true

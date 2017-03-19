@@ -185,11 +185,13 @@ React是一款非常优秀的前端框架，你要发挥它完全的性能，你
 - [RubyChina demo](https://github.com/liuzhenangel/react-ruby-china "react react-dom react-router redux redux-thunk react-md-editor isomorphic-fetch react-paginate react-redux marked es6-promise classnames")
 - [React-Redux小应用（一）-React_Redux_Appointment](https://segmentfault.com/a/1190000007908006 "")
 - [小应用：预约](https://github.com/liliang-cn/react_redux_appointment "")
-- []( "")
-- []( "")
-- []( "")
 - [一个完整的React项目下来后的总结](http://react-china.org/t/react/2091 "")
-
+- []( "")
+- []( "")
+- [Learn React & Webpack by building the Hacker News front page](https://github.com/theJian/build-a-hn-front-page "")
+- [用webpack+react+redux搭建的前端框架，构建后如何运行？](https://www.zhihu.com/question/51064553?sort=created "")
+- [渐进式学习React生态圈](https://github.com/minooo/React-Study/tree/master/step-04 "")
+- []( "")
 
 ## 设计思想
 学习React之前，我们先了解一下它的设计思想，它与如今其他热门的前端框架有什么不同？它能为我们的开发解决哪些痛点？

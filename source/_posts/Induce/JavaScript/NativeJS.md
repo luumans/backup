@@ -2,7 +2,7 @@ title:  原生JavaScript探索
 date: 2016-01-15 13:58:41
 description: 
 categories:
-- HTML
+- Induce
 tags:
 - JavaScript
 toc: true
