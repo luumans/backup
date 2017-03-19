@@ -2,9 +2,9 @@ title: 面向对象的CSS样式
 date: 2016-02-27 14:11:20
 description: 
 categories:
-- HTML
+- Induce
 tags:
-- CSS
+- OOCSS
 toc: true
 author:
 comments:

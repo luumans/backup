@@ -2,9 +2,9 @@ title: 移动端设备显示限制，隐藏部分内容
 date: 2016-04-19 14:11:20
 description: 
 categories:
-- Mobile
+- Induce
 tags:
-- CSS
+- Mobile
 toc: true
 author:
 comments:

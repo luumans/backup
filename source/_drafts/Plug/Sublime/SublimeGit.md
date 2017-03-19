@@ -2,7 +2,7 @@ title: Sublime Git插件
 date: 2015-12-21 18:29:10
 description: 来到GitHub这么长时间，才开始真真的了解GitHub，这个国外的代码托管平台，充满着大牛的身影。
 categories:
-- Tool
+- Plug
 tags:
 - Sublime
 toc: true

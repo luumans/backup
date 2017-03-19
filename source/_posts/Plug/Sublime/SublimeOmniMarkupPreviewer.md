@@ -2,7 +2,7 @@ title: OmniMarkupPreviewer
 date: 2016-04-02 14:11:20
 description: 
 categories:
-- Sublime
+- Plug
 tags:
 - Sublime
 toc: true

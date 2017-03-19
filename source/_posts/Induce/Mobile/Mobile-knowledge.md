@@ -2,7 +2,7 @@ title:  移动前端知识总结
 date: 2016-01-28 14:11:20
 description: 
 categories:
-- Mobile
+- Induce
 tags:
 - Mobile
 toc:

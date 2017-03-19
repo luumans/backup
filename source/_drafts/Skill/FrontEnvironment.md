@@ -4,7 +4,7 @@ description:
 categories:
 - Skill
 tags:
-- 构建工具
+- 电脑环境
 toc: flase
 author: 
 comments:
@@ -145,6 +145,11 @@ var equipmentWin = {
     '数据库': 'Navicat',
     '接口测试': 'Postman',
     '代码比对': 'Beyond Compare',
+    'git': [
+        'npm install hexo -g',
+        'npm install -g vue-cli',
+        'npm install -g create-react-app',
+    ]
 }
 ```
 

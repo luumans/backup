@@ -2,7 +2,7 @@ title: Input输入框的案例
 date: 2016-04-02 14:11:20
 description: 
 categories:
-- HTML
+- Induce
 tags:
 - HTML
 toc: true

@@ -2,9 +2,9 @@ title: 工作纪要
 date:
 description: 
 categories:
-- Git
+- Drafts
 tags:
-- Git
+- Drafts
 toc: true
 author:
 comments:
@@ -20,6 +20,12 @@ permalink:
 ```
 ```
 
+### 3-13 开发弹窗组件
+问题： 有部分知识不会
+
+### 3-13 初步完成方块转盘
+组件内容：<slot></slot>，接收父级组件内容部分。
+中英文切换：il8n国际标准，使用$t('Name')
 
 ### 2-4 标题
 > - [投简历]( "时不时的会受到拒绝的，内心却是有点难受。但站在他们的角度，有很正确，毕竟人家要招聘那些上来就可以工作的。自己还有很多的不足之处。")

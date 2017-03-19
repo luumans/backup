@@ -2,7 +2,7 @@
 date: 2017-01-02 18:29:00
 description:
 categories:
-- CSS
+- Induce
 tags:
 - CSS
 toc: true
@@ -33,7 +33,7 @@ permalink:
 	}
 ```
 
-<div class="one">one</div>
+<!-- <div class="one">one</div> -->
 <style type="text/css">
 	.one{
 		position:absolute;
@@ -63,7 +63,7 @@ permalink:
 大家都知道的position:fixed,IE是不支持这个属性的
 
 
-<div class="two">two</div>
+<!-- <div class="two">two</div> -->
 <style type="text/css">
 	.two{
 		position:fixed;
@@ -90,7 +90,7 @@ permalink:
 		background:pink;
 	}
 ```
-<div class="three">three</div>
+<!-- <div class="three">three</div> -->
 <style type="text/css">
 	.three{
 		position:fixed;
@@ -118,7 +118,7 @@ permalink:
 		background:black;
 	}
 ```
-<div class="four">four</div>
+<!-- <div class="four">four</div> -->
 <style type="text/css">
 	.four{
 		position:absolute;
@@ -146,7 +146,7 @@ permalink:
 	}
 ```
 
-<div class="five">five</div>
+<!-- <div class="five">five</div> -->
 <style type="text/css">
 	.five{
 		display:table-cell;
@@ -171,7 +171,7 @@ permalink:
 	}
 ```
 
-<div class="six">six</div>
+<!-- <div class="six">six</div> -->
 <style type="text/css">
 	.six{
 		width:100px;
@@ -195,7 +195,7 @@ permalink:
 		color:black;
 	}
 ```
-<div class="seven">seven</div>
+<!-- <div class="seven">seven</div> -->
 <style type="text/css">
 	.seven{
 		width:90px;
@@ -225,7 +225,7 @@ permalink:
 		background:green;
 	}
 ```
-<div class="eight">eight</div>
+<!-- <div class="eight">eight</div> -->
 <style type="text/css">
 	.eight{
 		position:absolute;
@@ -271,7 +271,7 @@ permalink:
 	}
 ```
 
-<div class="nine"><div class="content">nine</div></div>
+<!-- <div class="nine"><div class="content">nine</div></div> -->
 <style type="text/css">
 	.nine{
 		position:fixed;

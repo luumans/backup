@@ -2,7 +2,7 @@ title: 移动H5自适应布局
 date: 2016-04-02 14:11:20
 description: 
 categories:
-- HTML
+- Induce
 tags:
 - rem
 toc: true

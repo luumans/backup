@@ -2,7 +2,7 @@ title:  前端Chrome插件
 date: 2016-01-20 13:58:41
 description: 
 categories:
-- HTML
+- Plug
 tags:
 - Chrome
 toc:

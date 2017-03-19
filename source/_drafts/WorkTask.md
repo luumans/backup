@@ -2,9 +2,9 @@ title: 日常计划规划表
 date:
 description: 
 categories:
-- task
+- Drafts
 tags:
-- task
+- Drafts
 toc: true
 author:
 comments:
@@ -15,7 +15,7 @@ permalink:
 　　**目的：**渐渐发现自己工作中，效率变得很低。平时也会应为一些其他时间打断自己的工作状态。为了改进，通过制作工作表，收集一些平时比较想研究，但是有没有足够的时间。我会将这些文章、项目进行归类放置，通过时间线的划分给自己些时间去完成他。
 > 背景
 
-最为互联网时代的打字员，没有健康的身体，什么都是假象！最近看到sofish[everyday](https://github.com/sofish/everyday "从今天开始，要么写代码要么写文档")，什么法学院！就这么入了前端圈，哈哈！！赞
+作为互联网时代的打字员，没有健康的身体，什么都是假象！最近看到sofish[everyday](https://github.com/sofish/everyday "从今天开始，要么写代码要么写文档")，什么法学院！就这么入了前端圈，哈哈！！赞
 渐渐的察觉到写文章的重要性，督促自己不断记录自己。
 [EveryDaySport](https://github.com/xiaobai050/EveryDaySport "野蛮其体魄，从今天开始做一个健康的程序员。")
 
@@ -26,10 +26,12 @@ permalink:
 3. 对已完成的工作记录下来
 4. 需求分析，流程分析
 
+```
 执行Hexo $ hexo s --draft
 $ git push origin data:data
 hexo g --draft
 browser-sync start --server --files "css/*.css, *.html"
+```
 <!-- more -->
 
 |  计划  | 工作日 |  周末  |
@@ -61,8 +63,29 @@ browser-sync start --server --files "css/*.css, *.html"
 > - [轮播图片切换]( "图片是多个方框，点击任意方框图片展出")
 > - [react]( "参照：淘宝——海贼王的3D特效，按照动漫的播放，图片来自漫画剪切。")
 
-> - [normCSS.md]( "CSS前端代码规范")
 > - [JSregular.md]( "正则匹配")
+
+> - [JSregular.md]( "正则匹配")
+
+#### 3-10 相册
+最近突然想做个相册，到网上查找不思路，发现自己比较喜欢黑色的风格，下面有多留图片，最后看了大神litten的作品zing-gallery，后台使用node进行自动。
+
+> - [全屏大图幻灯背景个人相册网页模板](http://www.cssmoban.com/cssthemes/6510.shtml "黑色瀑布流")
+> - [全屏大图幻灯背景个人相册网页模板](http://www.cssmoban.com/cssthemes/6510.shtml "黑色瀑布流")
+> - [左栏全屏漂亮摄影师官网模板下载](http://www.cssmoban.com/cssthemes/6424.shtml "黑色瀑布流")
+
+
+
+#### 3-10 入职
+入职之后，由于从零开始，对于项目的建设，文档的规范很重要。
+> - [vue-cli.md]( "文档的规范")
+> - [normCSS.md]( "CSS前端代码规范")
+
+图片优化：
+很多网站图片都会有，从模糊到清晰的过程。
+1. 阿里：图片懒加载第一次为模糊图片
+1. 知乎：使用noscript实现
+2. 国外：
 
 #### 2-4 模块化开发之AMDrequire
 > - [RequireModule.md]( "模块化开发之AMDrequire")
