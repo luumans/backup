@@ -30,7 +30,6 @@ permalink:
 执行Hexo $ hexo s --draft
 $ git push origin data:data
 hexo g --draft
-browser-sync start --server --files "css/*.css, *.html"
 ```
 <!-- more -->
 
