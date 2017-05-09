@@ -154,7 +154,11 @@ hexo g --draft
 
 [唯快不破：Web 应用的 13 个优化步骤](https://segmentfault.com/a/1190000005798306#articleHeader4 "")
 
+[聊一聊 H5 应用缓存 - Manifest](https://juejin.im/post/58eec5f9ac502e006c11bafd?utm_source=gold_browser_extension "")
+
 [译文：一个采用 Three.js 的 3D 动画场景制作：飞行者](http://www.jianshu.com/p/92771817c73f "")
+
+[playcanv](https://playcanv.as/e/p/44MRmJRU/ "")
 
 [前端工程化实践 之 整合gulp/webpack](http://www.jianshu.com/p/9724c47b406c "")
 
@@ -351,6 +355,15 @@ ajax请求后台进行倒计时。
 [使用 Yeoman + AngularJS + Gulp 搭建 Web 应用](http://www.tuicool.com/articles/Ybu6zan)
 
 
+
+
+### 数据可视化
+[遇见大数据可视化：基础研究](https://www.qcloud.com/community/article/369896?fromSource=gwzcw.92829.92829.92829 "")
+[]( "")
+[]( "")
+
+
+
 [github上值得关注的前端项目](http://www.jianshu.com/p/6620f3a8ed46)
 
 
@@ -365,9 +378,14 @@ ajax请求后台进行倒计时。
 
 
 
+## node 博客
 
-
-
+[vue + node 实现的一个博客系统](https://github.com/linguowei/myblog "")
+[使用travis-ci自动部署](https://w3cboy.com/post/2016/03/travisci-hexo-deploy/ "")
+[eureka](https://github.com/eteplus/eureka "")
+[一个Node.js+mongoDB+Vue.js的博客内容管理器](http://www.jianshu.com/p/00dee32ac150 "")
+[]( "")
+[]( "")
 
 
 
@@ -388,5 +406,7 @@ https://www.zhihu.com/question/50477368#answer-45084031
 []( "")
 []( "")
 []( "")
+
+
 ### cli
 [前端开发中提到的“脚手架”到底指什么，CLI？gulp 和 gulp-cli有什么区别](https://www.zhihu.com/question/47731497?sort=created "")

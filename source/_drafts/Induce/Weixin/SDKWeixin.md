@@ -14,6 +14,21 @@ permalink:
 　　**自用笔记：**
 <!-- more -->
 
+# 授权页面
+
+```
+var INIT_STATE = {
+	"appId": "wx5548bdee066465e0",
+	"redirectUrl": "https://www.fyshuyuan.com/teach/"
+}
+function urlAuthWechat(appid,link) {
+	return link = encodeURIComponent(link), 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appid + '&redirect_uri=' + link + '&response_type=code&scope=snsapi_base#wechat_redirect'
+}
+setTimeout(function () {
+	window.location = urlAuthWechat(INIT_STATE.appId, INIT_STATE.redirectUrl)
+},0)
+```
+
 # H5地理位置定位
 
 ## 微信

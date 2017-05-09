@@ -1,5 +1,5 @@
-﻿title: 浏览器版本
-date: 2016-02-27 18:29:00
+﻿title: 浏览器UA
+date: 2017-02-27 18:29:00
 description: 
 categories:
 - JavaScript
@@ -23,29 +23,23 @@ permalink:
 
 "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
 ```
-function parseUA() {
-    var u = navigator.userAgent;
-    var u2 = navigator.userAgent.toLowerCase();
-    return { //移动终端浏览器版本信息
-        trident: u.indexOf('Trident') > -1, //IE内核
-        presto: u.indexOf('Presto') > -1, //opera内核
-        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
-        iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
-        iPad: u.indexOf('iPad') > -1, //是否iPad
-        webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
-        iosv: u.substr(u.indexOf('iPhone OS') + 9, 3),
-        weixin: u2.match(/MicroMessenger/i) == "micromessenger",
-        ali: u.indexOf('AliApp') > -1,
-    };
+function parseUA(){
+  let u = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
+  return {
+    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+    Mobile: /(Mobile)/i.test(u),
+    MobileAll: u.indexOf('Android') > -1 || u.indexOf('iPhone') > -1 || u.indexOf('SymbianOS') > -1 || u.indexOf('Windows Phone') > -1 || u.indexOf('iPad') > -1 || u.indexOf('iPod') > -1,
+    wPhone: /(Windows Phone|windows[\s+]phone)/i.test(u),
+    PC: u.indexOf('Win') > -1 || u.indexOf('Mac') > -1 || u.indexOf('Linux') > -1,
+    weixin: u.indexOf('MicroMessenger') > -1,
+    ykly: u.indexOf('ykly') > -1,
+    yIos: u.indexOf('ykly_ios_app') > -1,
+    yAndroid: u.indexOf('ykly_android_app') > -1
+  }
 }
 var ua = parseUA();
-if (ua.weixin) {
-    location.href = './blank.html';
-}
+console.log(ua)
 ```
 
 ### 判断浏览器为移动端

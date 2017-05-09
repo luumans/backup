@@ -74,6 +74,7 @@
             $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
           });
           function dashangToggle(){
+            window._hmt.push(['_trackEvent', 'pay', 'click', '赏'])
             $(".hide_box").fadeToggle();
             $(".shang_box").fadeToggle();
           }
@@ -123,6 +124,15 @@
           }) %>
     <% } else if (theme.youyan.on) { %>
         <%- partial('comments/youyan') %>
+    <% } else if (theme.gitment.on) { %>
+        <%- partial('comments/gitment', {
+            owner: theme.gitment.owner,
+            repo: theme.gitment.repo,
+            client_id: theme.gitment.client_id,
+            client_secret: theme.gitment.client_secret,
+            desc: post.description,
+            id: post.path
+          }) %>
     <% } else if (theme.disqus.on) { %>
         <%- partial('comments/disqus', {
             shortname: theme.disqus.shortname

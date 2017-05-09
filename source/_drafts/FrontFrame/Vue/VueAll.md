@@ -25,6 +25,16 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 
 ## 资源教程
 
+### 生命周期
+- [Vue实例详解与生命周期](http://www.cnblogs.com/fly_dragon/p/6220273.html "")
+- [生命周期和钩子函数的一些理解](https://segmentfault.com/a/1190000008010666 "")
+- []( "")
+- []( "")
+- []( "")
+- []( "")
+- []( "")
+
+
 ### 社区
 - [sf - vue标签](http://segmentfault.com/t/vue.js "")
 - [知乎 - vue标签](https://www.zhihu.com/topic/20022242/questions "")
@@ -115,6 +125,8 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 - [ZEE大神作品 - vue-calendar](https://github.com/jinzhe/vue-calendar "")
 - [Awe - 日历组件](https://github.com/hilongjw/vue-datepicker "")
 - [jas0ncn - 日历组件](https://github.com/jas0ncn/vue-timepicker "")
+- [vue2-calendar日历](https://github.com/icai/vue2-calendar/ "")
+- [vue-today](https://github.com/qddegtya/vue-today "")
 
 ### 进度条
 - [vue 进度条](https://github.com/greyby/vue-spinner "")
@@ -145,6 +157,14 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 
 ### 省市联动
 - [Vue 省市区三级联动组件](https://github.com/QingWei-Li/vue-region-picker "")
+- [vue-filter-bar](https://github.com/keifc/vue-filter-bar "vue编写的移动端筛选条组件")
+- []( "")
+- []( "")
+- []( "")
+- []( "")
+- []( "")
+
+
 
 ### TimeLine
 - [Vue企业级时间轴选择器](https://github.com/yelingfeng/vue-timelinepick "")
@@ -152,6 +172,9 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 ### Template
 - [vue2.0模板](https://github.com/yelingfeng/vue-ylf-template "")
 - [vue2.0全家桶实例](https://github.com/yelingfeng/vue-2.0-FamilyBucket "")
+
+### 
+- [适用于 vue.js 和原生 js 的渐进式图片加载](https://github.com/ccforward/cc/issues/64 "")
 
 ## 示例
 
@@ -173,6 +196,9 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 - [Vue.js 和 Webpack（二）](http://djyde.github.io/2015/08/30/vuejs-and-webpack-2/ "")
 - [Vue.js 和 Webpack（三）](http://djyde.github.io/2015/08/31/vuejs-and-webpack-3/ "")
 - [二哲 - 结合具体项目的webpack配置](https://github.com/MeCKodo/webpack "")
+
+
+
 
 ### Gulp
 - [vue-gulp-webpack单页面组件开发](https://github.com/JsAaron/vue-gulp-webpack "")
@@ -202,6 +228,49 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 - [基于Vue的年会抽奖小DEMO](https://ipudge.github.io/blog/2017/02/04/rollvue/#more "")
 - [简易留言板](https://github.com/kenberkeley/vue-demo "Webpack / ES6 + Babel / Vue Router / Vue Resource / Vue Validator ? / Vuex ? —— An Excellent Vue Starter with Best Practice /" "")
 - [Vue.js博客内容管理系统(CMS "")](https://github.com/ycwalker/CMS-of-Blog "一个前端基于Vue.js，后端基于Node.js的博客内容管理器" "")
+- [vue-login](https://github.com/ykloveyxk/vue-login "vue & vue-router & vuex & vue-cli(webpack) & element-u")
+
+### 活动
+- [用vue的皮毛写的抽奖](http://www.qdfuns.com/notes/22328/9ff57e1afc5532675bcd819a9c42b184.html "")
+- [Beauty](https://github.com/beauty-enjoy/beauty "VUE + VUEX + FIREBASE + BULMA … 实现的 SPA SSR项目")
+- [github-explorer](https://github.com/SidKwok/github-explorer "")
+- [vue-svgicon](https://github.com/MMF-FE/vue-svgicon "")
+- [Vue实现material design的涟漪动效](http://www.jianshu.com/p/aeb44f6056c7 "")
+- [vue-easy-slider](https://github.com/shhdgit/vue-easy-slider "")
+- [musicPlay](https://github.com/z5829984520/musicPlay "")
+- [vue-WeChat](https://github.com/zhaohaodang/vue-WeChat "")
+- [vue-MiniQQ](https://github.com/jiangqizheng/vue-MiniQQ "")
+- [douyu-vue](https://github.com/PinMr/douyu-vue "")
+- [Vue源码解读和分析](https://github.com/banama/aboutVue "")
+- [vue的父子间通信](http://www.jianshu.com/p/13debc5004fe "")
+- [Dive into Vue.js](https://zhuanlan.zhihu.com/p/25869382 "")
+- [浅谈前端状态管理（下）](https://zhuanlan.zhihu.com/p/25908872 "")
+- [浅谈前端状态管理（上）](https://zhuanlan.zhihu.com/p/25800767 "")
+- [vue+webpack在“双十一”导购产品的技术实践](http://www.open-open.com/lib/view/open1448519187360.html "")
+- [vue-music-player](https://github.com/microzz/vue-music-player "")
+- [vue 播放音乐](https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=vue%20%E6%92%AD%E6%94%BE%E9%9F%B3%E4%B9%90&oq=vue%2520refs.&rsv_pq=ecd303390000baf6&rsv_t=c59fXTxjmFg6kS5w3Xw8OJ%2BXBOcjtoj0OHcW3FJsgOqBnS%2BFHwmprSOcJe0&rqlang=cn&rsv_enter=1&inputT=11972&rsv_sug3=45&rsv_sug1=27&rsv_sug7=100&rsv_sug2=0&rsv_sug4=13726 "")
+- [2048](https://github.com/Elity/2048 "")
+- [Qu约](https://github.com/hzzly/xyy-vue "基于vue+vue-router+vuex+axios+webpack")
+- [vuex-notes-app](https://github.com/lichenbuliren/vuex-notes-app "A Notes App with Vuex")
+- []( "")
+- []( "")
+- []( "")
+
+
+
+
+## 弹窗
+- [如何使用vue.js构造modal(弹窗)组件?](https://www.zhihu.com/question/35820643 "")
+- []( "")
+
+## 摇一摇
+- [H5+JS实现手机摇一摇功能](http://www.cnblogs.com/shizq/p/5611171.html "")
+
+
+## touch事件
+- [vue-tap](https://github.com/MeCKodo/vue-tap "")
+- [vue-touch](https://github.com/vuejs/vue-touch/tree/next "")
+- [实现手指点击事件 v-tap](http://www.111cn.net/wy/js-ajax/108398.htm "")
 
 ## 开发工具相关
 
@@ -235,3 +304,4 @@ Webstorm
 
 - [尤小右 - 4-1 Vue.js-数据驱动的组件化前端开...](http://www.imooc.com/video/6346 "")
 - [Evan You - Diving Deep into Vue.js](https://simplecast.fm/s/5e60d9be "")
+- []( "")
