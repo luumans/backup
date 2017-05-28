@@ -11,6 +11,8 @@ comments:
 original:
 permalink: 
 ---
+　　**Vue 项目搭建：**文章适合有一定vue经验，只是简单介绍项目中的搭建与开发的优化之处。知识点，请自行查阅！
+<!-- more -->
 # 环境搭建
 
 ## 技术栈
@@ -59,6 +61,9 @@ Eslint
 	├── routes/            # （ROUTE）路由
 	├── apis/              # （API，统一管理 XHR 请求）服务
 	├── utils/             # （UTIL）工具类
+      ├── flexible.js                # flexible 布局
+      ├── common.js                  # 通用方法
+      ├── tool.js                    # 工具方法
   ├── vuexs/             # （VUEX）状态管理
 	├── views/             # （VIEW）路由页面
 		├── index.vue                # 首页
@@ -114,43 +119,62 @@ resolve: {
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <title></title>
-  <meta charset="utf-8">
-  <!-- 介绍 -->
-  <meta name="Keywords" content="" />
-  <meta name="description" content=""/>
-  <meta name="author" content="luuman">
-  <!-- 清除cache -->
-  <meta http-equiv="Expires" content="-1">
-  <meta http-equiv="Cache-Control" content="no-cache">
-  <meta http-equiv="Pragma" content="no-cache">
-  <!-- icon -->
-  <link rel="icon" href="">
-  <!-- 移动端 -->
-  <meta name="format-detection" content="email=no">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="">
-  <!-- link -->
+    <title>Vue</title>
+    <meta charset="utf-8">
+    <!-- 介绍 -->
+    <meta name="Keywords" content="" />
+    <meta name="description" content=""/>
+    <meta name="author" content="">
+    <!-- 清除cache -->
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <!-- icon -->
+    <link rel="icon" href="favicon.ico">
+    <!-- 移动端 -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"> -->
+    <meta name="format-detection" content="email=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="">
 </head>
 <body>
-  <div id="app"></div>
-</body>
+    <div id="app"></div>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?819b1c6493df653afb8c7846bc4b8db6";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 </body>
 </html>
 ```
 
 ## main.js
+引入IconFont、Flexible、vue-lazyload、vuex
 ```
+require('!!script-loader!ASSET/fonts/iconfont')
 import Vue from 'vue'
-import App from './App'
-import router from './router'
+import App from './app'
+import router from './routers'
+import 'UTIL/flexible'
+
+import VueLazyload from 'vue-lazyload'
+import loading from 'ASSET/img/loading.png'
+import error from 'ASSET/img/error.png'
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: error,
+  loading: loading,
+  attempt: 1,
+  listenEvents: [ 'scroll', 'mousewheel' ]
+})
 
 import store from './vuex/store'
-import * as filters from './util/filter'
-
-Object.keys(filters).forEach(k => Vue.filter(k, filters[k])) //注册过滤器
 
 /* eslint-disable no-new */
 new Vue({
@@ -163,6 +187,7 @@ new Vue({
 ```
 
 ## routers
+路由使用H5 history，
 ```
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -334,7 +359,8 @@ export default {
 }
 ```
 
-# 插件
+# 性能优化
+
 ## webpack-bundle-analyzer
 最新`Vue-cli`还帮着注入了`webpack-bundle-analyzer`插件（Webpack插件和CLI实用程序），她可以将内容束展示为方便交互的直观树状图，让你明白你所构建包中真正引入的内容；我们可以借助她，发现它大体有哪些模块组成，找到错误的模块，然后优化它。我们可以在`package.json`中注入如下命令去方便运行她`npm run analyz`，默认会打开`http://127.0.0.1:8888`作为展示。
 ```
@@ -375,7 +401,7 @@ export default {
 ```
 使用router-link的路由状态获取active
 
-# 问题
+# 问题解决
 
 ## favicon.ico
 把favicon.ico放在项目的根目录下（不是src中，是最外面） 

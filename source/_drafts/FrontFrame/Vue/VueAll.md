@@ -164,7 +164,10 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 - []( "")
 - []( "")
 
-
+### vue瀑布流
+- [有用过vue的滚动瀑布流插件vue-infinite-scroll的](https://q.cnblogs.com/q/90368/ "")
+- [vue-infinite-scroll](https://github.com/ElemeFE/vue-infinite-scroll "")
+- [vue-waterfall](https://github.com/MopTym/vue-waterfall "")
 
 ### TimeLine
 - [Vue企业级时间轴选择器](https://github.com/yelingfeng/vue-timelinepick "")
@@ -257,6 +260,13 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 - []( "")
 
 
+## 下拉加载
+- [vue-mugen-scroll](https://github.com/egoist/vue-mugen-scroll "https://egoistian.com/vue-mugen-scroll/")
+- [vue2.0 移动端，下拉刷新，上拉加载更多 插件](http://www.cnblogs.com/sichaoyun/p/6647458.html "")
+- [Vue2.0 实战 之 上啦加载下拉刷新](http://blog.csdn.net/qq_16559905/article/details/70160807 "")
+- [基于vue的下拉刷新&滚动刷新指令](http://blog.csdn.net/kameleon2013/article/details/53812446 "")
+- [mui下拉加载、上拉刷新(包括分页，vue.js)](http://blog.csdn.net/u012453773/article/details/52292816#2通过muiinit方法中pullrefresh参数配置各项参数 "")
+- []( "")
 
 
 ## 弹窗
@@ -266,6 +276,11 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 ## 摇一摇
 - [H5+JS实现手机摇一摇功能](http://www.cnblogs.com/shizq/p/5611171.html "")
 
+## UI组件
+- [vonic](https://github.com/wangdahoo/vonic/ "")
+- []( "")
+- []( "")
+- []( "")
 
 ## touch事件
 - [vue-tap](https://github.com/MeCKodo/vue-tap "")

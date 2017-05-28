@@ -20,6 +20,44 @@ permalink:
 ```
 ```
 
+### 5-20 Vue conf 活动
+> - [Vue 2017现状和展望](https://ke.qq.com/webcourse/index.html#course_id=200463&term_id=100237559&taid=1254396738604815&vid=i14175132ec "描述")
+> - [[持续更新] VueConf 大会现场笔记](https://juejin.im/post/591fa2d0a0bb9f005f3ccd1b?utm_source=gold_browser_extension "描述")
+> - [总有你要的编程书单](http://blog.didiaoyuan.com/2017/04/18/%E6%80%BB%E6%9C%89%E4%BD%A0%E8%A6%81%E7%9A%84%E7%BC%96%E7%A8%8B%E4%B9%A6%E5%8D%95%EF%BC%88GitHub-%EF%BC%89/ "描述")
+
+### 5-17 背景bg设置
+background: linear-gradient()
+
+### 5-16 弹窗背景模糊
+原理：使用高斯模糊，使得页面显示元素模糊，将样式加在body上，通过body的class实现的。row为指定要模糊的内容
+```
+body {
+	-webkit-backface-visibility: hidden;
+}
+.modal-active .row {
+	-webkit-filter: blur(3px);
+	-moz-filter: blur(3px);
+	-o-filter: blur(3px);
+	-ms-filter: blur(3px);
+	filter: blur(3px);
+}
+```
+> - [CSS3 filter 模糊滤镜](http://mao.li/css3-blur-filter-pratice/ "描述")
+> - [如何将网页CSS背景图高斯模糊且全屏显示](https://segmentfault.com/q/1010000000123341 "描述")
+
+
+### 5-14 移动端自动播放音频
+实例测试：安卓可以自动播放,google不可以，ios无法自动播放，必须用户事件，微信可以使用
+```
+wx.playVoice({
+    localId: '' // 需要播放的音频的本地ID，由stopRecord接口获得
+});
+```
+
+### 5-9 vue数据更新不重新渲染
+拉去数组数据，使用this.novelty = this.novelty.concat(res)无法将数据写入。
+写入进去也无法渲染Array.prototype.push.apply(this.novelty, res),this.$set(this.novelty, this.novelty, 0)
+
 ### 5-9 懒加载bug
 vue-lazyload必须使用网络连接图片，仅仅保存本地图片链接字段。使用import引入文件路径
 

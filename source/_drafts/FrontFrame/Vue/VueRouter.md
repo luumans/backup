@@ -13,6 +13,12 @@ permalink:
 ---
 
 　　**自用笔记：**Vue.js通过简洁的API提供高效的数据绑定和灵活的组件系统。最近在Github上看到了不少Vue的项目，很好奇，决定尝试尝试。
+
+# TODO
+
+[ ] history的后退配置
+[ ] 路由懒加载
+[ ] 滚动行为
 <!-- more -->
 
 # 基础
@@ -35,6 +41,7 @@ permalink:
 ```
 
 ### 配置
+
 ```
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -789,16 +796,6 @@ router.onReady(callback)
 
 添加一个会在第一次路由跳转完成时被调用的回调函数。此方法通常用于等待异步的导航钩子完成，比如在进行服务端渲染的时候。
 ```
-
-
-
-# 问题
-
-问题： history的后退配置
-
-问题： 路由懒加载
-
-问题： 滚动行为
 
 
 - [router](https://router.vuejs.org/en/# "")

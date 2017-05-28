@@ -13,6 +13,9 @@ permalink:
 ---
 
 　　**自用笔记：**Vue.js通过简洁的API提供高效的数据绑定和灵活的组件系统。最近在Github上看到了不少Vue的项目，很好奇，决定尝试尝试。
+# TODO
+
+[ ] 简单罗列些方法
 <!-- more -->
 ## 基本使用
 Vue 提供了 transition 的封装组件，在下列情形中，可以给任何元素和组件添加 entering/leaving 过渡
