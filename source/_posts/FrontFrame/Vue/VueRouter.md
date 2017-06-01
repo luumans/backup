@@ -19,6 +19,7 @@ permalink:
 [ ] history的后退配置
 [ ] 路由懒加载
 [ ] 滚动行为
+[ ] router.beforeEach
 <!-- more -->
 
 # 基础
@@ -167,7 +168,7 @@ children 配置就是像 routes 配置一样的路由配置数组，所以呢，
 ## 编程式的导航
 
 ### router.push(location)
-router.push(location, onComplete?, onAbort?)
+> router.push(location, onComplete?, onAbort?)
 
 想要导航到不同的 URL，则使用 router.push 方法。这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL。
 
@@ -177,22 +178,22 @@ router.push(location, onComplete?, onAbort?)
 
 ```
 // 字符串
-router.push('home')
+this.$router.push('home')
 
 // 对象
-router.push({ path: 'home' })
+this.$router.push({ path: 'home' })
 
 // 命名的路由
-router.push({ name: 'user', params: { userId: 123 }})
+this.$router.push({ name: 'user', params: { userId: 123 }})
 this.$route.params.userId
 
 // 带查询参数，变成 /register?plan=private
-router.push({ path: 'register', query: { plan: 'private' }})
+this.$router.push({ path: 'register', query: { plan: 'private' }})
 this.$route.query.plan
 ```
 
 ### router.replace(location)
-router.replace(location, onComplete?, onAbort?)
+> router.replace(location, onComplete?, onAbort?)
 
 跟 router.push 很像，唯一的不同就是，它不会向 history 添加新记录，而是跟它的方法名一样 —— 替换掉当前的 history 记录。
 
@@ -205,17 +206,17 @@ router.replace(location, onComplete?, onAbort?)
 
 ```
 // 在浏览器记录中前进一步，等同于 history.forward()
-router.go(1)
+this.$router.go(1)
 
 // 后退一步记录，等同于 history.back()
-router.go(-1)
+this.$router.go(-1)
 
 // 前进 3 步记录
-router.go(3)
+this.$router.go(3)
 
 // 如果 history 记录不够用，那就默默地失败呗
-router.go(-100)
-router.go(100)
+this.$router.go(-100)
+this.$router.go(100)
 ```
 
 ## 命名路由
@@ -224,7 +225,7 @@ router.go(100)
 /user/123
 <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
 <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
-router.push({ name: 'user', params: { userId: 123 }})
+this.$router.push({ name: 'user', params: { userId: 123 }})
 ```
 
 ## [命名视图](https://jsfiddle.net/posva/6du90epg/)

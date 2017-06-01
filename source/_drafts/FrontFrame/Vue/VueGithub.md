@@ -1,4 +1,4 @@
-title: Vue Github实战项目搭建总结
+github.mdtitle: Vue Github实战项目搭建总结
 date: 2017-05-25 18:29:00
 description: 
 categories:
