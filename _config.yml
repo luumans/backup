@@ -64,9 +64,12 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: spfk
+# theme: spfk
 # theme: hexo-theme-spfk
-# theme: next
+# theme: hexo-theme-yilia
+# theme: hexo-theme-hueman
+# theme: hexo-theme-icarus
+theme: next
 
 # 自动生成sitemap
 sitemap:
@@ -74,6 +77,42 @@ path: sitemap.xml
 baidusitemap:
 # path: baidusitemap.xml
 
+# hexo-generator-json-content搜索功能
+jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+
+# hexo-neat代码压缩
+# neat_enable: true
+# neat_html:
+#   enable: true
+#   exclude:
+# neat_css:
+#   enable: true
+#   exclude:
+#     - '*.min.css'
+# neat_js:
+#   enable: true
+#   mangle: true
+#   output:
+#   compress:
+#   exclude:
+#     - '*.min.js'
 
 # Deployment 站点部署到github要配置，上一节中已经讲过
 ## Docs: http://zespia.tw/hexo/docs/deploy.html

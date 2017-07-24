@@ -177,7 +177,9 @@ UI
 性能优化教程
 [前端性能优化-基础知识认知](http://www.imooc.com/learn/580)
 [研究首屏时间？你先要知道这几点细节](http://www.alloyteam.com/2016/01/points-about-resource-loading/)
-
+[前端极限性能优化合集](https://demoncloud.github.io/#post@s=前端极限性能优化合集)
+[使用Chrome DevTools的Timeline和Profiles提高Web应用程序的性能](https://www.oschina.net/translate/performance-optimisation-with-timeline-profiles)
+[性能工具](http://www.w3cplus.com/performance/performance-tools.html)
 
 面试相关
 [面试的时候，如何自我介绍？](https://www.zhihu.com/question/19603341)

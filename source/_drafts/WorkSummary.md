@@ -20,6 +20,28 @@ permalink:
 ```
 ```
 
+
+
+### 7-3 浏览器滚动出现大片的空白
+原因：没有对URL链接，进行图片压缩裁剪，导致浏览器性能不是很好。图片过大导致，性能卡顿。
+
+### 7-1 60s倒计时
+> - [时间倒计时组件](https://juejin.im/post/58e87c1bac502e006c35567e "描述")
+
+### 6-22 API接口数据刷新
+当实际操作时，数据发生变化，UI没有变化
+
+### 6-10 Vue路由切换，页面没有回到顶部
+解决：在router-view中
+```
+watch: {
+  '$route' (to, from) {
+    document.body.scrollTop = 0
+  }
+},
+```
+[手机端页面自适应解决方案—rem布局](http://caibaojian.com/rem-responsive.html)
+
 ### 5-20 Vue conf 活动
 > - [Vue 2017现状和展望](https://ke.qq.com/webcourse/index.html#course_id=200463&term_id=100237559&taid=1254396738604815&vid=i14175132ec "描述")
 > - [[持续更新] VueConf 大会现场笔记](https://juejin.im/post/591fa2d0a0bb9f005f3ccd1b?utm_source=gold_browser_extension "描述")

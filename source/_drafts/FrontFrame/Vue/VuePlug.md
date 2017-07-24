@@ -11,7 +11,6 @@ comments:
 original:
 permalink: 
 ---
-
 　　**自用笔记：**Vue.js通过简洁的API提供高效的数据绑定和灵活的组件系统。最近在Github上看到了不少Vue的项目，很好奇，决定尝试尝试。
 <!-- more -->
 
@@ -186,7 +185,50 @@ Vue.use(vueTap)
 ```
 
 
+# [vue images](http://littlewin.info/vue-images/example/ "")
+## To use
+```
+// Install using npm
+npm install vue-images --save
 
+// In ES6 module
+import vueImages from 'vue-images'
+```
+
+## To
+```
+<vue-images :imgs="images"
+  :modalclose="modalclose"
+  :keyinput="keyinput"
+  :mousescroll="mousescroll"
+  :showclosebutton="showclosebutton"
+  :showcaption="showcaption"
+  :imagecountseparator="imagecountseparator"
+  :showimagecount="showimagecount"
+  :showthumbnails="showthumbnails">
+</vue-images>
+
+images: [
+  {
+    imageUrl: 'http://image.yktour.com.cn/g1/M00/04/C2/CgAMClkQTPeAG9kDAAFQJRBoAkw230.jpg',
+    caption: '<a href="#">Photo by 1</a>'
+  }
+],
+```
+
+# [vue-core-image-upload](http://vanthink-ued.github.io/vue-core-image-upload/index.html#/cn/home "")
+## To use
+```
+npm install v-tap --save-dev
+
+import vueTap from 'v-tap'
+Vue.use(vueTap)
+```
+
+## To
+```
+
+```
 
 
 # []( "")

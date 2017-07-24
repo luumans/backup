@@ -11,9 +11,7 @@ comments:
 original:
 permalink: 
 ---
-
 　　**自用笔记：**Vue.js通过简洁的API提供高效的数据绑定和灵活的组件系统。最近在Github上看到了不少Vue的项目，很好奇，决定尝试尝试。
-
 # TODO
 
 [ ] history的后退配置
@@ -487,8 +485,49 @@ const router = new VueRouter({
 ```
 
 ## 路由懒加载
+为了提高页面首屏加载时间，将相关的路由结合分割，提高页面效率。结合Vue的异步组件和Webpack的code splitting feature,轻松实现路由组件的懒加载。
+```
+const Foo = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['./Foo.vue'], () => {
+    resolve(require('./Foo.vue'))
+  })
+}
+```
 
+### AMD 风格的 require
+```
+const Foo = resolve => require(['./Foo.vue'], resolve)
+```
 
+### 把组件按组分块
+有时候我们想把某个路由下的所有组件都打包在同个异步 chunk 中。只需要 给 chunk 命名，提供 require.ensure 第三个参数作为 chunk 的名称:
+
+```
+const Foo = r => require.ensure([], () => r(require('./Foo.vue')), 'group-foo')
+const Bar = r => require.ensure([], () => r(require('./Bar.vue')), 'group-foo')
+const Baz = r => require.ensure([], () => r(require('./Baz.vue')), 'group-foo')
+```
+Webpack 将相同 chunk 下的所有异步模块打包到一个异步块里面 —— 这也意味着我们无须明确列出 require.ensure 的依赖（传空数组就行）。
+
+webpack.config.js
+```
+var webpackConfig = merge(baseWebpackConfig, {
+  module: {
+    rules: utils.styleLoaders({
+      sourceMap: config.build.productionSourceMap,
+      extract: true
+    })
+  },
+  // devtool: config.build.productionSourceMap ? '#source-map' : false,
+  output: {
+    path: config.build.assetsRoot,
+    filename: utils.assetsPath('js/[name].[chunkhash].js'),
+    // chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    chunkFilename: utils.assetsPath('js/[name].[chunkhash].min.js')
+  },
+```
 # API文档
 
 ## router-link
@@ -798,7 +837,7 @@ router.onReady(callback)
 添加一个会在第一次路由跳转完成时被调用的回调函数。此方法通常用于等待异步的导航钩子完成，比如在进行服务端渲染的时候。
 ```
 
-
+# 参考资料
 - [router](https://router.vuejs.org/en/# "")
 - []( "")
 

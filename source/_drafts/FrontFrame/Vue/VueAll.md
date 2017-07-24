@@ -255,8 +255,8 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 - [2048](https://github.com/Elity/2048 "")
 - [Qu约](https://github.com/hzzly/xyy-vue "基于vue+vue-router+vuex+axios+webpack")
 - [vuex-notes-app](https://github.com/lichenbuliren/vuex-notes-app "A Notes App with Vuex")
-- []( "")
-- []( "")
+- [VueJs百度统计插件](https://minlingchao1.github.io/2017/07/13/VueJs%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1%E6%8F%92%E4%BB%B6/ "JS指令")
+- [菜单对于VUE2 ContextMenu组件](https://github.com/chIIC/vue-contextmenu "")
 - []( "")
 
 
@@ -280,6 +280,11 @@ Vue.js 是用于构建交互式的 Web  界面的库。它提供了 MVVM 数据�
 - [vonic](https://github.com/wangdahoo/vonic/ "")
 - []( "")
 - []( "")
+- []( "")
+
+## 性能优化
+- [vue首屏加载优化](https://segmentfault.com/a/1190000010042512 "")
+- [Vue SPA(单页应用)首屏优化实践](https://segmentfault.com/a/1190000009352506 "")
 - []( "")
 
 ## touch事件

@@ -30,15 +30,6 @@ Eslint
 ## 项目结构
 ```
 .
-├── build/               # Webpack 配置目录
-	├── dev-client.js            # npm run dev
-	├── prod.js                  # npm run build
-	├── webpack.base.conf.js     # 基础配置 全局路径原型函数
-	├── webpack.dev.conf.js      # dev执行
-	└── webpack.prod.conf.js     # build执行
-├── config/               # Webpack 配置目录
-	├── index.js                   # 端口与路径配置
-├── dist/                # build 生成的生产环境下的项目
 ├── src/                 # 源码目录（开发都在这里进行）
 	├── assets/            # （ASSET）放置需要经由 Webpack 处理的静态文件
 		├── css/            		 # css 文件夹
