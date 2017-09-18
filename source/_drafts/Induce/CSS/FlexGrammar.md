@@ -1,5 +1,5 @@
-title: React Native Flexbox
-date: 2017-05-25 18:29:00
+title: Flexbox指南
+date: 2017-08-25 18:29:00
 description: 
 categories:
 - CSS
@@ -994,7 +994,7 @@ auto：默认值，查找父元素的align-items值，如果没有则取值为st
 - [CSS Flexible Box Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout "灵活的盒子模型布局")
 - [junruchen.github.io](https://github.com/junruchen/junruchen.github.io/wiki "")
 - [Flexbugs](https://github.com/philipwalton/flexbugs "")
-- []( "")
+- [Flex布局新旧混合写法详解（兼容微信](https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651552434&idx=1&sn=c166effbc0684c84c701448cc651577d&chksm=8025ad73b7522465b496ac8115ad3d05c72e61e4e60be16a74959dd505c936724f1c660aabf4&scene=0&key=fde86b995a0aabaceda54aa4b4deeceafb3fa24830c15d8bf94a776d5c2c4660f6f0a3cccd46c15629bc9b202e11b5aaea746a942bbc3d29d97a123c8a88455a308a08f7cbe897984f1e9c1e2caa606a&ascene=0&uin=NjgwMDIxNzEw&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.12.3+build(16D32)&version=12020810&nettype=WIFI&fontScale=100&pass_ticket=jMmluuq565A%2BeoduVp2NKP%2BK1PjCoZPxWYfNis62G3CW7U%2Ba2liJVxczFHd0Dr81 "")
 - []( "")
 - []( "")
 - []( "")

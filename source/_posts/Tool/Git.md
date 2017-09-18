@@ -1,5 +1,5 @@
-title: Git的使用技巧
-date: 2016-01-19 14:11:20
+title: Git速查手册
+date: 2017-08-19 14:11:20
 description: 
 categories:
 - Tool
@@ -11,655 +11,395 @@ comments:
 original:
 permalink: 
 ---
-　　** Git的使用技巧:**
-<!-- more -->
-
-## 安装Git
-#### Linux - 打开控制台，然后通过包管理安装，在Ubuntu上命令是：
+# 安装
+## Linux
+打开控制台，然后通过包管理安装，在Ubuntu上命令是：
 ```
 sudo apt-get install git-all
 ```
-#### Windows - 推荐使用git for 
+
+## Windows
+推荐使用git for
 windows，它包括了图形工具以及命令行模拟器。
 
-#### OS X - 最简单的方式是使用homebrew安装，命令行执行
+## OS X
+最简单的方式是使用homebrew安装，命令行执行
 ```
 brew install git
 ```
 如果你是在是先用图形工具的话，那么推荐你使用Github desktop,Sourcetree。但我还是推荐你使用命令行，下面的内容就都是命令行的。
+<!-- more -->
 
-## 配置Git
+- []( "")
+- []( "")
+- []( "")
+- []( "")
+- []( "")
 
-安装完git,首要任务是配置我们的信息，最重要的是用户名及邮箱，打开终端，执行以下命令。
+# Git 术语
+| 术语 | 定义 |
+| -----|-----|
+| 仓库（Repository）| 一个仓库包括了所有的版本信息、所有的分支和标记信息。在Git中仓库的每份拷贝都是完整的。仓库让你可以从中取得你的工作副本。 |
+| 分支（Branches）| 一个分支意味着一个独立的、拥有自己历史信息的代码线（code line）。你可以从已有的代码中生成一个新的分支，这个分支与剩余的分支完全独立。默认的分支往往是叫master。用户可以选择一个分支，选择一个分支执行命令git checkout branch. |
+| 标记（Tags）| 一个标记指的是某个分支某个特定时间点的状态。通过标记，可以很方便的切换到标记时的状态，例如2009年1月25号在testing分支上的代码状态 |
+| 提交（Commit）| 提交代码后，仓库会创建一个新的版本。这个版本可以在后续被重新获得。每次提交都包括作者和提交者，作者和提交者可以是不同的人 |
+| 修订（Revision）| 用来表示代码的一个版本状态。Git通过用SHA1 hash算法表示的id来标识不同的版本。每一个 SHA1 id都是160位长，16进制标识的字符串.。最新的版本可以通过HEAD来获取。之前的版本可以通过"HEAD~1"来获取，以此类推。 |
+
+# 创建
+## 新建仓库
 ```
+<!-- 在当前目录新建一个Git代码库 -->
+$ git init
+
+<!-- 新建一个目录，将其初始化为Git代码库 -->
+$ git init [project-name]
+```
+
+## 复制远程仓库
+```
+<!-- 下载一个项目和它的整个代码历史 -->
+$ git clone [url]
+```
+
+# 配置
+## 配置账号信息
+Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。
+```
+<!-- 设置提交代码时的用户信息 -->
 $ git config --global user.name "My Name"
 $ git config --global user.email myEmail@example.com
+
+<!-- 显示仓库的Git配置 -->
+$ git config --list
+
+<!-- 编辑Git配置文件 -->
+$ git config -e [--global]
 ```
 配置好这两项，用户就能知道谁做了什么，并且一切都更有组织性了不是吗？
 
-### Git SSH Key
-
+### 生成SSH秘钥
+用于上传到你对应的github账号
 ```
-Linux
-
 $ ssh-keygen -t rsa -C "mail@gmail.com"
+<!-- 这的密码不是我们GitHub的密码，而是Git SSH的密码 -->
 
-//这的密码不是我们，GitHub的密码，而是Git SSH的密码
-
-//保存SSH密码
-$ eval "$(ssh-agent -s)" //Linux
-$ ssh-agent -s //Windows
-
-$ ssh-add ~/.ssh/id_rsa
-
-//打开Git生成的密码文件，将其复制到GitHub上
+<!-- 打开Git生成的密码文件，将其复制到GitHub上 -->
 $ vim ~/.ssh/id_rsa.pub
 
-//验证GitHub SSH是否成功
+<!-- 验证GitHub SSH是否成功 -->
 $ ssh -T git@github.com
 ```
 
-### 创建一个新仓库 - git init
-git 会把所有文件以及历史记录保存在你的项目中，创建一个新的仓库，首先要去到项目路径，执行 git init。然后git会创建一个隐藏的文件夹.git，所有的信息都储存在其中。
-在桌面创建一个联系文件夹 git_exercise, 打开终端：
+# 案例
+## 提交流程
+
+![提交流程](http://img.blog.csdn.net/20161219162011600?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxNDM0NjMwMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ```
-$ cd Desktop/git_exercise/
-$ git init
-```
-OK，现在项目还什么都没有，新建一个 hello.txt 文件试试~
-
-
-
-
-### Git指令速查表
-
-#### 创建
-
-##### 复制一个已创建的仓库:
-
-```bash
-$ git clone ssh://user@domain.com/repo.git
-```
-##### 创建一个新的本地仓库:
-
-```bash
-$ git init
-```
-
-#### 本地修改
-
-##### 显示工作路径下已修改的文件
-
-```bash
-$ git status
-```
-
-##### 显示与上次提交版本文件的不同
-
-```bash
-$ git diff
-```
-
-##### 把当前所有修改添加到下次提交中
-
-```bash
+$ git pull
+$ git start
 $ git add
+$ git commit -m ""
+$ git push
 ```
 
-##### 把对某个文件的修改添加到下次提交中
+# 修改与提交
+## 修改
+```
+<!-- 添加指定文件到暂存区 -->
+$ git add [file1] [file2] ...
 
-```bash
-$ git add -p <file>
+<!-- 添加指定目录到暂存区，包括子目录 -->
+$ git add [dir]
+
+<!-- 添加当前目录的所有文件到暂存区 -->
+$ git add .
+
+<!-- 添加每个变化前，都会要求确认 -->
+<!-- 对于同一个文件的多处变化，可以实现分次提交 -->
+$ git add -p
+
+<!-- 删除工作区文件，并且将这次删除放入暂存区 -->
+$ git rm [file1] [file2] 
+
+<!-- 停止追踪指定文件，但该文件会保留在工作区 -->
+$ git rm --cached [file]
+
+<!-- 改名文件，并且将这个改名放入暂存区 -->
+$ git mv [file-original] [file-renamed]
 ```
 
-##### 提交本地的所有修改
+## 提交
+```
+<!-- 提交暂存区到仓库区 -->
+$ git commit -m [message]
 
-```bash
+<!-- 提交暂存区的指定文件到仓库区 -->
+$ git commit [file1] [file2] ... -m [message]
+
+<!-- 提交工作区自上次commit之后的变化，直接到仓库区 -->
 $ git commit -a
+
+<!-- 提交时显示所有diff信息 -->
+$ git commit -v
+
+<!-- 使用一次新的commit，替代上一次提交 -->
+<!-- 如果代码没有任何新变化，则用来改写上一次commit的提交信息 -->
+$ git commit --amend -m [message]
+
+<!-- 重做上一次commit，并包括指定文件的新变化 -->
+$ git commit --amend [file1] [file2] 
 ```
 
-##### 提交之前已标记的变化
+# 分支与标签
+## 分支
+```
+<!-- 列出所有本地分支 -->
+$ git branch
 
-```bash
-$ git commit
+<!-- 列出所有远程分支 -->
+$ git branch -r
+
+<!-- 列出所有本地分支和远程分支 -->
+$ git branch -a
+
+<!-- 新建一个分支，但依然停留在当前分支 -->
+$ git branch [branch-name]
+
+<!-- 新建一个分支，并切换到该分支 -->
+$ git checkout -b [branch]
+
+<!-- 新建一个分支，指向指定commit -->
+$ git branch [branch] [commit]
+
+<!-- 新建一个分支，与指定的远程分支建立追踪关系 -->
+$ git branch --track [branch] [remote-branch]
+
+<!-- 切换到指定分支，并更新工作区 -->
+$ git checkout [branch-name]
+
+<!-- 切换到上一个分支 -->
+$ git checkout -
+
+<!-- 建立追踪关系，在现有分支与指定的远程分支之间 -->
+$ git branch --set-upstream [branch] [remote-branch]
+
+<!-- 合并指定分支到当前分支 -->
+$ git merge [branch]
+
+<!-- 选择一个commit，合并进当前分支 -->
+$ git cherry-pick [commit]
+
+<!-- 删除分支 -->
+$ git branch -d [branch-name]
+
+<!-- 删除远程分支 -->
+$ git push origin --delete [branch-name]
+$ git branch -dr [remote/branch]
 ```
 
-##### 附加消息提交
+## 标签
+```
+<!-- 列出所有tag -->
+$ git tag
 
-```bash
-$ git commit -m 'message here'
+<!-- 新建一个tag在当前commit -->
+$ git tag [tag]
+
+<!-- 新建一个tag在指定commit -->
+$ git tag [tag] [commit]
+
+<!-- 删除本地tag -->
+$ git tag -d [tag]
+
+<!-- 删除远程tag -->
+$ git push origin :refs/tags/[tagName]
+
+<!-- 查看tag信息 -->
+$ git show [tag]
+
+<!-- 提交指定tag -->
+$ git push [remote] [tag]
+
+<!-- 提交所有tag -->
+$ git push [remote] --tags
+
+<!-- 新建一个分支，指向某个tag -->
+$ git checkout -b [branch] [tag]
 ```
 
-##### 提交，并将提交时间设置为之前的某个日期:
 
-```bash
-$ git commit --date="`date --date='n day ago'`" -am "Commit Message"
+
+# 查看信息
 ```
+<!-- 显示有变更的文件 -->
+$ git status
 
-##### 修改上次提交请勿修改已发布的提交记录!
-
-```bash
-$ git commit --amend
-```
-
-##### 把当前分支中未提交的修改移动到其他分支
-
-```bash
-git stash
-git checkout branch2
-git stash pop
-搜索
-```
-
-##### 从当前目录的所有文件中查找文本内容
-
-```bash
-$ git grep "Hello"
-```
-
-##### 在某一版本中搜索文本
-
-```bash
-$ git grep "Hello" v2.5
-```
-
-#### 提交历史
-
-##### 从最新提交开始，显示所有的提交记录（显示hash， 作者信息，提交的标题和时间）
-
-```bash
+<!-- 显示当前分支的版本历史 -->
 $ git log
-```
 
-##### 显示所有提交（仅显示提交的hash和message）
-
-```bash
-$ git log --oneline
-```
-
-##### 显示某个用户的所有提交
-
-```bash
-$ git log --author="username"
-```
-
-##### 查看该文件每次提交记录
-
-```bash
-$ git log <file>
-```
-
-##### 显示某个文件的所有修改
-
-```bash
-$ git log -p <file>
-```
-
-##### 查看最近两次详细修改内容的diff
-
-```bash
-$ git log -p -2
-```
-
-##### 查看提交统计信息
-
-```bash
+<!-- 显示commit历史，以及每次commit发生变更的文件 -->
 $ git log --stat
+
+<!-- 搜索提交历史，根据关键词 -->
+$ git log -S [keyword]
+
+<!-- 显示某个commit之后的所有变动，每个commit占据一行 -->
+$ git log [tag] HEAD --pretty=format:%s
+
+<!-- 显示某个commit之后的所有变动，其"提交说明"必须符合搜索条件 -->
+$ git log [tag] HEAD --grep feature
+
+<!-- 显示某个文件的版本历史，包括文件改名 -->
+$ git log --follow [file]
+$ git whatchanged [file]
+
+<!-- 显示指定文件相关的每一次diff -->
+$ git log -p [file]
+
+<!-- 显示1行日志 -n为n行  -->
+$ git log -5
+
+<!-- 显示过去5次提交 -->
+$ git log -5 --pretty --oneline
+
+<!-- 显示所有提交过的用户，按提交次数排序 -->
+$ git shortlog -sn
+
+<!-- 显示指定文件是什么人在什么时间修改过 -->
+$ git blame [file]
+
+<!-- 显示暂存区和工作区的差异 -->
+$ git diff
+
+<!-- 显示暂存区和上一个commit的差异 -->
+$ git diff --cached [file]
+
+<!-- 显示工作区与当前分支最新commit之间的差异 -->
+$ git diff HEAD
+
+<!-- 显示两次提交之间的差异 -->
+$ git diff [first-branch]...[second-branch]
+
+<!-- 显示今天你写了多少行代码 -->
+$ git diff --shortstat "@{0 day ago}"
+
+<!-- 显示某次提交的元数据和内容变化 -->
+$ git show [commit]
+
+<!-- 显示某次提交发生变化的文件 -->
+$ git show --name-only [commit]
+
+<!-- 显示某次提交时，某个文件的内容 -->
+$ git show [commit]:[filename]
+
+<!-- 显示当前分支的最近几次提交 -->
+$ git reflog
 ```
 
-##### 谁，在什么时间，修改了文件的什么内容
 
-```bash
-$ git blame <file>
+
+# 远程同步
 ```
+<!-- 下载远程仓库的所有变动 -->
+$ git fetch [remote]
 
-#### 分支与标签
-
-##### 列出所有的分支
-
-```bash
-$ git branch
-```
-
-##### 切换分支
-
-```bash
-$ git checkout <branch>
-```
-
-##### 创建并切换到新分支:
-
-```bash
-$ git checkout -b <branch>
-```
-
-##### 基于当前分支创建新分支
-
-```bash
-$ git branch <new-branch>
-```
-
-##### 基于远程分支创建新的可追溯的分支
-
-```bash
-$ git branch --track <new-branch> <remote-branch>
-```
-
-##### 删除本地分支:
-
-```bash
-$ git branch -d <branch>
-```
-
-##### 给当前版本打标签
-
-```bash
-$ git tag <tag-name>
-```
-
-#### 更新与发布
-
-##### 列出当前配置的远程端
-
-```bash
+<!-- 显示所有远程仓库 -->
 $ git remote -v
+
+<!-- 显示某个远程仓库的信息 -->
+$ git remote show [remote]
+
+<!-- 增加一个新的远程仓库，并命名 -->
+$ git remote add [shortname] [url]
+
+git pull <远程主机名(origin)> <远程分支名>:<本地分支名>
+
+<!-- 取回远程仓库的变化，并与本地分支合并 -->
+$ git pull [remote] [branch]
+
+<!-- 上传本地指定分支到远程仓库 -->
+$ git push [remote] [branch]
+
+<!-- 强行推送当前分支到远程仓库，即使有冲突 -->
+$ git push [remote] --force
+
+<!-- 推送所有分支到远程仓库 -->
+$ git push [remote] --all
 ```
 
-##### 显示远程端的信息
+# 撤销
+```
+<!-- 恢复暂存区的指定文件到工作区 -->
+$ git checkout [file]
 
-```bash
-$ git remote show <remote>
+<!-- 恢复某个commit的指定文件到暂存区和工作区 -->
+$ git checkout [commit] [file]
+
+<!-- 恢复暂存区的所有文件到工作区 -->
+$ git checkout .
+
+<!-- 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变 -->
+$ git reset [file]
+
+<!-- 重置暂存区与工作区，与上一次commit保持一致 -->
+$ git reset --hard
+
+<!-- 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变 -->
+$ git reset [commit]
+
+<!-- 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致 -->
+$ git reset --hard [commit]
+
+<!-- 重置当前HEAD为指定commit，但保持暂存区和工作区不变 -->
+$ git reset --keep [commit]
+
+<!-- 新建一个commit，用来撤销指定commit -->
+<!-- 后者的所有变化都将被前者抵消，并且应用到当前分支 -->
+$ git revert [commit]
+
+<!-- 暂时将未提交的变化移除，稍后再移入 -->
+$ git stash
+$ git stash pop
 ```
 
-##### 添加新的远程端
-
-```bash
-$ git remote add <remote> <url>
+# 其他
+```
+<!-- 生成一个可供发布的压缩包 -->
+$ git archive
 ```
 
-##### 下载远程端版本，但不合并到HEAD中
 
-```bash
-$ git fetch <remote>
-```
+# 拓展
+- [my-git](https://github.com/xirong/my-git "有关 git 的学习资料")
+- [廖雪峰Git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000 "讲解过于复杂，而且还有很多广告")
+- [Git-it - GitHub](http://jlord.us/git-it/ "一位女员工写的 Git 教程")
+- [Learn Git Branching](http://learngitbranching.js.org/?demo "是一个git仿真沙盒")
+- [github快速入门](http://www.jianshu.com/p/da9bc509b1d2)
+- [git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html "")
+- [用 Git 钩子进行简单自动部署](https://aotu.io/notes/2017/04/10/githooks/ "")
+- [git-recipes](https://github.com/geeeeeeeeek/git-recipes/wiki "")
+- [专为设计师而写的GitHub快速入门教程](http://www.ui.cn/detail/20957.html "")
+- []( "")
+- []( "")
+- []( "")
+
+## 工作流
+- [Git 工作流](https://juejin.im/search?query=Git%20%E5%B7%A5%E4%BD%9C%E6%B5%81 "")
+- [Comparing Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows "")
+- [Git工作流指南：Gitflow工作流](http://blog.jobbole.com/76867/#comment-156726 "")
+- [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/ "")
+- [改进合作 Git 工作流：自动提取、合并提交](https://tech.meituan.com/improving-git-flow_squashing-commits.html "")
+
+
+## 速查表
+- [Git索引](http://backlogtool.com/git-guide/cn/reference/ "")
+- [Git指令速查表](https://www.git-tower.com/blog/git-cheat-sheet-cn "")
+
+## 图解
+- [猴子都能懂的Git入门](http://backlogtool.com/git-guide/cn/ "")
+- [图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html#conventions "")
 
-##### 下载远程端版本，并自动与HEAD版本合并
-
-```bash
-$ git remote pull <remote> <url>
-```
-
-##### 将远程端版本合并到本地版本中
-
-```bash
-$ git pull origin master
-```
-
-##### 将本地版本发布到远程端
-
-```bash
-$ git push remote <remote> <branch>
-```
-
-##### 删除远程端分支
-
-```bash
-$ git push <remote> :<branch> (since Git v1.5.0)
-或
-git push <remote> --delete <branch> (since Git v1.7.0)
-```
-
-##### 发布标签:
-
-```bash
-$ git push --tags
-```
-
-#### 合并与重置
-
-##### 将分支合并到当前HEAD中
-
-```bash
-$ git merge <branch>
-```
-
-##### 将当前HEAD版本重置到分支中:请勿重置已发布的提交!
-
-```bash
-$ git rebase <branch>
-```
-
-##### 退出重置:
-
-```bash
-$ git rebase --abort
-```
-
-##### 解决冲突后继续重置
-
-```bash
-$ git rebase --continue
-```
-
-##### 使用配置好的merge tool 解决冲突
-
-```bash
-$ git mergetool
-```
-
-##### 在编辑器中手动解决冲突后，标记文件为已解决冲突
-
-```bash
-$ git add <resolved-file>
-$ git rm <resolved-file>
-```
-
-#### 撤销
-
-##### 放弃工作目录下的所有修改
-
-```bash
-$ git reset --hard HEAD
-```
-
-##### 移除缓存区的所有文件（i.e. 撤销上次git add）
-
-```bash
-$ git reset HEAD
-```
-
-##### 放弃某个文件的所有本地修改
-
-```bash
-$ git checkout HEAD <file>
-```
-
-##### 重置一个提交（通过创建一个截然不同的新提交）
-
-```bash
-$ git revert <commit>
-```
-
-##### 将HEAD重置到指定的版本，并抛弃该版本之后的所有修改
-
-```bash
-$ git reset --hard <commit>
-```
-
-##### 将HEAD重置到上一次提交的版本，并将之后的修改标记为未添加到缓存区的修改
-
-```bash
-$ git reset <commit>
-```
-
-##### 将HEAD重置到上一次提交的版本，并保留未提交的本地修改
-
-```bash
-$ git reset --keep <commit>
-```
-
-## 相关资料：
-
-#### Github创建隐藏分支
-
-```
-git clone git@github.com:luumans/backup.git
-git branch -r
-git checkout -b data origin/data
-```
-
-[]( "")
-
-[Learn Git Branching](http://learngitbranching.js.org/?demo "是一个git仿真沙盒")
-[猴子都能懂的Git入门](http://backlogtool.com/git-guide/cn/ "")
-[Git指令速查表](https://www.git-tower.com/blog/git-cheat-sheet-cn "")
-[github快速入门](http://www.jianshu.com/p/da9bc509b1d2)
-[廖雪峰Git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000 "讲解过于复杂，而且还有很多广告")
-[图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html#conventions "")
-[git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html "")
-
-
-
-
-
-
-
-
-
-<!-- ### 检查状态 - git status
-git status 是另一个非常重要的命令，它会告诉我们创库的当前状态：是否为最新代码，有什么更新等等执行git status:
-```
-$ git status
-
-On branch master
-
-Initial commit
-
-Untracked files:
-  (use "git add ..." to include in what will be committed)
-
-	hello.txt
-git 
-```
-告诉我们，hello.txt尚未跟踪，这是因为这个文件是新的，git不知道是应该跟踪它的变动呢，还是直接忽略不管呢。为了跟踪我们的新文件，我们需要暂存它。
-
-### 暂存 - git add
-git 有个概念叫 暂存区，你可以把它看成一块空白帆布，包裹着所有你可能会提交的变动。它一开始为空，你可以通过 git add 命令添加内容，并使用 git commit 提交。
-这个例子中只有一个文件：
-```
-$ git add hello.txt
-如果需要提交目录下的所有内容，可以这样：
-$ git add -A
-再次使用git status查看：
-$ git status
-
-On branch master
-
-Initial commit
-
-Changes to be committed:
-  (use "git rm --cached ..." to unstage)
-
-	new file:   hello.txt
-```
-我们的文件已经提交了。状态信息还会告诉我们暂存区文件发生了什么变动，不过这里我们提交的是一个全新文件。
-
-### 提交 - git commit
-一次提交代表着我们的仓库到了一个交付状态，通常是完成了某一块小功能。它就像是一个快照，允许我们像使用时光机一样回到旧时光。
-创建提交，需要我们提交东西到暂存区（git add），然后：
-```
-$ git commit -m "Initial commit."
-这就创建了一次提交，-m “Initial commit.”表示对这次提交的描述，建议使用有意义的描述性信息。
-远端仓库
-到目前为止，我们的操作都是在本地的，它存在于.git文件中。为了能够协同开发，我们需要把代码发布到远端仓库上。
-1.链接远端仓库 - git remote add
-为了能够上传到远端仓库，我们需要先建立起链接，这篇教程中，远端仓库的地址为：https://github.com/tutorialzine/awesome-project,但你应该自己在Github, 
-BitBucket上搭建仓库，自己一步一步尝试。
-添加测试用的远端仓库
-$ git remote add origin https://github.com/tutorialzine/awesome-project.git
-一个项目可以同时拥有好几个远端仓库为了能够区分，通常会起不同的名字。通常主远端仓库被称为origin。
-2.上传到服务器 - git push
-每次我们要提交代码到服务器上时，都会使用到git push。
-git push命令会有两个参数，远端仓库的名字，以及分支的名字：
-$ git push origin master
-
-Counting objects: 3, done.
-Writing objects: 100% (3/3), 212 bytes | 0 bytes/s, done.
-Total 3 (delta 0), reused 0 (delta 0)
-To https://github.com/tutorialzine/awesome-project.git
- * [new branch]      master -> master
-取决于你使用的服务器，push过程你可能需要验证身份。如果没有出差错，现在使用浏览器去你的远端分支上看，hello.txt已经在那里等着你了。
-3.克隆仓库 - git clone
-放在Github上的开源项目，人们可以看到你的代码。可以使用 git clone进行下载到本地。
-$ git clone https://github.com/tutorialzine/awesome-project.git
-本地也会创建一个新的仓库，并自动将github上的分支设为远端分支。
-4.从服务器上拉取代码 - git pull
-如果你更新了代码到仓库上，其他人可以通过git pull命令拉取你的变动：
-$ git pull origin master
-From https://github.com/tutorialzine/awesome-project
- * branch            master     -> FETCH_HEAD
-Already up-to-date.
-因为暂时没有其他人提交，所有没有任何变动
-分支
-
-branchs
-当你在做一个新功能的时候，最好是在一个独立的区域上开发，通常称之为分支。分支之间相互独立，并且拥有自己的历史记录。这样做的原因是：
-稳定版本的代码不会被破坏
-不同的功能可以由不同开发者同时开发。
-开发者可以专注于自己的分支，不用担心被其他人破坏了环境
-在不确定之前，同一个特性可以拥有几个版本，便于比较
-1.创建新分支 - git branch
-每一个仓库的默认分支都叫master, 创建新分支可以这样：
-$ git branch amazing_new_feature
-创建了一个名为amazing_new_feature的新分支，它跟当前分支同一起点
-2.切换分支 - git checkout
-单独使用git branch，可以查看分支状态：
-$ git branch
-  amazing_new_feature
-* master
-* 号表示当前活跃分支为master，使用git checkout切换分支。
-$ git checkout amazing_new_feature
-3.合并分支 - git merge
-我们的 amazing_new_feature 分支的任务是增加一个featuer.txt。我们来创建，添加到暂存区，提交。
-$ git add feature.txt
-$ git commit -m "New feature complete."
-新分支任务完成了，回到master分支
-$ git checkout master
-现在去查看文件，你会发现，之前创建的feature.txt文件不见了，因为master分支上并没有feature.txt。使用git merge 把 amazing_new_feature 分支合并到master上。
-$ git merge amazing_new_feature
-ok! 然后再把amazing_new_feature 分支删掉吧。
-$ git branch -d amazing_new_feature
-高级
-这篇文章的最后一节，我们来说些比较高级并且使用的技巧。
-1.比对两个不同提交之间的差别
-每次提交都有一个唯一id，查看所有提交和他们的id，可以使用 git log:
-$ git log
-
-commit ba25c0ff30e1b2f0259157b42b9f8f5d174d80d7
-Author: Tutorialzine
-Date:   Mon May 30 17:15:28 2016 +0300
-
-    New feature complete
-
-commit b10cc1238e355c02a044ef9f9860811ff605c9b4
-Author: Tutorialzine
-Date:   Mon May 30 16:30:04 2016 +0300
-
-    Added content to hello.txt
-
-commit 09bd8cc171d7084e78e4d118a2346b7487dca059
-Author: Tutorialzine
-Date:   Sat May 28 17:52:14 2016 +0300
-
-    Initial commit
-id 很长，但是你并不需要复制整个字符串，前一小部分就够了。
-查看某一次提交更新了什么，使用 git show:
-$ git show b10cc123
-
-commit b10cc1238e355c02a044ef9f9860811ff605c9b4
-Author: Tutorialzine
-Date:   Mon May 30 16:30:04 2016 +0300
-
-    Added content to hello.txt
-
-diff --git a/hello.txt b/hello.txt
-index e69de29..b546a21 100644
---- a/hello.txt
-+++ b/hello.txt
-@@ -0,0 +1 @@
-+Nice weather today, isn't it?
-查看两次提交的不同，可以使用git diff [commit-from]..[commit-to] 语法：
-$ git diff 09bd8cc..ba25c0ff
-
-diff --git a/feature.txt b/feature.txt
-new file mode 100644
-index 0000000..e69de29
-diff --git a/hello.txt b/hello.txt
-index e69de29..b546a21 100644
---- a/hello.txt
-+++ b/hello.txt
-@@ -0,0 +1 @@
-+Nice weather today, isn't it?
-比较首次提交和最后一次提交，我们可以看到所有的更改。当然使用git difftool命令更加方便。
-2.回滚某个文件到之前的版本
-git 允许我们将某个特定的文件回滚到特定的提交，使用的也是 git checkout。
-下面的例子，我们将hello.txt回滚到最初的状态，需要指定回滚到哪个提交，以及文件的全路径。
-$ git checkout 09bd8cc1 hello.txt
-3.回滚提交
-如果你发现最新的一次提交完了加某个文件，你可以通过 git commit —amend来修复，它会把最新的提交打回暂存区，并尝试重新提交。
-如果是更复杂的情况，比如不是最新的提交了。那你可以使用git revert。
-最新的一次提交别名也叫HEAD。
-$ git revert HEAD
-其他提交可以使用id:
-$ git revert b10cc123
-混滚提交时，发生冲突是非常频繁的。当文件被后面的提交修改了以后，git不能正确回滚。
-4.解决合并冲突
-冲突经常出现在合并分支或者是拉去别人的代码。有些时候git能自动处理冲突，但大部分需要我们手动处理。
-比如John 和 Tim 分别在各自的分支上写了两部分代码。
-John 喜欢 for:
-// Use a for loop to console.log contents.
-for(var i=0; i<arr.length; 
-i++) {
-console.log(arr[i]);
-}
-Tim 喜欢 forEach:
-// Use forEach to console.log contents.
-arr.forEach(function(item) 
-{
-console.log(item);
-});
-假设John 现在去拉取 Tim的代码:
-$ git merge tim_branch
-
-Auto-merging print_array.js
-CONFLICT (content): Merge conflict in print_array.js
-Automatic merge failed; fix conflicts and then commit the result.
-这时候git并不知道如何解决冲突，因为他不知道John和Tim谁写得更好。
-于是它就在代码中插入标记。
-<<<<<<< HEAD
-// Use a for loop to console.log contents.
-for(var i=0; i<arr.length; i++) {
-    console.log(arr[i]);
-}
-=======
-// Use forEach to console.log contents.
-arr.forEach(function(item) {
-    console.log(item);
-});
->>>>>>> Tim s commit.
-==== 
-号上方是当前最新一次提交，下方是冲突的代码。我们需要解决这样的冲突，经过组委会成员讨论，一致认定，在座的各位都是垃圾！两个都不要。改成下面的代码。
-// Not using for loop or forEach.
-// Use Array.toString() to console.log contents.
-console.log(arr.toString());
-好了，再提交一下：
-$ git add -A
-$ git commit -m "Array printing conflict resolved."
-如果在大型项目中，这个过程可能容易出问题。你可以使用GUI 工具来帮助你。使用 git mergetool。
-5.配置 .gitignore
-大部分项目中，会有写文件，文件夹是我们不想提交的。为了防止一不小心提交，我们需要gitignore文件：
-在项目根目录创建.gitignore文件
-在文件中列出不需要提交的文件名，文件夹名，每个一行
-.gitignore文件需要提交，就像普通文件一样
-通常会被ignore的文件有：
-log文件
-task runner builds
-node_modules等文件夹
-IDEs生成的文件
-个人笔记
-例如：
-*.log
-build/
-node_modules/
-.idea/
-my_notes.txt
-总结
-教程结束~(撒花)
-git有点复杂，并且有一大堆特性和技巧等着你去挖掘，这篇文章只是提供冰山一角，希望你不要因为太多繁琐的命令而停下前进的脚步！ 
-怀挺！
-via：http://www.w3ctrain.com/2016/06/26/learn-git-in-30-minutes/
-
- -->
 
 
 

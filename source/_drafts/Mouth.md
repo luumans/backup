@@ -23,6 +23,145 @@ permalink:
 ```
 ```
 
+| 系统 | 全称 | 简称 | 中文 | 地址 | 子地址 | 研发中心 |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| C端网站 | Travel Retail Management | TRM	 | 零售管理系统 | C端网站(www.yktour.com.cn) | C端网站(www.yktour.com.cn) | 北京 |
+| B端管理系统 | Travel Distribution Management | 	TDM	 | 分销管理系统 | B端网站(bpm.yktour.com.cn) | bpm.yktour.com.cn/tdm | 北京 |
+| 团账管理系统 | Business Operation Management | BOM 	 | 团账管理系统 | erp.yktour.com.cn | bpm.yktour.com.cn/bom | 厦门 |
+| 供应链管理系统 | Supply Chain Management | SCM 	 | 供应链管理系统 | erp.yktour.com.cn | bpm.yktour.com.cn/scm | 厦门 |
+| 客户管理系统 | Customer Relationship Management | 	CRM 	 | 客户关系管理系统 | erp.yktour.com.cn | bpm.yktour.com.cn/crm | 厦门 |
+| 内容管理 | Content Management | CMS	 | 内容管理系统 | pms.yktour.com.cn | pms.yktour.com.cn/cms | 北京	 |
+| 用户管理 | Single Sign ON | SSO 	 | 单点用户登录管理 | pms.yktour.com.cn | pms.yktour.com.cn | 北京 |
+| 系统管理 | System Management | 	SM	 | 系统平台管理 | pms.yktour.com.cn | pms.yktour.com.cn/sm | 北京 |
+| 账户管理 | Account Management | AM 	 | 账户管理 | pms.yktour.com.cn | pms.yktour.com.cn/am | 北京 |
+| C端 | Mobile Retail Management | MRM	 | 盈科旅游 | m.yktour.com.cn | m.yktour.com.cn | 北京	  |
+| B端 | Mobile Distribution Management | MDM	 | 盈旅同业 | mdm.yktour.com.cn | mdm.yktour.com.cn | 北京 |
+| B端用户 | Mobile Trip Management | MTM	 | 盈旅顾问 | mtm.yktour.com.cn | mtm.yktour.com.cn | 北京 |
+
+## 9-15 标题
+### 本周完成工作
+全民竞猜
+1. BUG卡片中心卡片位置偏移
+2. BUG清除系统侧边scroll
+3. 写图片轮播组件，8个一组切换
+4. BUG选择用完，隐藏选择按钮
+5. BUG图片加载问题
+6. 优化页面跳转闪烁问题。（原因清空页面scroll值，导致页面闪回）
+7. BUG联动显示点赞按钮
+8. 修改切换成滑动轮播展示选项卡
+
+### 本周工作总结
+1. 数据处理展示优化
+
+### 下周工作计划
+1. CMS第三模板
+2. 魅力中国城修改
+
+## 1-1 标题
+### 本周完成工作
+魅力中国城
+1. 修改展示页面（发版）
+
+分销管理系统
+1. 客服权限-保险退款单详情页面订单状态显示不对
+2. 打包产品，客服保险订单页面，订单状态不显示
+3. 客服保险退款详情内的进度跟踪，处理信息与订单状态不对
+4. 客服同意保险退款单后没有刷新页面
+5. 客服退款列表，退款单号显示错误，类型，退款状态为空
+6. 单独保险可以重复申请退保，在客服查看退保单详情里的人重复。
+6. 客服查看保险退款列表的退款单号不正确
+7. 客服保险退款详情内，保险名称与保单号为空
+8. 客服保险订单，退款管理-退款详情界面，订单信息，已支付、总价金额显示错误
+9. 客服查看订单详情缺少【保单号】字段
+10. 保险订单申请退款页面，点击提交页面不跳转，还可继续点击提交，客服退款列表同步生成多条退款订单
+11. 客服-退款管理-保险退款管理页面，订单详情缺少产品名称、保险名称字段
+12. 客服-退款管理-保险退款管理页面，订单详情退款状态显示错误
+13. 
+14. 
+15. 
+16. 
+
+### 本周工作总结
+1. 适应B端的业务逻辑，项目结构
+2. 研究优化方案
+
+### 下周工作计划
+1. B端机票业务
+2. 魅力中国城需求
+
+## 8-25 标题
+### 本周完成工作
+魅力中国城
+1. 修改展示页面（发版）
+2. 添加视频需求，处理第三方视频播放问题
+3. 详情页添加投票功能，添加一系列复杂弹窗，认证，注册。
+4. 安卓由于系统原因，导致视频播放后，视频元素始终在页面最顶部，不收样式控制。解决方法强制清除视频元素，重新载入。
+- [视频/音频](https://x5.tencent.com/guide?id=2009 "")
+- [安卓微信内置浏览器video的坑](https://segmentfault.com/q/1010000004308128 "")
+- [iphone video视频播放窗口悬浮BUG!!](https://bbs.mb.qq.com/thread-1501196-1-1.html "")
+- [视频播放的那些事](http://taobaofed.org/blog/2016/05/23/video-player/ "")
+- []( "")
+- []( "")
+- []( "")
+- []( "")
+
+活动导航页面
+1. 自动修改页面标题
+2. 修改活动介绍页面（发版）
+
+分销管理系统
+1. 客服退款列表页面
+2. 客服订单列表
+3. 客服订单详情页面
+
+### 本周工作总结
+### 下周工作计划
+
+## 1-1 标题
+### 本周完成工作
+问题：
+1. 现在针对魅力中国城出现用户投过票，第2天又出现注册页面
+测试过没有出现这种问题，原理是通过判断浏览器Cookies判断用户信息，Cookies是服务器端注入的。
+	可能的原因：
+	1 用户清除浏览器Cookies
+	2 服务器更新Cookies
+
+2. 还有就是要考虑各种手机浏览器兼容问题
+这个问题，公司的测试机器没有出现什么问题。没有问题手机，没有办法进行调试解决问题。
+
+组件：
+1. 注册全局调用的loading组件
+2. 复制组件的优化
+3. 研究keep-alive的使用，用于页面缓存，更新的的方法
+4. 网页SVG的使用，组件化提示效率
+5. 图片查看器
+6. 学习angularjs
+
+### 本周工作总结
+1. 组件缓存有优点，也有缺点，实际效果还有待测试，
+2. 整理面试题，回顾了很多知识
+
+### 下周工作计划
+1. 学习angularjs,配合C端的需求
+
+## 1-1 标题
+### 本周完成工作
+全民竞猜
+1. bug：登录注册姓名非必填项，不填姓名可以登录
+2. bug：修改可以网络慢，发送请求多次问题
+
+魅力中国城
+1. bug：修改可以网络慢，发送请求多次问题
+
+协助MTM（盈科旅游顾问）
+1. 查看对接微信、支付宝支付
+
+### 本周工作总结
+1. 参考vue，开发全局控件，this.$loading的自定义方法
+
+### 下周工作计划
+
+
 ## 1-1 标题
 ### 本周完成工作
 魅力中国城

@@ -275,7 +275,7 @@ const router = new VueRouter({
 { path: '/a', component: A, alias: '/b' }
 ```
 
-## HTML5 History 模式 ****
+## HTML5 History 模式
 vue-router 默认 hash 模式 —— 使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。
 http://localhost:8680/#/Tap/btn/Github
 ```
@@ -839,7 +839,7 @@ router.onReady(callback)
 
 # 参考资料
 - [router](https://router.vuejs.org/en/# "")
-- []( "")
+- [vue-router总结](https://zhuanlan.zhihu.com/p/28156233 "")
 
 - []( "")
 - []( "")

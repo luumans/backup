@@ -1,4 +1,19 @@
+title: VueCli 介绍
+date: 2017-08-25 18:29:00
+description: 
+categories:
+- FrontFrame
+tags:
+- Vue
+toc: true
+author:
+comments:
+original:
+permalink: 
+---
 
+　　**自用笔记：**Vue.js通过简洁的API提供高效的数据绑定和灵活的组件系统。最近在Github上看到了不少Vue的项目，很好奇，决定尝试尝试。
+<!-- more -->
 
 
 

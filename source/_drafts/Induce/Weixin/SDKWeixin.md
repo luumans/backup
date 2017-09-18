@@ -117,16 +117,4 @@ wx.ready(function(){
 [微信JS-SDK说明文档 地理位置](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115&token=&lang=zh_CN "")
 [测试地理位置](http://203.195.235.76/jssdk/#menu-location "")
 
-# 注意事项
 
-## 微信分享出去的链接被，打开后自动添加参数
-使用微信出去的页面，在微信中打开时就会显示。出文章在什么终端中打开的参数，添加在链接上。
-朋友圈   from=timeline&isappinstalled=0
-微信群   from=groupmessage&isappinstalled=0
-好友分享 from=singlemessage&isappinstalled=0
-
-解决办法：在链接上添加？分享后打开后，微信会将？去除。
-url => url? => url
-
-vue:
-/#/ => /?*/ => /#/

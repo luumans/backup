@@ -1,5 +1,5 @@
 title: CSS低频属性
-date: 2017-06-02 18:29:00
+date: 2017-08-18 18:29:00
 description:
 categories:
 - Induce
@@ -15,6 +15,17 @@ permalink:
 　　**自用笔记：**本文属于自用笔记，不做详解，仅供参考。在此记录自己已理解并开始遵循的前端代码规范。What How Why
 <!-- more -->
 # 概况
+
+## 安卓文字垂直居中
+由于安卓无法通过height height-line
+
+## 首行缩进
+```
+text-indent: 25px;
+```
+
+## 字母不换行
+word-wrap: break-word;
 
 ## 文字省略
 通过CSS判断，这个区域宽度
@@ -81,13 +92,13 @@ filter: blur(-3px);
 以显示 10px 的字为例
 ```
 .some-small-font {
-    display: inline-block; /* Or block */
-    font-size: 12.5px;
-    -webkit-transform: scale(0.8);
-    transform: scale(0.8);
-    position: relative;
-    left: -12.5%;
-    width: 125%;
+  display: inline-block; /* Or block */
+  font-size: 12.5px;
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  position: relative;
+  left: -12.5%;
+  width: 125%;
 }
 ```
 

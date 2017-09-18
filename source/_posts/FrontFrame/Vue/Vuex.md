@@ -487,10 +487,18 @@ store.registerModule('myModule', {
 
 
 # 案例
-[shopping-cart](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart "")
-[Counter](https://github.com/vuejs/vuex/tree/dev/examples/counter "")
-[Counter with Hot Reload](https://github.com/vuejs/vuex/tree/dev/examples/counter-hot "")
-[TodoMVC](https://github.com/vuejs/vuex/tree/dev/examples/todomvc "")
-[Flux Chat](https://github.com/vuejs/vuex/tree/dev/examples/chat "")
+- [shopping-cart](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart "")
+- [Counter](https://github.com/vuejs/vuex/tree/dev/examples/counter "")
+- [Counter with Hot Reload](https://github.com/vuejs/vuex/tree/dev/examples/counter-hot "")
+- [TodoMVC](https://github.com/vuejs/vuex/tree/dev/examples/todomvc "")
+- [Flux Chat](https://github.com/vuejs/vuex/tree/dev/examples/chat "")
+- [浅谈Vuex](https://github.com/1657413883/blog-notes/issues/8)
+- [Vuex下Store的模块化拆分实践](https://segmentfault.com/a/1190000007667542 "模块拆分多余零碎")
+- [Vuex 通俗版教程](http://www.jianshu.com/p/caff7b8ab2cf)
+- [Vuex框架原理与源码分析](https://tech.meituan.com/vuex-code-analysis.html "")
+- []( "")
+- []( "")
+- []( "")
+- []( "")
+- []( "")
 
-[Vuex下Store的模块化拆分实践](https://segmentfault.com/a/1190000007667542 "模块拆分多余零碎")

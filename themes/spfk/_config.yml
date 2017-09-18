@@ -7,7 +7,7 @@ menu:
   博客首页: /Home
   作品展示: /works
   留言打卡: /about
-  前端导航: /FrontEndGuide
+  前端导航: /FrontEndGuideV2/FrontEndGuide/
 # 静心阅读: /tags
 # 光影之路: /instagram
 # 随笔: /tags/随笔
@@ -137,7 +137,8 @@ friends:
   潘利强: http://www.plqblog.com/views/index.php
   hankin: http://www.hankin.cn/
   waydrow: http://blog.waydrow.com/
-  莫与: http://dongshuyan.top/
+  TANGBC: https://www.tangbc.com
+  Helkyle: https://www.w3ctrain.com/
   
 # 打赏
 # 请在需要打赏的文章的md文件头部，设置属性reward: true

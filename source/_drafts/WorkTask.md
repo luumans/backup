@@ -47,38 +47,46 @@ hexo g --draft
 |  9:40  |  代码  |  代码  |
 | 10:00  |  健身  |  健身  |
 | 10:50  |  洗澡  |  洗澡  |
-```
-## 2016年
-### 12-12 标题
-> - [内容](链接 "描述")
 
 ```
+# 年
+## 12-12 标题
+- [内容](链接 "描述")
+```
+
+- [前端学习指南](https://github.com/alcat2008/front-end-study-guide "")
+- []( "")
+- [前端开发面试题](https://github.com/markyun/My-blog/blob/master/Front-end-Developer-Questions/Questions-and-Answers/README.md "")
+- []( "")
+- []( "")
+
+- []( "")
+
+# 日常计划规划表
+
+## 2017年
+- [react]( "学习react框架")
+- [轮播图片切换]( "图片是多个方框，点击任意方框图片展出")
+- [react]( "参照：淘宝——海贼王的3D特效，按照动漫的播放，图片来自漫画剪切。")
+
+- [CssLowFrequency.md.md]( "CSS低频属性")
+
+- [JSregular.md]( "正则匹配")
 
 
-## 日常计划规划表
-
-### 2017年
-> - [react]( "学习react框架")
-> - [轮播图片切换]( "图片是多个方框，点击任意方框图片展出")
-> - [react]( "参照：淘宝——海贼王的3D特效，按照动漫的播放，图片来自漫画剪切。")
-
-> - [JSregular.md]( "正则匹配")
-
-> - [JSregular.md]( "正则匹配")
-
-#### 3-10 相册
+### 3-10 相册
 最近突然想做个相册，到网上查找不思路，发现自己比较喜欢黑色的风格，下面有多留图片，最后看了大神litten的作品zing-gallery，后台使用node进行自动。
 
-> - [全屏大图幻灯背景个人相册网页模板](http://www.cssmoban.com/cssthemes/6510.shtml "黑色瀑布流")
-> - [全屏大图幻灯背景个人相册网页模板](http://www.cssmoban.com/cssthemes/6510.shtml "黑色瀑布流")
-> - [左栏全屏漂亮摄影师官网模板下载](http://www.cssmoban.com/cssthemes/6424.shtml "黑色瀑布流")
+- [全屏大图幻灯背景个人相册网页模板](http://www.cssmoban.com/cssthemes/6510.shtml "黑色瀑布流")
+- [全屏大图幻灯背景个人相册网页模板](http://www.cssmoban.com/cssthemes/6510.shtml "黑色瀑布流")
+- [左栏全屏漂亮摄影师官网模板下载](http://www.cssmoban.com/cssthemes/6424.shtml "黑色瀑布流")
 
 
 
-#### 3-10 入职
+### 3-10 入职
 入职之后，由于从零开始，对于项目的建设，文档的规范很重要。
-> - [vue-cli.md]( "文档的规范")
-> - [normCSS.md]( "CSS前端代码规范")
+- [vue-cli.md]( "文档的规范")
+- [normCSS.md]( "CSS前端代码规范")
 
 图片优化：
 很多网站图片都会有，从模糊到清晰的过程。
@@ -86,32 +94,32 @@ hexo g --draft
 1. 知乎：使用noscript实现
 2. 国外：
 
-#### 2-4 模块化开发之AMDrequire
-> - [RequireModule.md]( "模块化开发之AMDrequire")
+### 2-4 模块化开发之AMDrequire
+- [RequireModule.md]( "模块化开发之AMDrequire")
 
-#### 2-4 移动端滑动固顶效果
-> - [CSSElementAlign.md]( "用CSS实现元素垂直居中方案")
-> - [Tips-移动端滑动固顶效果(position: sticky)](http://www.imbeta.cn/tips-yi-dong-duan-hua-dong-gu-ding-xiao-guo-position-sticky.html#tips-yi-dong-duan-hua-dong-gu-ding-xiao-guo-position-sticky)
+### 2-4 移动端滑动固顶效果
+- [CSSElementAlign.md]( "用CSS实现元素垂直居中方案")
+- [Tips-移动端滑动固顶效果(position: sticky)](http://www.imbeta.cn/tips-yi-dong-duan-hua-dong-gu-ding-xiao-guo-position-sticky.html#tips-yi-dong-duan-hua-dong-gu-ding-xiao-guo-position-sticky)
 
-#### 10-4 整理资料系统学习Javascript
+### 10-4 整理资料系统学习Javascript
 网络上也收集了不少的资料，却没有仔细观看！
 妙味的视频不错，看完js原生看看Jquery。
 重点：看视频敲代码，不是边看边敲，而是看完后默敲，背敲，然后打断点理流程。细节看博文。
-> - [内容](链接 "描述")
+- [内容](链接 "描述")
 
 
 
-## 任务搜集
+# 任务搜集
 
-### 学习思路：
+## 学习思路：
 [《怎么学JavaScript？》](http://www.w3cfuns.com/notes/17398/d3f6dd40e2d3ff15b209810dfa98be0b.html "")
 
-### 群资料
+## 群资料
 [JS高级前端开发](https://github.com/jsfront "QQ群：327388215 高级前端开发的一些积累")
 
-### CSS
+## CSS
 
-#### css reset
+### css reset
 [目前比较全的CSS重设(reset)方法总结](http://blog.bingo929.com/css-reset-collection.html "")
 [HTML5 css reset](http://www.zhangxinxu.com/wordpress/2010/08/html5-css-reset/ "")
 
@@ -140,7 +148,7 @@ hexo g --draft
 [CSS3 Mask安利报告](https://aotu.io/notes/2016/10/19/2016-10-19-css3-mask/?o2src=juejin&o2layout=compat "")
 
 [用 CSS 实现元素垂直居中，有哪些好的方案？](https://www.zhihu.com/question/20543196#answer-31122474 "")
-#### CSS3动画手册
+### CSS3动画手册
 
 [CSS3动画手册](http://isux.tencent.com/css3/index.html)
 [腾讯css3动画制作工具](http://isux.tencent.com/css3/tools.html)
@@ -148,7 +156,7 @@ hexo g --draft
 [animate.css](http://daneden.github.io/animate.css/)
 
 
-### JavaScript
+## JavaScript
 [图片模糊加载](https://medium.freecodecamp.com/webpack-for-the-fast-and-the-furious-bf8d3746adbd#.s198wcw3z)
 [图片延迟加载方案](http://www.jianshu.com/p/dc5fd46ff22c "")
 
@@ -186,9 +194,9 @@ hexo g --draft
 [javascript学习思维导图](http://weber.pub/javascript%E5%AD%A6%E4%B9%A0%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/104.html "")
 [前端好书推荐——2016 iWeb峰会专享](http://mp.weixin.qq.com/s?__biz=MjM5Njc0MjIwMA==&mid=2649639684&idx=1&sn=045f9ad97377b86f66829f4710aff4bc&scene=1&srcid=0902gL05krKFzkERhtCStxbC#rd "")
 
-### 构建
+## 构建
 
-#### Gulp
+### Gulp
 [Gulp —— 另一种自动化流水线](https://zhuanlan.zhihu.com/p/19691575 "")
 [Gulp新手入门教程](http://www.w3ctrain.com/2015/12/22/gulp-for-beginners/ "")
 [nimojs/gulp-book](https://github.com/nimojs/gulp-book "")
@@ -197,19 +205,19 @@ hexo g --draft
 [BrowserSync -- 你值得拥有的多浏览器测试工具](https://segmentfault.com/a/1190000002557003 "")
 [BrowserSync，迅捷从免F5开始](https://segmentfault.com/a/1190000002607627 "")
 
-#### 前端架构及工程化等
+### 前端架构及工程化等
 [全站 HTTPS 来了](http://geek.csdn.net/news/detail/48765)
 [Getting started with gulp](https://markgoodyear.com/2014/01/getting-started-with-gulp/)
 [Gulp 入门指南](https://github.com/nimojs/gulp-book)
 [TJ - Frontend Boilerplate](https://github.com/tj/frontend-boilerplate)
 [架构细节 | 看看 Medium 的开发团队用了哪些技术？](http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&mid=408154901&idx=1&sn=c17573f6fbb2c035db6300ddfc5e9df7#rd&location=35)
 
-#### sass
+### sass
 [sass入门](http://www.w3cplus.com/sassguide/ "")
 [Sublime Text 3 LESS、SASS、SCSS高亮插件、提示插件](http://www.w3ci.com/soft/716.html "")
 [Airbnb CSS／Sass 编写指南](https://github.com/airbnb/css "")
 
-### 前端模块化开发
+## 前端模块化开发
 [JavaScript 模块化编程 - Module Pattern](http://my.oschina.net/chenzhiqiang/blog/129783#navbar-header "")
 [前端模块化开发(AMD和CDM规范)](http://www.360doc.com/content/14/0827/12/19107491_405071847.shtml "")
 [AMD 和 CMD 的区别有哪些？](https://www.zhihu.com/question/20351507/answer/14859415 "")
@@ -218,30 +226,42 @@ hexo g --draft
 
 [怎样成为全栈工程师](https://www.zhihu.com/question/22420900 "")
 
-### 框架
+## 框架
 [modernizr](https://modernizr.com/download?setclasses "")
 [D3 三维处理](https://d3js.org/ "")
 
-#### angular.js
+### angular.js
 
-#### Vue.js
+### Vue.js
 [Desktop UI elements for Vue.js 2.0](https://github.com/ElemeFE/element "")
 [使用vue.js模仿小米官网 http://vue.wendaosanshou.top/mi/](https://github.com/wendaosanshou/mi-by-vue "")
 
-#### three.js
+### three.js
 全景：
 [去官网看看demo](http://www.weiqunwang.net/three/demo.html "")
 [全景](http://nadoopro.applinzi.com/360/index.html "")
 VR
 [肯德基VR虚拟公益艺术体验馆](http://charity.kfc.com.cn/vrcharity/?share_code=29ZYN2cLxlJVgVQXgwEO10284 "")
 
-### Demo
 
-#### 前端脑图
+
+## 性能
+### 电商首页中的实践
+[ITA1024前端精英群】京东资深前端架构师分享前端工程化在电商首页中的实践](https://mp.weixin.qq.com/s?__biz=MzIzMzEzODYwOA==&mid=417196806&idx=1&sn=fb9beaec30a5836e754d4a5be81d5cec&scene=23&srcid=0329YeWS215Cu4xnxDpL8Y8R#rd "")
+[]( "")
+[]( "")
+[]( "")
+[]( "")
+[]( "")
+
+
+## Demo
+
+### 前端脑图
 [WEB前端知识体系脑图](http://www.cnblogs.com/kuangke/p/5820586.html "")
 [前端工具网站大整理及前端技能图](http://www.devstore.cn/essay/essayInfo/3483.html "")
 
-#### 富文本编辑器
+### 富文本编辑器
 [wangEditor-mobile](http://www.wangeditor.com/m/ "真正适用于手指触摸的富文本编辑器！ 使用 javascript 开发，轻松集成到 webapp")
 [Examples of use Trumbowyg](http://www.jq22.com/demo/Trumbowyg-1.0/ "")
 [kindeditor](http://kindeditor.net/demo.php "")
@@ -250,16 +270,16 @@ VR
 
 [众成翻译](http://www.zcfy.cc/ "每周免费获取精彩、前沿技术文章")
 
-#### 倒计时
+### 倒计时
 [一组包含5套精美倒计时的HTML模板下载](http://xituqu.com/demo/370/index.html "里面的动画将git图片中的部分元素抽离，逐一运动")
 ajax请求后台进行倒计时。
 
-#### 正则表达式调试工具
+### 正则表达式调试工具
 [正则表达式调试工具](http://www1.w3cfuns.com/tools.php?mod=regex "")
 
 [前端工具集](https://segmentfault.com/a/1190000003836940 "")
 
-[大公司里怎样开发和部署前端代码？(附实践方案)](http://www.jianshu.com/p/35e20bb361d0# "")
+[大公司里怎样开发和部署前端代码？(附实践方案)](http://www.jianshu.com/p/35e20bb361d# "")
 
 [多屏互动——H5 中级进阶](https://segmentfault.com/a/1190000005988744 "随着智能硬件的普及，手机，平板，PC甚至路边的电子广告牌，现代浏览器已经无处不在。在浏览器里编织出我们自己的一片天地已经轻车熟路，但是这还不够，H5赋予了浏览器太多的新特性，等待我们去使用。这篇文章介绍利用手机浏览器的罗盘API，在PC的浏览器实时地绘制一个3D盒模型。")
 
@@ -278,12 +298,12 @@ ajax请求后台进行倒计时。
 
 [前端知识体系](http://www.cnblogs.com/sb19871023/p/3894452.html "")
 
-#### vpn推荐
+### vpn推荐
 [代理](https://bluecloud.xyz/)
 
 [自动录屏](http://macacajs.github.io/macaca/recorder.html "UI Recorder")
 
-#### 博客
+### 博客
 >Hexo
 
 
@@ -293,20 +313,20 @@ ajax请求后台进行倒计时。
 
 [一篇非常不错的前端面试文章](http://www.jackpu.com/-pian-fei-chang-bu-cuo-de-qian-duan-mian-shi-wen-zhang/ "")
 
-[如何让你的网页加载时间降低到 1s 内](http://www.jianshu.com/p/d857c3ff78d6# "")
+[如何让你的网页加载时间降低到 1s 内](http://www.jianshu.com/p/d857c3ff78d# "")
 
 
 
 
-## 任务表
+# 任务表
 
-### 抓取V电影的百度分享
+## 抓取V电影的百度分享
 [百度分享](http://www.vmovier.com/47885?from=index_new_title)
 
-### 抓取分享
+## 抓取分享
 [分享](http://www.jianshu.com/p/98910d1d79d1)
 
-### 登录
+## 登录
 [百度登录窗口]( "可以拖拽")
 [登录效果]( "可以拖拽")
 
@@ -317,11 +337,11 @@ ajax请求后台进行倒计时。
 
 [分享](https://www.icann.org/resources/pages/epp-status-codes-2014-06-16-en#OK)
 
-### 后台管理
+## 后台管理
 [滴答清单](https://dida365.com/#q/all/tasks "")
 [滴答清单](https://dida365.com/#q/all/tasks "")
 
-### SPA
+## SPA
 单页面应用
 
 ```
@@ -357,7 +377,7 @@ ajax请求后台进行倒计时。
 
 
 
-### 数据可视化
+## 数据可视化
 [遇见大数据可视化：基础研究](https://www.qcloud.com/community/article/369896?fromSource=gwzcw.92829.92829.92829 "")
 []( "")
 []( "")
@@ -378,7 +398,7 @@ ajax请求后台进行倒计时。
 
 
 
-## node 博客
+# node 博客
 
 [vue + node 实现的一个博客系统](https://github.com/linguowei/myblog "")
 [使用travis-ci自动部署](https://w3cboy.com/post/2016/03/travisci-hexo-deploy/ "")
@@ -408,5 +428,5 @@ https://www.zhihu.com/question/50477368#answer-45084031
 []( "")
 
 
-### cli
+## cli
 [前端开发中提到的“脚手架”到底指什么，CLI？gulp 和 gulp-cli有什么区别](https://www.zhihu.com/question/47731497?sort=created "")

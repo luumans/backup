@@ -1,4 +1,4 @@
-github.mdtitle: Vue Github实战项目搭建总结
+title: Vue Github实战项目搭建总结
 date: 2017-05-25 18:29:00
 description: 
 categories:
@@ -421,7 +421,7 @@ new HtmlWebpackPlugin({
 
 ## vue axios
 - [axios](https://www.npmjs.com/package/axios "")
-- []( "")
+- [如何更有效率和质量地开发Vue项目](https://segmentfault.com/a/1190000010324128 "")
 - []( "")
 - []( "")
 - []( "")

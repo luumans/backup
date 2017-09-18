@@ -1,3 +1,4 @@
+```
 .
 ├── _data/    		# 对应目录的数据目录
 ├── _drafts/		# 草稿
@@ -25,6 +26,7 @@
 		├── Node/                    		# Node
 		├── Skill/                    		# Skill
 		└── Weixin/                    		# Weixin
+		└── Performance/                    # 性能优化
 	├── Interview/		    # 面试
 	├── Module/	    	    # 模块
 	├── PHP/	    	    # PHP
@@ -51,4 +53,4 @@
 ├── user/    		# user页面
 ├── works/    		# works页面
 └── README.md    	# 目录结构
-
+```

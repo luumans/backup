@@ -1,4 +1,4 @@
-﻿title: JavaScript修行
+title: JavaScript修行
 date: 2015-12-25 18:29:00
 description:
 categories:
@@ -14,107 +14,25 @@ permalink:
 
 　　**自用笔记：**本文属于自用笔记，不做详解，仅供参考。在此记录自己已理解并开始遵循的前端代码规范。What How Why
 <!-- more -->
-## 课程：
-数据类型、表达式和运算符、语句、对象、数组、函数、this、闭包和作用域、OOP、正则与模式匹配。
 
-JS是Ajax、JQuery、extjs等框架的基础。实现键盘、鼠标的响应，地图、网页游戏、WEB聊天等。
 
-大家都知道，再啰嗦一遍，浏览器加载网页，加载到JS时，由于脚本比较多，而HTML代码还没有加载，这是页面会显示空白，脚本阻塞了HTML的加载，等到毫不容易加载完成了，有时候会发现这些网页元素没有样式，所以一个好的习惯是，CSS放在页头，JS放在页尾（先加载CSS，再加载HTML，再加载JS） 这样就能适时的将界面呈现给用户，减少页面空白的时间。
-
-## 概述：
-
-### 1、基础介绍：
-
-一种广泛用于客户端Web开发的脚本语言。轻量级、解释型、面向对象的编程语言。
-客户端JavaScript：脚本应包括在或由 HTML 文件中引用的代码，以通过浏览器解释。
->优点：更少的服务器交互、即时反馈给访问者、增加互动性、丰富的接口。
-
-### 2、脚本语言：解释性语言 → 调用执行源码
-
-往往不独立使用，要和HTML/jsp/php/asp/asp.net配合使用。
-脚本语言有自己的变量、函数、控制语句（顺序、分支、循环）等。
-解释语言与编译语言的区别：相比编译语言翻译成机器语言（字节码、二进制码）效率高。
->Java程序===.java → .class → jvm执行。JS脚本 → 浏览器（JS引擎解释）
-
-### 3、引入方式：三种加载时间不同
-
-```
-1、头部：在<head>区域中，在页面被载入之前，脚本已经载入，准备好被调用。（放置：函数代码）
-<script type="text/javascript"></script>
-
-2、内部：在<body>区域中，在页面载入时，脚本被载入并立即执行。放置函数不会立即执行，只用调用时才执行，而且必须脚本成功加载完成之后，才能正确调用函数。
-<script type="text/javascript"></script>
-
-3、外部：在外部引用JavaScript，以.js为扩展名的文件中，在HTML页面中链接到这个脚本文件，不同的位置决定加载时机。
-<script type="text/javascript" src="xxx.js"></script>
-
-4、输出
-JavaScript通常用来操作HTML，文档输出：
-document.write("<p>this is my first JavaScript</p>");
-```
 ### script元素
 
 ```
-async：可选。立即下载脚本，但不应妨碍页面中的其他操作，比如下载其他资源或等待加载其他脚本。
-只对外部脚本文件有效。
-
-charset：可选。表示通过src 属性指定的代码的字符集。由于大多数浏览器会忽略它的值，因此这个属性很少有人用。
-
-defer：可选。脚本可延迟到文档完全被解析和显示之后再执行。只对外部脚本文件有效。IE7 及更早版本对嵌入脚本也支持这个属性。
-
-language：已废弃。原来用于表示编写代码使用的脚本语言（如JavaScript、JavaScript1.2或VBScript）。大多数浏览器会忽略这个属性，因此也没有必要再用了。
-
-src：可选。表示包含要执行代码的外部文件。
-
-type：可选。可以看成是language 的替代属性；表示编写代码使用的脚本语言的内容类型（也称为MIME 类型）。虽然text/javascript 和text/ecmascript 都已经不被推荐使用，但人们一直以来使用的都还是text/javascript。实际上，服务器在传送JavaScript 文件时使用的MIME 类型通常是application/x–javascript，但在type 中设置这个值却可能导致脚本被忽略。另外，在非IE浏览器中还可以使用以下值：application/javascript 和application/
 ```
 
 ## 二、语法结构
 
-### 1、字符集
 
->JavaScript中的标识符：标识符是JavaScript中定义的符合，例如：变量名、函数名、数组名等。
-标识符可以任意顺序的大小写字母、数字、下划线、美元组成，但是不能以数字开头，不能使用保留的关键词（ECMScript保留字）
 
->JavaScript的标识符不能使用的ECMScript 3保留字：（尽量避免使用）
-abstract、boolean、byte、char、class、const、debugger、double、enum、export、extends、final、float、goto、implements、import、int、interface、long、native、package、private、protected、public、short、static、super、synchronized、throws、transient、volatile。
-
->Javascript预定全局变量和函数：argument、Array、Boolean、Dote、decodeURI、decodeURIComponent、encodeURI、encodeURIComponent、Error、eval、EvalError、Function、Infinity、isFinite、isNaN、JSON、Math、NaN、Number、Object、parseFloat、parseInt、RangeError、ReferenceError、RegExp、String、SyntaxError、TypeError、underfined、URIError。
-
->JavaScript严格区分大小写。每条功能执行语句的最后用分号（；）结束。
-区分大小写：javascrip语言区分大小写，关键词、变量、函数名、标示符都必须采用一致的大小写形式。HTML不区分大小写。
-
-按照惯例，ECMAScript 标识符采用驼峰大小写格式，也就是第一个字母小写，剩下的每个单词的首字母大写，例如：doSomethingImportant
-### 2、注释：
-语法：单行：//注释内容、多行：/* 注释内容 */
-
-### 3、JavaScript转义字符：
-
-| 类型 | Typeof返回字符串 |
-| -----|:---- |
-|  \b  | 退格符
-|  \f  | 换页符
-|  \n  | 换行符
-|  \r  | 回车符
-|  \t  | 横向跳格 (Ctrl-I)
-|  \'  | 单引号
-|  \\  | 反斜杠
-|  \"  | 双引号
-|  \o  | NUL字符
-|  \v  | 垂直制表符
-|  \t  | 水平制表符
-
-### 4、分号分隔：
-javascript使用分号（;），将语句分隔。分行书写，分号可以省略，同行书写，之间分号不可省。
-
-### 5、数据类型：
+### 5、数据类型
 
 JavaScript是弱类型数据语言，定义无需关注类型。数据类型分为：原始类型Primitive type、对象类型Object type。
 注释：通过typeof可以看到变量的具体类型。 //JS是动态语言；window.alert(“vi是”+typeof vi);
 原始类型：
 
-数值Number
-字符串String
+数值
+字符串
 布尔型Boolean
 
 对象类型：是一组数据和功能的集合，
