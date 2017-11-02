@@ -20,7 +20,225 @@ permalink:
 ```
 ```
 
+### 10-20 SVG脑图
+> - [基于vue的简单流程图开发](https://juejin.im/post/59e719746fb9a044fa18f2f2?utm_source=gold_browser_extension "描述")
+> - [SVG（可缩放矢量图形）绘制工具Method Draw](http://blog.csdn.net/q1056843325/article/details/54563750 "描述")
+> - [KityMinder Editor](https://www.npmjs.com/package/kityminder-editor "描述")
+> - [内容](链接 "描述")
+> - [内容](链接 "描述")
 
+### 10-20 iPhone X
+> - [面對iPhone X，Web設計師需要知道的幾個CSS屬性](https://juejin.im/entry/59bde53ff265da065e321ca0?utm_source=gold_browser_extension "描述")
+
+
+### 9-23 ES6 数据处理
+题目大概是对答题情况进行统计，[1,0,2,0]
+```
+questions: [
+	{
+		id: 1,
+		title: '第一题',
+		options: [
+		 	{
+		 		content: 'A',
+		 		isUserSelected: false
+			},
+			{
+		 		content: 'B',
+		 		isUserSelected: true
+			},
+			{
+		 		content: 'C',
+		 		isUserSelected: false
+			},
+			{
+		 		content: 'D',
+		 		isUserSelected: false
+			}
+		]
+	},
+	{
+		id: 1,
+		title: '第二题',
+		options: [
+		 	{
+		 		content: 'A',
+		 		isUserSelected: true
+			},
+			{
+		 		content: 'B',
+		 		isUserSelected: false
+			},
+			{
+		 		content: 'A',
+		 		isUserSelected: false
+			},
+			{
+		 		content: 'A',
+		 		isUserSelected: false
+			}
+		]
+	}
+]
+```
+
+
+```
+const data = [
+	{
+		options: [
+			{selected: false},
+			{selected: true},
+			{selected: false},
+			{selected: false}
+		]
+	},
+	{
+		options: [
+			{selected: true},
+			{selected: false},
+			{selected: false},
+			{selected: false}
+		]
+	},
+	{
+		options: [
+			{selected: true},
+			{selected: false},
+			{selected: false},
+			{selected: false}
+		]
+	}
+]
+const result = data.map(item => {
+	return item.options.findIndex(option => option.selected)
+})
+console.log(result)
+<!-- [1, 0, 0] -->
+```
+
+接下来，有趣的问题来了，如果是多选题哪，怎么办。
+```
+const data = [
+	{
+		options: [
+			{selected: false},
+			{selected: true},
+			{selected: true},
+			{selected: false}
+		]
+	},
+	{
+		options: [
+			{selected: true},
+			{selected: false},
+			{selected: true},
+			{selected: false}
+		]
+	},
+	{
+		options: [
+			{selected: true},
+			{selected: false},
+			{selected: false},
+			{selected: false}
+		]
+	}
+]
+const result = data.map(item => {
+	return item.options.findIndex(option => option.selected)
+})
+console.log(result)
+<!-- [1, 0, 0] -->
+
+const dmap = data.map(item => {
+	return item.options.map(opt => opt.selected).indexOf(true)
+})
+console.log(dmap)
+<!-- [1, 0, 0] -->
+
+let arr = []
+data.forEach(item => {
+	item.options.forEach((option, index) => {
+		if (option.selected) {
+			arr.push(index)
+		}
+	})
+})
+console.log(arr)
+<!-- [1, 2, 0, 2, 0] -->
+<!-- 问题数据中不能存在多选数据 -->
+
+let arr = []
+data.forEach(item => {
+  let ars = []
+  item.options.forEach((option, index) => {
+    if (option.selected) {
+      ars.push(index)
+    }
+  })
+  arr.push(ars)
+})
+console.log(arr)
+<!-- [[1, 2], [0, 2], [0]] -->
+
+function optionPush(questions, isNO) {
+  let isNos = isNO ? isNO : false
+  let result = []
+  questions.forEach(item => {
+    let ars = []
+    let type = false
+    item.options.forEach((option, index) => {
+      if (option.selected) {
+        if (isNO) {
+          ars.push(index)
+        } else {
+          if (!type) {
+            ars = index
+            type = true
+          }
+        }
+      }
+    })
+    result.push(ars)
+  })
+  return result
+}
+console.log(optionPush(data, true))
+// [[1, 2], [0, 2], [0]]
+console.log(optionPush(data))
+// [1, 0, 0]
+
+function optionDouble(questions) {
+  let result = []
+  questions.forEach(item => {
+    let ars = []
+    let type = true
+    item.options.forEach((option, index) => {
+      if (option.selected) {
+        if (!type) {
+          if (!ars.length) {
+            ars = String(ars).split('')
+          }
+          ars.push(index)
+        } else {
+          ars = index
+          type = false
+        }
+      }
+    })
+    result.push(ars)
+  })
+  return result
+}
+console.log(optionDouble(data))
+// [[1, 2], [0, 2], 0]
+console.log(optionDouble(dataDouble))
+// [2, 2, 0]
+出现问题就是数组double，时候没有处理成数组（上面的方法开始就错了）
+
+[[0,0,0,1],[1,0,0,0]].reduce((pre, cur)) => pre.concat(cur.reduce(subpre, subval, subInd) => subval === 1 ? subpre.concat([subInd]) : subpre, [])), [])
+```
 
 ### 7-3 浏览器滚动出现大片的空白
 原因：没有对URL链接，进行图片压缩裁剪，导致浏览器性能不是很好。图片过大导致，性能卡顿。

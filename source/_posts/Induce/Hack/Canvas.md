@@ -41,3 +41,4 @@ CORS解决
 
 
 [html2canvas html截图插件图片放大清晰度解决方案，支持任意放大倍数，解决原插件图片偏移问题](https://juejin.im/entry/59ae0e4c5188252423586470?utm_source=gold_browser_extension)
+[html2canvas 将代码转为图片](https://www.h5jun.com/post/convert-code-to-image-via-html2canvas.html "")
