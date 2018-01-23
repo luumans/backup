@@ -25,7 +25,8 @@ spfk@spfk-PC MINGW64
 $ cd e:/Github
 
 spfk@spfk-PC MINGW64 /e/Github
-$ node.exe WebSvr.js
+WIN $ node.exe WebSvr.js
+MAC $ node WebSvr.js
 ```
 
 ```

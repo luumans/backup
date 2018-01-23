@@ -20,6 +20,95 @@ permalink:
 ```
 ```
 
+### 11-28 Codeview
+
+``` javascript
+if（x == 1 || x == 2 || x == 3 || x == 4） 类似这种 有没有优雅点的写法？
+if () 
+```
+
+``` javascript
+function foo (a) {
+	switch (true) {
+		case (a == 1):
+		case (a == 2):
+		case (a == 3):
+			return 'ha'
+		default:
+			return 'lo'
+	}
+}
+console.log(foo(2))
+// ha
+console.log(foo(4))
+// lo
+```
+
+``` javascript
+function foo (a) {
+	switch (true) {
+		case (a in [1, 2, 3]):
+			return 'ha'
+		default:
+			return 'lo'
+	}
+}
+console.log(foo(2))
+// ha
+console.log(foo(4))
+// lo
+```
+
+``` javascript
+function foo (a) {
+	switch (true) {
+		case ([1, 2, 3].indexOf(a) > 0):
+			return 'ha'
+		default:
+			return 'lo'
+	}
+}
+console.log(foo(2))
+// ha
+console.log(foo(4))
+// lo
+```
+
+``` javascript
+function foo (a) {
+	switch (true) {
+		case ([1, 2, 3].includes(a)):
+			return 'ha'
+		default:
+			return 'lo'
+	}
+}
+console.log(foo(2))
+// ha
+console.log(foo(4))
+// lo
+```
+
+``` javascript
+function foo (a) {
+	if ([1, 2, 3].includes(a)) {
+		return 'ha'
+	}else {
+		return 'lo'
+	}
+}
+console.log(foo(2))
+// ha
+console.log(foo(4))
+// lo
+```
+
+### 10-20 HTML失败二维码
+> - [LazarSoft](http://lazarsoft.info/ "描述")
+> - [h5端呼起摄像头扫描二维码并解析](https://div.io/topic/1562 "描述")
+
+移动端摄像头如何调用，识别二维码是如何实现的
+
 ### 10-20 SVG脑图
 > - [基于vue的简单流程图开发](https://juejin.im/post/59e719746fb9a044fa18f2f2?utm_source=gold_browser_extension "描述")
 > - [SVG（可缩放矢量图形）绘制工具Method Draw](http://blog.csdn.net/q1056843325/article/details/54563750 "描述")

@@ -64,6 +64,11 @@ hexo g --draft
 
 # 日常计划规划表
 
+## 2018年
+
+### 判断页面关闭与刷新
+beforeUnload
+
 ## 2017年
 - [react]( "学习react框架")
 - [轮播图片切换]( "图片是多个方框，点击任意方框图片展出")
@@ -379,7 +384,7 @@ ajax请求后台进行倒计时。
 
 ## 数据可视化
 [遇见大数据可视化：基础研究](https://www.qcloud.com/community/article/369896?fromSource=gwzcw.92829.92829.92829 "")
-[]( "")
+[可视化图形语法概述](https://zhuanlan.zhihu.com/p/32178892 "")
 []( "")
 
 
@@ -395,8 +400,11 @@ ajax请求后台进行倒计时。
 5. web前端开发分享-css,js深化篇
 6. web前端开发分享-css,js移动篇
 
-
-
+## 拖拽
+[dragula](https://github.com/bevacqua/dragula "Drag and drop so simple it hurts")
+[]( "")
+[]( "")
+[]( "")
 
 # node 博客
 
