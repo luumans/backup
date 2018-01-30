@@ -410,3 +410,13 @@ Mac 平台
 [Sublime Text 2](http://www.sublimetext.com/2)
 [MarkdownEditing](http://ttscoff.github.com/MarkdownEditing/)
 [教程](http://lucifr.com/2012/07/12/markdownediting-for-sublime-text-2/)
+
+
+```seq
+Title: Here is a title
+A->B: Normal line
+B-->C: Dashed line
+C->>D: Open arrow
+D-->>A: Dashed open arrow
+```
+[Cmd Markdown 简明语法手册](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown)
