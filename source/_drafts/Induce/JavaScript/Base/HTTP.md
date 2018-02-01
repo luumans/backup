@@ -10,7 +10,7 @@
 -[《图解HTTP》— HTTP报文信息](https://juejin.im/post/59face7ef265da43215361d3 "")
 -[HTTP 协议详解](https://juejin.im/entry/587222418d6d810058929f55 "")
 -[面试 -- 网络 HTTP](https://juejin.im/post/5872309261ff4b005c4580d4 "")
--[]( "")
+-[HTTP----HTTP2.0新特性](https://juejin.im/post/5a4dfb2ef265da43305ee2d0 "")
 -[]( "")
 
 
