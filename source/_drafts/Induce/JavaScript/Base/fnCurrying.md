@@ -1,5 +1,5 @@
 title: JavaScript currying
-date: 2018-02-27 18:29:00
+date: 2018-02-28 18:29:00
 description: 
 categories:
 - JavaScript
@@ -117,7 +117,72 @@ console.log(add(1)(2)(3)(4))
 
 ## 场景使用
 实际场景的运用能更好的加深我们的理解，所以我们用实际的生活场景来看看 柯里化 如何运用。
-### a+b+c...
+
+> 获取数据
+
+1. 默认参数
+1. 剩余参数(Array)
+1. arguments对象(非Array)
+
+> 数组拼接
+
+1. arguments转数组
+``` javascript
+Array.from(arguments)
+Array.prototype.slice.call(arguments)
+```
+
+1. 剩余参数
+
+``` javascript
+[...[1,3],...[1,2]] => [1, 3, 1, 2]
+```
+
+1. concat()
+连接两个或更多的数组，并返回结果。
+``` javascript
+var new_array = old_array.concat(value1[, value2[, ...[, valueN]]])
+
+sum.concat(Array.from(arguments))
+a.concat(4,[1, 2]) => [4, 1, 2]
+[].concat(4, 5) => [4, 5]
+```
+
+1. slice
+从某个已有的数组返回选定的元素
+``` javascript
+[].slice.call([1, 2, 4], 1) => [2, 4]
+[1, 3].slice.call([1, 2]) => [1, 2]
+```
+
+除了使用 Array.prototype.slice.call(arguments)，你也可以简单的使用 [].slice.call(arguments) 来代替。另外，你可以使用 bind 来简化该过程。
+``` javascript
+var unboundSlice = Array.prototype.slice;
+var slice = Function.prototype.call.bind(unboundSlice);
+function list() {
+  return slice(arguments);
+}
+var list1 = list(1, 2, 3);
+// [1, 2, 3]
+```
+
+1. push
+向数组的末尾添加一个或更多元素，并返回新的长度。
+``` javascript
+[].push.apply(_args, [].slice.call(arguments));
+Array.prototype.push.apply(_args, [].slice.call(arguments))
+
+var a = [1];
+var c = [1, 3, 2];
+[].push.apply(a, c); // 返回length
+console.log(a)
+```
+
+1. .apply()
+
+
+### a+b+c
+
 > x + y + z + d
 
 ``` javascript
@@ -133,15 +198,17 @@ function add(x) {
 console.log(add(1)(2)(3)(4))
 ```
 
-> 方法一
+> 求和
 
+这段代码实际上还是不能满足要求的，题主测试成功也只是因为所在环境的 console.log 会将结果转为 string 输出，为了 return tmp 不至于输出一个function，所以重新定义了函数 tmp 的 toString 方法，使其返回 sum 值。
+比如如果使用以下代码测试会发现问题
 ``` javascript
 function add(a) {
 	function fn(b) {
 		a = a + b;
 		return fn;
 	}
-	fn.valueOf = function () {
+	fn.toString = function () {
 		return a;
 	}
 	return fn;
@@ -180,28 +247,25 @@ function add() {
 console.log(add(1)(2)(3)(4));
 ```
 
-> 方法一
-
 ``` javascript
-```
-
-
-``` javascript
-function addValueOf(n){
-  var fn = function(x) {
-		return addValueOf(n + x);
-  };
-  fn.valueOf = function (){
-		return n;
-  };
-	return fn;
+var add = function(x, y) {
+	if (arguments.length == 1) {
+		return function(z) {
+			return x + z;
+		}
+	} else {
+		return x + y;
+	}
 }
-console.log(addValueOf(1)(2)(3)(4))
+console.log(add(2,5)(2)(5));
 ```
+
+> 剩余参数
 
 ``` javascript
 function addReduce(...a){
 	let b = function(...b){
+		console.log(...[...a,...b])
 		return addReduce(...[...a,...b])
 	}
 	b.valueOf = () => {
@@ -209,44 +273,159 @@ function addReduce(...a){
 	}
 	return b;
 }
-console.log(addReduce(1)(2)(3)(4))
+console.log(addReduce(1)(2)(3)(4));
 ```
 
-> 方法一
+``` javascript
+function add(...a){
+  let sum = Array.from(a);
+	let fn = function(...b) {
+		sum = sum.concat(Array.from(b));
+		return fn;
+	}
+	fn.valueOf = () => {
+	  return sum.reduce((x, y) => {
+	    return x + y;
+	  })
+	}
+ return fn;
+}
+console.log(add(1,11)(2)(2,3,4)(4));
+```
+
+> arguments
 
 ``` javascript
-function addArgsP(){
-	var argsP = Array.from(arguments);
-	var fn = function(){
-	  let argsC = argsP.concat(Array.from(arguments));
-	  return addArgsP.apply(null, argsC)
+function add(){
+	var sum = Array.from(arguments);
+	var fn = function() {
+	  let argsC = sum.concat(Array.from(arguments));
+	  return add.apply(null, argsC)
 	}
-	fn.valueOf = function(){
-	  return argsP.reduce((x,y) => {
-	    return x+y;
+	fn.valueOf = function() {
+	  return sum.reduce((x,y) => {
+	    return x + y;
 	  })
 	}
 	return fn;
 }
-console.log(addArgsP(1)(2)(3)(4))
+console.log(add(1)(2)(3)(4));
 ```
 
 ``` javascript
-function add() {
-	var sum = arguments;
-	return function () {
-		sum = sum + arguments;
-		this.valueOf = fucntion () {
-			return sum;
-		}
+function add(){
+  let sum = Array.from(arguments);
+	let fn = function() {
+		sum = sum.concat(Array.from(arguments));
+		// return fn;
 		return arguments.callee;
 	}
+	fn.valueOf = () => {
+	  return sum.reduce((x, y) => {
+	    return x + y;
+	  })
+	}
+ return fn;
 }
 console.log(add(1)(2)(3)(4));
+```
 
+> 自定义方法
+
+``` javascript
 var currying = function (fn) {
-	
+	let args = [];
+	let cuy = function() {
+		[].push.apply(args, arguments);
+		return arguments.callee;
+	}
+	cuy.valueOf = function() {
+		return fn.apply(null, args);
+	}
+	return cuy
 }
+var add = currying(function() {
+	let num = Array.from(arguments)
+	return num.reduce((x, y) => {
+		// console.log('add', num)
+		return x + y
+	})
+})
+var ride = currying(function() {
+	let num = Array.from(arguments)
+	return num.reduce((x, y) => {
+		// console.log('ride', num)
+		return x * y
+	})
+})
+console.log(add(1)(2))
+console.log(add(1, 2))
+console.log(add())
+// 6
+console.log(ride(1, 2, 5))
+console.log(ride())
+// 10
+```
+
+### 编写一个通用的 curry()
+
+``` javascript
+function curry(fn) {
+  return function curried() {
+    var args = [].slice.call(arguments);
+    return args.length >= fn.length ?
+      fn.apply(null, args) :
+      function () {
+	      var rest = [].slice.call(arguments);
+	      return curried.apply(null, args.concat(rest));
+	    };
+  };
+}
+function foo(a,b,c) {
+	return a+b+c;
+}
+var curriedFoo = curry(foo);
+console.log(curriedFoo(1,2,3));
+// 6
+console.log(curriedFoo(1)(2,3));
+// 6
+console.log(curriedFoo(1)(2)(3));
+// 6
+console.log(curriedFoo(1,2)(3));
+// 6
+```
+
+``` javascript
+var currying = function (fn) {
+	let args = [];
+	let cuy = function() {
+		[].push.apply(args, arguments);
+		return arguments.callee;
+	}
+	cuy.valueOf = function() {
+		return fn.apply(null, args);
+	}
+	return cuy
+}
+var add = currying(function() {
+	return args.reduce((x, y) => {
+		// console.log('add', args)
+		return x + y
+	})
+})
+var ride = currying(function() {
+	return args.reduce((x, y) => {
+		// console.log('ride', args)
+		return x * y
+	})
+})
+console.log(add(1)(2))
+console.log(add(1, 2))
+console.log(add())
+// 6
+console.log(ride(1, 2, 5))
+console.log(ride())
+// 10
 ```
 
 ### 记账本
@@ -412,10 +591,66 @@ console.log(uncurryingCost(100, 200, 300));
 console.log(uncurryingCost()());
 ```
 
+### f(['1','2']) => '12'
+
+``` javascript
+var concatArray = function(chars) {
+  return chars.reduce(function(a, b) {
+  	return a.concat(b);
+  });
+}
+concat(['1','2','3'])
+
+=>
+'123'
+```
+
+### 固定易变因素
+柯里化特性决定了它这应用场景。提前把易变因素，传参固定下来，生成一个更明确的应用函数。最典型的代表应用，是bind函数用以固定this这个易变对象。
+``` javascript
+Function.prototype.bind = function(context) {
+  var _this = this,
+  _args = Array.prototype.slice.call(arguments, 1);
+  return function() {
+    return _this.apply(context, _args.concat(Array.prototype.slice.call(arguments)))
+  }
+}
+```
+
+
+
+## Uncurrying
+函数柯里化的对偶是Uncurrying，一种使用匿名单参数函数来实现多参数函数的方法。
+
+## 偏函数
+Partial Application(偏函数应用) 是指使用一个函数并将其应用一个或多个参数，但不是全部参数，在这个过程中创建一个新函数。
+
+``` javascript
+function add3(a, b, c) { return a+b+c; }  
+add3(2,4,8);
+// 14
+
+var add6 = add3.bind(this, 2, 4);  
+add6(8);
+// 14  
+```
+
 ## 拓展
 -[JavaScript函数柯里化](https://juejin.im/entry/5a142d6e6fb9a0451170c2c5 "")
 -[我理解的函数柯里化](https://juejin.im/entry/5a69501e6fb9a01cbf3888a7 "")
 -[高阶函数应用--currying](https://juejin.im/post/599c2448f265da2499602415 "")
 -[从一道面试题谈谈函数柯里化 (Currying)](https://juejin.im/entry/5884efee128fe1006c3b64d5 "")
 -[Javascript中有趣的反柯里化技术](https://juejin.im/entry/5a1e85d55188253ee45b34ba "")
+-[为什么要柯里化（why-curry-helps）slide](https://gist.github.com/jcouyang/b56a830cd55bd230049f "")
+-[前端开发者进阶之函数柯里化Currying](https://www.cnblogs.com/pigtail/p/3447660.html "")
+-[JS中的柯里化(currying)](http://www.zhangxinxu.com/wordpress/2013/02/js-currying/ "")
+-[何为Curry化/柯里化？](https://www.cnblogs.com/zztt/p/4142891.html "")
+-[一道题看透函数柯里化(currying)](http://blog.csdn.net/faremax/article/details/72738285 "")
+-[掌握 JavaScript 函数的柯里化](https://juejin.im/entry/579ac1f60a2b580058efdb48 "")
 -[]( "")
+-[]( "")
+-[]( "")
+-[]( "")
+-[]( "")
+
+
