@@ -149,10 +149,22 @@ a.concat(4,[1, 2]) => [4, 1, 2]
 ```
 
 1. slice
-从某个已有的数组返回选定的元素
+方法返回一个从开始到结束（不包括结束）选择的数组的一部分浅拷贝到一个新数组对象。原始数组不会被修改。
 ``` javascript
 [].slice.call([1, 2, 4], 1) => [2, 4]
-[1, 3].slice.call([1, 2]) => [1, 2]
+[].slice.call([1, 2]) => [1, 2]
+```
+
+``` javascript
+Array.slice()
+
+var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log(animals.slice(2));
+// ["camel", "duck", "elephant"]
+console.log(animals.slice(2, 4));
+// ["camel", "duck"]
+console.log(animals.slice(1, 5));
+// ["bison", "camel", "duck", "elephant"]
 ```
 
 除了使用 Array.prototype.slice.call(arguments)，你也可以简单的使用 [].slice.call(arguments) 来代替。另外，你可以使用 bind 来简化该过程。
@@ -330,7 +342,7 @@ function add(){
 console.log(add(1)(2)(3)(4));
 ```
 
-> 自定义方法
+> 自定义方法（偏函数）
 
 ``` javascript
 var currying = function (fn) {
@@ -439,21 +451,21 @@ function account(){
 			// 计算一共花了多少钱
 			total = total.reduce((sum, value) => {
 			  return sum + value;
-			}, 0)
-			console.log('一共花了', total+' 元');
+			}, 0);
+			console.log('一共花了', total + ' 元');
 		} else {
 			// 记录每天花了多少钱
-			total.push(p)
+			total.push(p);
 			console.log('今天花了', p+' 元');
 		}
 	}
 	return money;
 }
 var spend = account();
-console.log(spend(15))
-console.log(spend(30))
+console.log(spend(15));
+console.log(spend(30));
 // 不传参数的时候就返回真正的结果
-console.log(spend())
+console.log(spend());
 
 =>
 今天花了 15 元
@@ -622,6 +634,63 @@ Function.prototype.bind = function(context) {
 ## Uncurrying
 函数柯里化的对偶是Uncurrying，一种使用匿名单参数函数来实现多参数函数的方法。
 
+
+``` javascript
+可能遇到这种情况：拿到一个柯里化后的函数，却想要它柯里化之前的版本，这本质上就是想将类似f(1)(2)(3)的函数变回类似g(1,2,3)的函数。
+下面是简单的uncurrying的实现方式：
+
+function uncurrying(fn) {
+  return function(...args) {
+    var ret = fn;
+
+    for (let i = 0; i < args.length; i++) {
+      ret = ret(args[i]); // 反复调用currying版本的函数
+    }
+
+    return ret; // 返回结果
+  };
+}
+注意，不要以为uncurrying后的函数和currying之前的函数一模一样，它们只是行为类似！
+var currying = function(fn) {
+  var args = Array.prototype.slice.call(arguments, 1);
+
+  return function() {
+    if (arguments.length === 0) {
+      return fn.apply(this, args); // 没传参数时，调用这个函数
+    } else {
+      [].push.apply(args, arguments); // 传入了参数，把参数保存下来
+      return arguments.callee; // 返回这个函数的引用
+    }
+  }
+}
+
+function uncurrying(fn) {
+  return function(...args) {
+    var ret = fn;
+
+    for (let i = 0; i < args.length; i++) {
+      ret = ret(args[i]); // 反复调用currying版本的函数
+    }
+
+    return ret; // 返回结果
+  };
+}
+
+var cost = (function() {
+  var money = 0;
+  return function() {
+    for (var i = 0; i < arguments.length; i++) {
+      money += arguments[i];
+    }
+    return money;
+  }
+})();
+
+var curryingCost = currying(cost);
+var uncurryingCost = uncurrying(curryingCost);
+console.log(uncurryingCost(100, 200, 300)()); // 600
+```
+
 ## 偏函数
 Partial Application(偏函数应用) 是指使用一个函数并将其应用一个或多个参数，但不是全部参数，在这个过程中创建一个新函数。
 
@@ -633,6 +702,47 @@ add3(2,4,8);
 var add6 = add3.bind(this, 2, 4);  
 add6(8);
 // 14  
+```
+var toString=object.prototype.toString;
+var isString=function(obj){
+    return toString.call(obj)=='[object String]';  
+};
+
+var isFunction=function(obj){
+    return toString.call(obj)=='[object Function]';  
+}; 
+..........
+
+偏函数方法：
+var isType=function(type){
+     return function(obj){
+          return tostring.call(obj)=='[object ' + type+ ' ]';
+     }  
+}
+
+``` javascript
+//生成偏函数的函数
+var isType = function(type) {
+  return function(obj) {
+    return toString.call(obj) == '[object ' + type + ']';
+  }
+};
+//生成偏函数
+var isArray = isType('Array');
+var isBoolean = isType('Boolean');
+var isFunction = isType('Function');
+var isNumber = isType('Number');
+
+//使用偏函数
+var isArray_ = isArray(['a','d']);
+var isBoolean_ = isBoolean(true);
+var isFunction_ = isFunction(isType);
+var isNumber_ = isNumber(888);
+
+alert("['a','d'] is an Array?" + isArray_);
+alert("true is a Boolean? " + isBoolean_);
+alert('isType is a Function?' + isFunction_);
+alert('888 is a Number?' + isNumber_);
 ```
 
 ## 拓展
@@ -653,4 +763,27 @@ add6(8);
 -[]( "")
 -[]( "")
 
+## ES6 中 curry 和 apply 的实现
+apply() 在 ES6 中的实现：
+``` javascript
+function curry(fn) {  
+  return function curried(...args) {
+    return args.length >= fn.length ?
+      fn.call(this, ...args) :
+      (...rest) => {
+          return curried.call(this, ...args, ...rest);
+      };
+  };
+}
+```
+
+apply() 在 ES6 中的实现：
+``` javascript
+// 应用左边任意数量的参数
+function apply(fn, ...args) {  
+  return (..._args) => {
+    return fn(...args, ..._args);
+  };
+}
+```
 
