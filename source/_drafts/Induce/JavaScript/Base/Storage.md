@@ -1,5 +1,5 @@
 title: JavaScript 本地存储
-date: 2017-12-25 18:29:00
+date: 2018-04-25 18:29:00
 description:
 categories:
 - JavaScript
@@ -175,9 +175,8 @@ setInterval(function(){
 1. WebSQL (被废弃)
 
 ## cookie
-Cookies 是一种在文档内存储字符串数据最典型的方式。
-一般而言，cookies 会由服务端发送给客户端，客户端存储下来，然后在随后让请求中再发回给服务端。这可以用于诸如管理用户会话，追踪用户信息等事情。
-此外，客户端也用使用 cookies 存储数据。因而，cookies 常被用于存储一些通用的数据，如用户的首选项设置。
+Cookies 是一种在文档内存储字符串数据最典型的方式。大小4K，限制20个。
+一般而言，cookies 会由服务端发送给客户端，客户端存储下来，然后在随后让请求中再发回给服务端。这可以用于诸如管理用户会话，追踪用户信息等事情。此外，客户端也用使用 cookies 存储数据。因而，cookies 常被用于存储一些通用的数据，如用户的首选项设置。
 ### 构成
 
 名称 | 描述
@@ -188,6 +187,44 @@ Domain | 对哪个域是有效的
 Path | 对于指定域中的那个路径
 Expires/Max-Age | 何时应该被删除的时间戳
 secure | secure标志
+HTTP | HTTP
+
+#### Name
+同一域名下绑定的cookie，`name`不能相同，相同的`name`的值会被覆盖掉
+
+#### Value
+这个就是每个 cookie 拥有的一个属性，它表示该属性的值
+
+#### 编码和解码
+cookie的名/值中的值不允许包含分号，逗号和空格符，encodeURIComponent编码和decodeURIComponent解码
+
+#### Expires/Max-Age
+max-age：[单位：秒 seconds] — 设置缓存最大的有效时间.
+Expires：这个是代表当前时间的，这个属性已经逐渐被我们下面这个主人公所取代——Max-Age。
+
+1. Max-Age，是以秒为单位的，Max-Age 为正数时，cookie 会在 Max-Age 秒之后被删除。
+1. 当 Max-Age 为负数时，表示的是临时储存，不会生出 cookie 文件，只会存在浏览器内存中，且只会在打开的浏览器窗口或者子窗口有效，一旦浏览器关闭， cookie 就会消失
+1. 当 Max-Age 为 0 时，又会发生什么呢，删除 cookie ，因为cookie 机制本身没有设置删除 cookie ，失效的 cookie 会被浏览器自动从内存中删除，所以，它实现的就是让 cookie 失效。
+
+#### Path
+1. path这个属性默认是/，当你设置成比如/blog的时候，其实它会给 “domain+path” 范围内绑定 cookie
+
+#### Domain
+1. 如果没有设置，就会自动绑定到执行语句的当前域
+1. 统一个域名下的二级域名也是不可以交换使用 cookie
+1. 你设置 www.baidu.com 和 image.baidu.com ，依旧是不能公用的
+
+#### secure(服务端设置)
+指定在网络上如何传输cookie，默认是不安全的。
+这个属性译为安全，http 不仅是无状态的，还是不安全的协议，容易被劫持。
+所以当这个属性设置为 true 时，此 cookie 只会在 https 和 ssl 等安全协议下传输。但需要强调一下这个属性并不能对客户端的cookie进行加密，不能保证绝对的安全性
+
+#### HttpOnly(服务端设置)
+1. `HttpOnly`属性限制了`cookie`对`HTTP`请求的作用范围。
+1. 不能通过js脚本来获取cookie的值，能有效的防止xss攻击
+
+注意: HttpOnly 属性和 Secure 属性相互独立：一个 cookie 既可以是 HttpOnly 的也可以有 Secure 属性。
+
 
 ### 操作
 
@@ -210,6 +247,22 @@ Name | Value | Domain | Path | Expires/Max-Age | Size | HTTP | secure |
 -------|------|------|------|------|------|------
 user_name | Ire Aderinokun |  | / | Session | 23 |  |  |
 user_age | 25 |  | / | 2018-12-29T05:47:09.605Z | 10 |  | ✓ |
+
+### 浏览器Cookie
+#### HTTP 1.1 头部响应
+
+``` javascript
+HTTP/1.1 200 OK
+Date: Fri, 30 Oct 1998 13:19:41 GMT
+Server: Apache/1.3.3 (Unix)
+Cache-Control: max-age=3600, must-revalidate
+Expires: Fri, 30 Oct 1998 14:19:41 GMT
+Last-Modified: Mon, 29 Jun 1998 02:28:12 GMT
+ETag: "3e86-410-3596fbbc"
+Content-Length: 1040
+Content-Type: text/html
+```
+
 
 ### HTTP专有cookie
 HTTP专有cookie可以从浏览器或服务器设置，但是只能从服务器端读取，因为JavaScript无法获取HTTP专有cookie的值
@@ -258,288 +311,11 @@ dataStore.save("BookInfo")
 1. 有些状态不可能保存在客户端。例如，为了防止重复提交表单，我们需要在服务器端保存一个计数器。如果我们把这个计数器保存在客户端，那么它起不到任何作用。
 
 - [cookies](https://github.com/jaaulde/cookies "")
-- [cookies.js](https://github.com/franciscop/cookies.js?utm_source=codropscollective "")
+- [Cookies.js](https://github.com/luuman/Works/tree/gh-pages/cookie "")
+<!-- - [cookies.js](https://github.com/franciscop/cookies.js?utm_source=codropscollective "") -->
 - [源码分析之：cookies.js](https://www.jianshu.com/p/a55969e078fb "")
 - [客户端(浏览器端)数据存储技术概览](https://github.com/dwqs/blog/issues/42 "")
 
-## cookies.js
-``` javascript
-var cookies = function (data, opt) {
-	// 一个合并对象属性的方法，和Object.assign有些类似
-  function defaults (obj, defs) {
-    obj = obj || {}
-    for (var key in defs) {
-	    // 对象属性不存在时，进行浅拷贝
-      if (obj[key] === undefined) {
-        obj[key] = defs[key]
-      }
-    }
-    return obj
-  }
-  // 初始化配置
-  defaults(cookies, {
-	  // 时效一年
-    expires: 365 * 24 * 3600,
-    path: '/',
-    // https协议类型
-    secure: window.location.protocol === 'https:',
-    // Advanced，详见 https://github.com/franciscop/cookies.js#advanced-options
-    // 将cookie的值设置为null以移除它
-    nulltoremove: true,
-    // 用JSON编码和解码数据结构
-    autojson: true,
-    // 编码使其安全的URL（rfc6265）
-    autoencode: true,
-    // 函数对它进行编码
-    encode: function (val) {
-      return encodeURIComponent(val)
-    },
-    // 函数对它进行解码
-    decode: function (val) {
-      return decodeURIComponent(val)
-    },
-    fallback: false
-  })
-  opt = defaults(opt, cookies)
-  // 时间计算
-  function expires (time) {
-    var expires = time
-    if (!(expires instanceof Date)) {
-      expires = new Date()
-      expires.setTime(expires.getTime() + (time * 1000))
-    }
-    return expires.toUTCString()
-  }
-  // 查询cookie
-  if (typeof data === 'string') {
-	  // 分割document.cookie中的每个cookie
-    var value = document.cookie.split(/;\s*/)
-	    // 如果autoencode为true，则数组中的每个cookie通过decode进行处理，否则直接返回
-      .map(opt.autoencode ? opt.decode : function (d) { return d })
-      // 再将每个cookie分割成[ key, value ]的结构
-      .map(function (part) { return part.split('=') })
-      // 新建对象，将[ [ key1, value1 ], [ key2, value2 ] ]结构
-      // 转换为{ key1: value1, key2: value2 }结构
-      .reduce(function (parts, part) {
-        parts[part[0]] = part.splice(1).join('=')
-        return parts
-      }, {})[data]
-    // 获取指定cookie值，将值赋给value
-    // 是否将json字串转换为object输出
-    if (!opt.autojson) return value
-    var real
-    try {
-      real = JSON.parse(value)
-    } catch (e) {
-      real = value
-    }
-    if (typeof real === 'undefined' && opt.fallback) real = opt.fallback(data, opt)
-    return real
-  }
-  // 新增cookie
-  for (var key in data) {
-    var val = data[key]
-    // 当设置的值为undefined，或nulltoremove为true且设置的值为null时，将expired设为true
-    // 准备用于清除cookie值
-    var expired = typeof val === 'undefined' || (opt.nulltoremove && val === null)
-    // autojson为true时，将object转为json字串
-    // 若不转为字串，object将会以'[object Object]'存入cookie
-    var str = opt.autojson ? JSON.stringify(val) : val
-    // 是否对uri自动进行编码
-    var encoded = opt.autoencode ? opt.encode(str) : str
-    // 如果expired为true，将cookie设空，以清除cookie
-    if (expired) encoded = ''
-    // 连接cookie的key,value以及各项设置
-    var res = opt.encode(key) + '=' + encoded +
-      (opt.expires ? (';expires=' + expires(expired ? -10000 : opt.expires)) : '') +
-      ';path=' + opt.path +
-      (opt.domain ? (';domain=' + opt.domain) : '') +
-      (opt.secure ? ';secure' : '')
-    // 如果opt中有test方法，执行test方法
-    if (opt.test) opt.test(res)
-    // 种入cookie
-    document.cookie = res
-  }
-  // 返回cookies，能做到如下串联调用
-  console.log(cookies)
-  return cookies
-};
-// 模块化相关
-(function webpackUniversalModuleDefinition (root) {
-  if (typeof exports === 'object' && typeof module === 'object') {
-    module.exports = cookies
-  } else if (typeof define === 'function' && define.amd) {
-    define('cookies', [], cookies)
-  } else if (typeof exports === 'object') {
-    exports['cookies'] = cookies
-  } else {
-    root['cookies'] = cookies
-  }
-})(this)
-
-
-// Set it
-cookies({ token: '42' })
-// Get it
-var token = cookies('token')
-// Eat it
-cookies({ token: null })
-cookies({ token: '42' }, {
-  expires: 100 * 24 * 3600,     // The time to expire in seconds
-  domain: false,                // The domain for the cookie
-  path: '/',                    // The path for the cookie
-  secure: https ? true : false  // Require the use of https
-});
-cookies.expires = 100 * 24 * 3600;      // The time to expire in seconds
-cookies.domain = false;                 // The domain for the cookie
-cookies.path = '/';                     // The path for the cookie
-cookies.secure = https ? true : false;  // Require the use of https
-```
-
-## CookieUtil
-``` javascript
-var CookieUtil = {
-  // 获取
-  get: function (name) {
-    var cookieName = encodeURIComponent(name) + '=',
-      cookieStart = document.cookie.indexOf(cookieName),
-      cookieValue = null
-    if (cookieStart > -1) {
-      var cookieEnd = document.cookie.indexOf(';', cookieStart)
-      if (cookieEnd == -1) {
-        var cookieEnd = document.cookie.length
-      }
-      cookieValue = decodeURIComponent(document.cookie.substring(cookieStart + cookieName.length, cookieEnd))
-    }
-    return cookieValue
-  },
-  // 获取
-  gets: function (name) {
-    let cookies = document.cookie.split(';')
-    let cookiesObj = {}
-    cookies.forEach(c => {
-      if (!c) {
-        return
-      }
-      let cs = c.trim().split('=')
-      if (cs.length < 2) {
-        return
-      }
-      let key = cs[0]
-      let value = cs[1]
-      if(value == '""'){
-        value = ""
-      }
-      cookiesObj[key] = value
-    })
-    return cookiesObj[name]
-  },
-  // 设置
-  set: function (name, value, expires, path, domain, secure) {
-    var cookieText = encodeURIComponent(name) + '=' + encodeURIComponent(value)
-    if (expires instanceof Date) {
-      cookieText += '; expires=' + expires.toGMTString()
-    }
-    if (path) {
-      cookieText += '; path=' + path
-    }
-    if (domain) {
-      cookieText += '; domain=' + domain
-    }
-    if (secure) {
-      cookieText += '; secure'
-    }
-    document.cookie = cookieText
-  },
-  // 删除
-  unset: function (name, path, domain, secure) {
-    this.set(name, '', new Date(0), path, domain, secure)
-  }
-}
-
-// 设置cookie
-CookieUtil.set("name", "Nicholas")
-CookieUtil.set("book", "Professional JavaScript")
-// 读取cookie的值
-alert(CookieUtil.get("name")); //"Nicholas"
-alert(CookieUtil.get("book")); //"Professional JavaScript"
-// 删除cookie
-CookieUtil.unset("name")
-CookieUtil.unset("book");
-```
-
-## SubCookieUtil
-``` javascript
-var SubCookieUtil = {
-  get: function (name, subName){
-    var subCookies = this.getAll(name);
-    if (subCookies) {
-      return subCookies[subName];
-    } else {
-      return null;
-    }
-  },
-  getAll: function(name){
-    var cookieName = encodeURIComponent(name) + "=",
-      cookieStart = document.cookie.indexOf(cookieName),
-      cookieValue = null,
-      cookieEnd,
-      subCookies, 11 i,
-      parts,
-      result = {};
-    if (cookieStart > -1){
-      cookieEnd = document.cookie.indexOf(";", cookieStart);
-      if (cookieEnd == -1){
-        cookieEnd = document.cookie.length;
-      }
-      cookieValue = document.cookie.substring(cookieStart + cookieName.length, cookieEnd);
-      if (cookieValue.length > 0){
-        subCookies = cookieValue.split("&");
-        for (i=0, len=subCookies.length; i < len; i++){
-          parts = subCookies[i].split("=");
-          result[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
-        }
-        return result;
-      }
-    }
-    return null;
-  },
-  set: function (name, subName, value, expires, path, domain, secure) {
-    var subcookies = this.getAll(name) || {};
-    this.setAll(name, subcookies, expires, path, domain, secure);
-    subcookies[subName] = value;
-  },
-  setAll: function(name, subcookies, expires, path, domain, secure){
-    var cookieText = encodeURIComponent(name) + "=",
-      subcookieParts = new Array(),
-      subName;
-    for (subName in subcookies){
-      if (subName.length > 0 && subcookies.hasOwnProperty(subName)){
-        subcookieParts.push(encodeURIComponent(subName) + "=" +
-        encodeURIComponent(subcookies[subName]));
-      }
-    }
-    if (cookieParts.length > 0){
-      cookieText += subcookieParts.join("&");
-      if (expires instanceof Date) {
-        cookieText += "; expires=" + expires.toGMTString();
-      }
-      if (path) {
-        cookieText += "; path=" + path;
-      }
-      if (domain) {
-        cookieText += "; domain=" + domain;
-      }
-      if (secure) {
-        cookieText += "; secure";
-      }
-    } else {
-      cookieText += "; expires=" + (new Date(0)).toGMTString();
-    }
-    document.cookie = cookieText;
-  }
-};
-```
 
 # Web Storage存储机制
 

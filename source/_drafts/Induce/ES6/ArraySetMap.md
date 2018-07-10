@@ -11,9 +11,10 @@ comments:
 original:
 permalink: 
 ---
-ES6 Set 和 Map 数据结构
-<!-- more -->
 
+ES6 Set 和 Map 数据结构
+
+<!-- more -->
 
 # Set
 ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。

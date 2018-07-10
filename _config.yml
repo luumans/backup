@@ -64,11 +64,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-# theme: spfk
 # theme: hexo-theme-spfk
 # theme: hexo-theme-yilia
 # theme: hexo-theme-hueman
 # theme: hexo-theme-icarus
+# theme: spfk
 theme: next
 
 # 自动生成sitemap
@@ -119,7 +119,8 @@ jsonContent:
 deploy:
   type: git
   repository: git@github.com:luuman/luuman.github.io.git
-#    repository: https://github.com/luuman/luuman.github.io.git
+  # repository: git@github.com:luumans/luumans.github.io.git
+  # repository: https://github.com/luuman/luuman.github.io.git
   branch: master
 
 # Deployment 站点部署到github要配置，上一节中已经讲过

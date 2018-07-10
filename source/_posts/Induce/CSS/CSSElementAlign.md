@@ -14,9 +14,9 @@ permalink:
 
 　　**自用笔记：**本文属于自用笔记，不做详解，仅供参考。在此记录自己已理解并开始遵循的前端代码规范。What How Why
 <!-- more -->
-
-
-### 固定高度绝对定位
+# 浮动垂直水平居中
+## 固定长度
+### margin反向移动
 >使用position:absolute,设置left、top、margin-left、margin-top的属性
 这种方法基本浏览器都能够兼容，不足之处就是需要固定宽高。
 
@@ -47,7 +47,8 @@ permalink:
 	}
 </style>
 
-### 使用position:fixed,同样设置left、top、margin-left、margin-top的属性
+### fixed
+
 ```
 	.two{
 		position:fixed;
@@ -76,7 +77,10 @@ permalink:
 		background:orange;
 	}
 </style>
-### 利用position:fixed属性，margin:auto这个必须不要忘记了。
+
+## 宽度自动
+### 自动加清零
+
 ```
 	.three{
 		position:fixed;
@@ -104,7 +108,8 @@ permalink:
 		background:pink;
 	}
 </style>
-### 利用position:absolute属性，设置top/bottom/right/left
+
+
 ```
 	.four{
 		position:absolute;
@@ -132,82 +137,9 @@ permalink:
 		background:black;
 	}
 </style>
-### 文字垂直水平居中
->利用display:table-cell属性使内容垂直居中
 
-```
-	.five{
-		display:table-cell;
-		vertical-align:middle;
-		text-align:center;
-		width:120px;
-		height:120px;
-		background:purple;
-	}
-```
+### 偏移
 
-<!-- <div class="five">five</div> -->
-<style type="text/css">
-	.five{
-		display:table-cell;
-		vertical-align:middle;
-		text-align:center;
-		width:120px;
-		height:120px;
-		background:purple;
-	}
-</style>
-### 文字垂直水平居中
->最简单的一种使行内元素居中的方法，使用line-height属性
-这种方法也很实用，比如使文字垂直居中对齐
-
-```
-	.six{
-		width:100px;
-		height:100px;
-		line-height:100px;
-		text-align:center;
-		background:gray;
-	}
-```
-
-<!-- <div class="six">six</div> -->
-<style type="text/css">
-	.six{
-		width:100px;
-		height:100px;
-		line-height:100px;
-		text-align:center;
-		background:gray;
-	}
-</style>
-### 文字垂直水平居中
->使用css3的display:-webkit-box属性，再设置-webkit-box-pack:center/-webkit-box-align:center
-
-```
-	.seven{
-		width:90px;
-		height:90px;
-		display:-webkit-box;
-		-webkit-box-pack:center;
-		-webkit-box-align:center;
-		background:yellow;
-		color:black;
-	}
-```
-<!-- <div class="seven">seven</div> -->
-<style type="text/css">
-	.seven{
-		width:90px;
-		height:90px;
-		display:-webkit-box;
-		-webkit-box-pack:center;
-		-webkit-box-align:center;
-		background:yellow;
-		color:black;
-	}
-</style>
-### CSS translate偏移
 >使用css3的新属性transform:translate(x,y)属性
 这个方法可以不需要设定固定的宽高，在移动端用的会比较多，在移动端css3兼容的比较好
 
@@ -240,7 +172,9 @@ permalink:
 		background:green;
 	}
 </style>
+
 ### before元素
+
 >最高大上的一种，使用:before元素
 
 ```
@@ -299,3 +233,90 @@ permalink:
 		background:yellow;
 	}
 </style>
+
+### flex
+
+# 文字居中
+### 文字垂直水平居中
+
+>利用display:table-cell属性使内容垂直居中
+
+```
+	.five{
+		display:table-cell;
+		vertical-align:middle;
+		text-align:center;
+		width:120px;
+		height:120px;
+		background:purple;
+	}
+```
+
+<!-- <div class="five">span</div> -->
+<style type="text/css">
+	.five{
+		display:table-cell;
+		vertical-align:middle;
+		text-align:center;
+		width:120px;
+		height:120px;
+		background:purple;
+	}
+</style>
+
+### 文字垂直水平居中
+
+>最简单的一种使行内元素居中的方法，使用line-height属性
+这种方法也很实用，比如使文字垂直居中对齐
+
+```
+	.six{
+		width:100px;
+		height:100px;
+		line-height:100px;
+		text-align:center;
+		background:gray;
+	}
+```
+
+<div class="six">six</div>
+<style type="text/css">
+	.six{
+		width:100px;
+		height:100px;
+		line-height:100px;
+		text-align:center;
+		background:gray;
+	}
+</style>
+
+### 文字垂直水平居中
+
+>使用css3的display:-webkit-box属性，再设置-webkit-box-pack:center/-webkit-box-align:center
+
+```
+	.seven{
+		width:90px;
+		height:90px;
+		display:-webkit-box;
+		-webkit-box-pack:center;
+		-webkit-box-align:center;
+		background:yellow;
+		color:black;
+	}
+```
+<!-- <div class="seven">seven</div> -->
+<style type="text/css">
+	.seven{
+		width:90px;
+		height:90px;
+		display:-webkit-box;
+		-webkit-box-pack:center;
+		-webkit-box-align:center;
+		background:yellow;
+		color:black;
+	}
+</style>
+
+
+

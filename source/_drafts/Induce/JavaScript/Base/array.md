@@ -11,6 +11,7 @@ comments:
 original:
 permalink: 
 ---
+
 Array 对象方法
 <!-- 方法	描述
 concat()	连接两个或更多的数组，并返回结果。
@@ -27,6 +28,7 @@ toString()	把数组转换为字符串，并返回结果。
 toLocaleString()	把数组转换为本地数组，并返回结果。
 unshift()	向数组的开头添加一个或更多元素，并返回新的长度。
 valueOf()	返回数组对象的原始值 -->
+
 <!-- more -->
 
 # 属性
@@ -441,10 +443,12 @@ flatten([[1, 2], [1, 2]])
 ```
 
 ### 参数
+
 ``` javascript
 arr.copyWithin(target, start, end)
 arr.copyWithin(目标索引, [源开始索引], [结束源索引])
 ```
+
 1. target
 0 为基底的索引，复制序列到该位置。如果是负数，target 将从末尾开始计算。
 如果 target 大于等于 arr.length，将会不发生拷贝。如果 target 在 start 之后，复制的序列将被修改以符合 arr.length。
@@ -455,16 +459,35 @@ arr.copyWithin(目标索引, [源开始索引], [结束源索引])
 0 为基底的索引，开始复制元素的结束位置。copyWithin 将会拷贝到该位置，但不包括 end 这个位置的元素。如果是负数， end 将从末尾开始计算。
 如果 end 被忽略，copyWithin 将会复制到 arr.length。
 
-
 ``` javascript
+[1, 2, 3, 4, 5].copyWithin(1);
+// [1, 1, 2, 3, 4]
 [1, 2, 3, 4, 5].copyWithin(2);
 // [1, 2, 1, 2, 3]
-
 [1, 2, 3, 4, 5].copyWithin(-2);
 // [1, 2, 3, 1, 2]
+```
+1. 基底为0，复杂序列到该位置
+1. 如果是负数，target 将从末尾开始计算位置
+1. 默认start为0，连接全部内容
+
+``` javascript
+[1, 2, 3, 4, 5].copyWithin(1, 0);
+// [1, 1, 2, 3, 4]
+[1, 2, 3, 4, 5].copyWithin(1, 3);
+// [1, 4, 5, 4, 5]
 
 [1, 2, 3, 4, 5].copyWithin(0, 3);
 // [4, 5, 3, 4, 5]
+[1, 2, 3, 4, 5].copyWithin(3, 2);
+// [1, 2, 3, 3, 4]
+[1, 2, 3, 4, 5].copyWithin(1, 2);
+// [1, 3, 4, 5, 5]
+```
+1. 当替换的内容小于length时，原有的内容保持。
+1. 开始复制元素的起始位置之后的内容。
+
+``` javascript
 
 [1, 2, 3, 4, 5].copyWithin(0, 3, 4);
 // [4, 2, 3, 4, 5]
@@ -477,22 +500,297 @@ arr.copyWithin(目标索引, [源开始索引], [结束源索引])
 
 // ES2015 Typed Arrays are subclasses of Array
 var i32a = new Int32Array([1, 2, 3, 4, 5]);
-
 i32a.copyWithin(0, 2);
 // Int32Array [3, 4, 5, 4, 5]
 
-// On platforms that are not yet ES2015 compliant: 
+// On platforms that are not yet ES2015 compliant:
 [].copyWithin.call(new Int32Array([1, 2, 3, 4, 5]), 0, 3, 4);
 // Int32Array [4, 2, 3, 4, 5]
 ```
+
+### 兼容旧环境（Polyfill）
+``` javascript
+if (!Array.prototype.copyWithin) {
+  Array.prototype.copyWithin = function(target, start/*, end*/) {
+    // Steps 1-2.
+    if (this == null) {
+      throw new TypeError('this is null or not defined');
+    }
+    var O = Object(this);
+    // Steps 3-5.
+    var len = O.length >>> 0;
+    // Steps 6-8.
+    var relativeTarget = target >> 0;
+    var to = relativeTarget < 0 ?
+      Math.max(len + relativeTarget, 0) :
+      Math.min(relativeTarget, len);
+    // Steps 9-11.
+    var relativeStart = start >> 0;
+
+    var from = relativeStart < 0 ?
+      Math.max(len + relativeStart, 0) :
+      Math.min(relativeStart, len);
+
+    // Steps 12-14.
+    var end = arguments[2];
+    var relativeEnd = end === undefined ? len : end >> 0;
+
+    var final = relativeEnd < 0 ?
+      Math.max(len + relativeEnd, 0) :
+      Math.min(relativeEnd, len);
+
+    // Step 15.
+    var count = Math.min(final - from, len - to);
+
+    // Steps 16-17.
+    var direction = 1;
+
+    if (from < to && to < (from + count)) {
+      direction = -1;
+      from += count - 1;
+      to += count - 1;
+    }
+
+    // Step 18.
+    while (count > 0) {
+      if (from in O) {
+        O[to] = O[from];
+      } else {
+        delete O[to];
+      }
+
+      from += direction;
+      to += direction;
+      count--;
+    }
+
+    // Step 19.
+    return O;
+  };
+}
+```
+
 ### 思考：如何用 splice 实现 copyWithin？
 
+``` javascript
+copyWithins
+```
+
 ## entries()
-Array.entries()
+方法返回一个新的Array Iterator对象，该对象包含数组中每个索引的键/值对。
+一个新的 Array 迭代器对象。Array Iterator是对象，它的原型（__proto__:Array Iterator）上有一个next方法，可用用于遍历迭代器取得原数组的[key,value]。
+
+``` javascript
+var arr = ["a", "b", "c"];
+var iterator = arr.entries();
+// undefined
+
+console.log(iterator);
+// Array Iterator {}
+
+console.log(iterator.next().value); 
+// [0, "a"]
+console.log(iterator.next().value); 
+// [1, "b"]
+console.log(iterator.next().value); 
+// [2, "c"]
+```
+
+### 示例
+
+####  Array Iterator
+``` javascript
+var arr = ["a", "b", "c"];
+var iterator = arr.entries();
+console.log(iterator);
+
+/*Array Iterator {}
+         __proto__:Array Iterator
+         next:ƒ next()
+         Symbol(Symbol.toStringTag):"Array Iterator"
+         __proto__:Object
+*/
+```
+#### iterator.next()
+``` javascript
+var arr = ["a", "b", "c"]; 
+var iterator = arr.entries();
+console.log(iterator.next());
+
+/*{value: Array(2), done: false}
+          done:false
+          value:(2) [0, "a"]
+           __proto__: Object
+*/
+// iterator.next()返回一个对象，对于有元素的数组，
+// 是next{ value: Array(2), done: false }；
+// next.done 用于指示迭代器是否完成：在每次迭代时进行更新而且都是false，
+// 直到迭代器结束done才是true。
+// next.value是一个["key":"value"]的数组，是返回的迭代器中的元素值。
+```
+#### iterator.next方法运行
+``` javascript
+var arr = ["a", "b", "c"];
+var iter = arr.entries();
+var a = [];
+
+// for(var i=0; i< arr.length; i++){   // 实际使用的是这个 
+for(var i=0; i< arr.length+1; i++){    // 注意，是length+1，比数组的长度大
+    var tem = iter.next();             // 每次迭代时更新next
+    console.log(tem.done);             // 这里可以看到更新后的done都是false
+    if(tem.done !== true){             // 遍历迭代器结束done才是true
+        console.log(tem.value);
+        a[i]=tem.value;
+    }
+}
+    
+console.log(a);                         // 遍历完毕，输出next.value的数组
+```
+#### 二维数组按行排序
+``` javascript
+function sortArr(arr) {
+    var goNext = true;
+    var entries = arr.entries();
+    while (goNext) {
+        var result = entries.next();
+        if (result.done !== true) {
+            result.value[1].sort((a, b) => a - b);
+            goNext = true;
+        } else {
+            goNext = false;
+        }
+    }
+    return arr;
+}
+
+var arr = [[1,34],[456,2,3,44,234],[4567,1,4,5,6],[34,78,23,1]];
+sortArr(arr);
+
+/*(4) [Array(2), Array(5), Array(5), Array(4)]
+    0:(2) [1, 34]
+    1:(5) [2, 3, 44, 234, 456]
+    2:(5) [1, 4, 5, 6, 4567]
+    3:(4) [1, 23, 34, 78]
+    length:4
+    __proto__:Array(0)
+*/
+```
+#### 使用for…of 循环
+``` javascript
+var arr = ["a", "b", "c"];
+var iterator = arr.entries();
+// undefined
+
+for (let e of iterator) {
+    console.log(e);
+}
+
+// [0, "a"] 
+// [1, "b"] 
+// [2, "c"]
+```
+
 ## every()
-Array.every()
-## fill()
-Array.fill()
+方法测试数组的所有元素是否都通过了指定函数的测试。
+
+### 语法
+``` javascript
+arr.every(callback[, thisArg])
+```
+
+``` javascript
+function isBigEnough(element, index, array) {
+  return (element >= 10);
+}
+var passed = [12, 5, 8, 130, 44].every(isBigEnough);
+// false
+passed = [12, 54, 18, 130, 44].every(isBigEnough);
+// true
+```
+
+### 兼容旧环境（Polyfill）
+``` javascript
+if (!Array.prototype.every) {
+  Array.prototype.every = function(fun /*, thisArg */) {
+    'use strict';
+    if (this === void 0 || this === null)
+      throw new TypeError();
+    var t = Object(this);
+    var len = t.length >>> 0;
+    if (typeof fun !== 'function')
+      throw new TypeError();
+    var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+    for (var i = 0; i < len; i++) {
+      if (i in t && !fun.call(thisArg, t[i], i, t))
+        return false;
+    }
+    return true;
+  };
+}
+```
+
+## fill() ！
+方法用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。
+
+### 语法
+``` javascript
+arr.fill(value[, start[, end]])
+```
+
+``` javascript
+var array1 = [1, 2, 3, 4];
+
+// fill with 0 from position 2 until position 4
+console.log(array1.fill(0, 2, 4));
+// expected output: [1, 2, 0, 0]
+
+// fill with 5 from position 1
+console.log(array1.fill(5, 1));
+// expected output: [1, 5, 5, 5]
+
+console.log(array1.fill(6));
+// expected output: [6, 6, 6, 6]
+```
+
+### 兼容旧环境（Polyfill）
+``` javascript
+if (!Array.prototype.fill) {
+  Object.defineProperty(Array.prototype, 'fill', {
+    value: function(value) {
+      // Steps 1-2.
+      if (this == null) {
+        throw new TypeError('this is null or not defined');
+      }
+      var O = Object(this);
+      // Steps 3-5.
+      var len = O.length >>> 0;
+      // Steps 6-7.
+      var start = arguments[1];
+      var relativeStart = start >> 0;
+      // Step 8.
+      var k = relativeStart < 0 ?
+        Math.max(len + relativeStart, 0) :
+        Math.min(relativeStart, len);
+      // Steps 9-10.
+      var end = arguments[2];
+      var relativeEnd = end === undefined ?
+        len : end >> 0;
+      // Step 11.
+      var final = relativeEnd < 0 ?
+        Math.max(len + relativeEnd, 0) :
+        Math.min(relativeEnd, len);
+      // Step 12.
+      while (k < final) {
+        O[k] = value;
+        k++;
+      }
+      // Step 13.
+      return O;
+    }
+  });
+}
+```
+
 ## filter()
 Array.filter()
 ## find()
@@ -583,22 +881,224 @@ var list1 = list(1, 2, 3);
 ## some()
 Array.some()
 ## sort()
-Array.sort()
+用就地（ in-place ）的算法对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺序是根据字符串Unicode码点。
+
+``` javascript
+var fruit = ['cherries', 'apples', 'bananas'];
+fruit.sort(); 
+// ['apples', 'bananas', 'cherries']
+
+var scores = [1, 10, 21, 2]; 
+scores.sort(); 
+// [1, 10, 2, 21]
+// 注意10在2之前,
+// 因为在 Unicode 指针顺序中"10"在"2"之前
+
+var things = ['word', 'Word', '1 Word', '2 Words'];
+things.sort(); 
+// ['1 Word', '2 Words', 'Word', 'word']
+// 在Unicode中, 数字在大写字母之前,
+// 大写字母在小写字母之前.
+```
+
+### 语法
+``` javascript
+arr.sort() 
+
+arr.sort(compareFunction)
+```
+
+compareFunction
+可选。用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的各个字符的Unicode位点进行排序。
+
+sort 方法可以使用 函数表达式 方便地书写：
+``` javascript
+var numbers = [4, 2, 5, 1, 3];
+numbers.sort(function(a, b) {
+  return a - b;
+});
+console.log(numbers);
+
+也可以写成：
+var numbers = [4, 2, 5, 1, 3]; 
+numbers.sort((a, b) => a - b); 
+console.log(numbers);
+
+// [1, 2, 3, 4, 5]
+```
+### 示例
+
+#### 创建、显示及排序数组
+下述示例创建了四个数组，并展示原数组。之后对数组进行排序。对比了数字数组分别指定与不指定比较函数的结果。
+
+``` javascript
+var stringArray = ["Blue", "Humpback", "Beluga"];
+var numericStringArray = ["80", "9", "700"];
+var numberArray = [40, 1, 5, 200];
+var mixedNumericArray = ["80", "9", "700", 40, 1, 5, 200];
+
+function compareNumbers(a, b) {
+  return a - b;
+}
+
+console.log('stringArray:' + stringArray.join());
+console.log('Sorted:' + stringArray.sort());
+
+console.log('numberArray:' + numberArray.join());
+console.log('Sorted without a compare function:'+ numberArray.sort());
+console.log('Sorted with compareNumbers:'+ numberArray.sort(compareNumbers));
+
+console.log('numericStringArray:'+ numericStringArray.join());
+console.log('Sorted without a compare function:'+ numericStringArray.sort());
+console.log('Sorted with compareNumbers:'+ numericStringArray.sort(compareNumbers));
+
+console.log('mixedNumericArray:'+ mixedNumericArray.join());
+console.log('Sorted without a compare function:'+ mixedNumericArray.sort());
+console.log('Sorted with compareNumbers:'+ mixedNumericArray.sort(compareNumbers));
+该示例的返回结果如下。输出显示，当使用比较函数后，数字数组会按照数字大小排序。
+
+stringArray: Blue,Humpback,Beluga
+Sorted: Beluga,Blue,Humpback
+
+numberArray: 40,1,5,200
+Sorted without a compare function: 1,200,40,5
+Sorted with compareNumbers: 1,5,40,200
+
+numericStringArray: 80,9,700
+Sorted without a compare function: 700,80,9
+Sorted with compareNumbers: 9,80,700
+
+mixedNumericArray: 80,9,700,40,1,5,200
+Sorted without a compare function: 1,200,40,5,700,80,9
+Sorted with compareNumbers: 1,5,9,40,80,200,700
+```
+
+#### 对非 ASCII 字符排序
+当排序非 ASCII 字符的字符串（如包含类似 e, é, è, a, ä 等字符的字符串）。一些非英语语言的字符串需要使用 String.localeCompare。这个函数可以将函数排序到正确的顺序。
+
+``` javascript
+var items = ['réservé', 'premier', 'cliché', 'communiqué', 'café', 'adieu'];
+items.sort(function (a, b) {
+  return a.localeCompare(b);
+});
+
+// items is ['adieu', 'café', 'cliché', 'communiqué', 'premier', 'réservé']
+```
+
+#### 使用映射改善排序
+compareFunction 可能需要对元素做多次映射以实现排序，尤其当 compareFunction 较为复杂，且元素较多的时候，某些 compareFunction 可能会导致很高的负载。使用 map 辅助排序将会是一个好主意。基本思想是首先将数组中的每个元素比较的实际值取出来，排序后再将数组恢复。
+
+``` javascript
+var list = ['Delta', 'alpha', 'CHARLIE', 'bravo'];
+
+// 对需要排序的数字和位置的临时存储
+var mapped = list.map(function(el, i) {
+  return { index: i, value: el.toLowerCase() };
+})
+
+// 按照多个值排序数组
+mapped.sort(function(a, b) {
+  return +(a.value > b.value) || +(a.value === b.value) - 1;
+});
+
+// 根据索引得到排序的结果
+var result = mapped.map(function(el){
+  return list[el.index];
+});
+```
+// 需要被排序的数组
+
 ## splice()
-Array.splice()
+方法通过删除现有元素和/或添加新元素来更改一个数组的内容。
+
+``` javascript
+var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+
+myFish.splice(2, 0, 'drum'); // 在索引为2的位置插入'drum'
+// myFish 变为 ["angel", "clown", "drum", "mandarin", "sturgeon"]
+
+myFish.splice(2, 1); // 从索引为2的位置删除一项（也就是'drum'这一项）
+// myFish 变为 ["angel", "clown", "mandarin", "sturgeon"]
+```
+### 语法
+``` javascript
+array.splice(start)
+
+array.splice(start, deleteCount) 
+
+array.splice(start, deleteCount, item1, item2, ...)
+```
+
+``` javascript
+var myFish = ['angel', 'clown', 'trumpet', 'sturgeon'];
+var removed = myFish.splice(0, 2, 'parrot', 'anemone', 'blue');
+// 运算后的myFish： ["parrot", "anemone", "blue", "trumpet", "sturgeon"] 
+// 被删除元素数组：["angel", "clown"]
+```
+
 ## toLocaleString()
-Array.toLocaleString()
-## toSource()
+返回一个字符串表示数组中的元素。数组中的元素将使用各自的 toLocaleString 方法转成字符串，这些字符串将使用一个特定语言环境的字符串（例如一个逗号 ","）隔开。
+
+> 数组中的元素将会使用各自的 toLocaleString 方法：
+
+1. Object: Object.prototype.toLocaleString()
+1. Number: Number.prototype.toLocaleString()
+1. Date: Date.prototype.toLocaleString()
+
+### 使用 toLocaleString
+
+``` javascript
+var number = 1337;
+var date = new Date();
+var myArr = [number, date, "foo"];
+
+var str = myArr.toLocaleString(); 
+
+console.log(str); 
+// 输出 "1,337,2017/8/13 下午8:32:24,foo"
+// 假定运行在中文（zh-CN）环境，北京时区
+```
+
+## toSource() ！
 Array.toSource()
 ## toString()
-Array.toString()
+返回一个字符串，表示指定的数组及其元素。
+
+``` javascript
+var monthNames = ['Jan', 'Feb', 'Mar', 'Apr'];
+var myVar = monthNames.toString(); // assigns "Jan,Feb,Mar,Apr" to myVar.
+```
+
 ## unshift()
-Array.unshift()
-## values()
-Array.values()
-Array.prototype[@@iterator]()
-Array.unobserve()
-get Array[@@species]
+方法将一个或多个元素添加到数组的开头，并返回新数组的长度。
+
+``` javascript
+let a = [1, 2, 3];
+a.unshift(4, 5);
+
+console.log(a);
+// [4, 5, 1, 2, 3]
+
+var arr = [1, 2];
+
+arr.unshift(0); //result of call is 3, the new array length
+//arr is [0, 1, 2]
+
+arr.unshift(-2, -1); // = 5
+//arr is [-2, -1, 0, 1, 2]
+
+arr.unshift( [-3] );
+//arr is [[-3], -2, -1, 0, 1, 2]
+```
+
+## values() ！
+PS: Chrome 未实现，Firefox未实现，Edge已实现
+方法返回一个新的 Array Iterator 对象，该对象包含数组每个索引的值。
+
+
+## Array.prototype[@@iterator]()
+## Array.unobserve()
+## get Array[@@species]
 
 # 使用
 ## 遍历一个数组
@@ -616,7 +1116,7 @@ arrs.forEach(function (item, index, array) {
 ``` javascript
 var arrs = ['aaa', 'bbb'];
 for(var i = 0;i < arrs.length;i++){
-  console.log(arrs[i]);
+  console.log(arrs[i])
 }
 // aaa
 // bbb
@@ -708,3 +1208,165 @@ Array.prototype.uniq = function() {
   return [...new Set(this)];
 }
 ```
+
+
+
+
+# 数组数据合并
+
+## dfdf
+``` javascript
+var a = [
+  {
+    id: '001',
+    name: '张三',
+    age: 18,
+    address: '北京市朝阳区',
+    school: '朝阳区第二中学'
+  },
+  {
+    id: '1002',
+    name: '李四',
+    age: 15,
+    address: '北京市海淀区',
+    school: '海淀区第二中学'
+  },
+  {
+    id: '1003',
+    name: '王五',
+    age: 16,
+    address: '北京市石景山区',
+    school: '石景山区第二中学'
+  }
+]
+var b = [
+  {
+    id: '004',
+    name: '小毛',
+    age: 18,
+    address: '北京市朝阳区',
+    school: '朝阳区第二中学'
+  },
+  {
+    id: '1003',
+    name: '王五',
+    age: 16,
+    address: '北京市石景山区',
+    school: '石景山区第二中学'
+  }
+]
+var c = a.concat(b)
+var name = {}
+var result = []
+c.forEach(function (item, index) {
+  if (!name[item.id]) {
+    result.push(item)
+    name[item.id] = true
+  }
+})
+console.log(result)
+
+[
+  {
+    id: '001',
+    name: '张三',
+    age: 18,
+    address: '北京市朝阳区',
+    school: '朝阳区第二中学'
+  },
+  {
+    id: '1002',
+    name: '李四',
+    age: 15,
+    address: '北京市海淀区',
+    school: '海淀区第二中学'
+  },
+  {
+    id: '1003',
+    name: '王五',
+    age: 16,
+    address: '北京市石景山区',
+    school: '石景山区第二中学'
+  },
+  {
+    id: '1004',
+    name: '小毛',
+    age: 18,
+    address: '北京市朝阳区',
+    school: '朝阳区第二中学'
+  }
+]
+```
+
+## 循环检测
+
+var a = ["2013-01","2013-01","2013-02","2013-02","2013-02","2013-03","2013-03"];  
+    Array.prototype.del = function() {   
+        var a = {}, c = [], l = this.length;   
+        for (var i = 0; i < l; i++) {   
+            var b = this[i];   
+            var d = (typeof b) + b;   
+            if (a[d] === undefined) {   
+                c.push(b);   
+                a[d] = 1;   
+            }   
+        }   
+        return c;   
+    }   
+    alert(a.del());  
+
+## 优化遍历数组法
+获取没重复的最右一值放入新数组。（检测到有重复值时终止当前循环同时进入顶层循环的下一轮判断）
+
+``` javascript
+function repeatFor(array) {
+  var n = []
+  for (var i = 0, l = array.length; i < l; i++) {
+    for (var j = i + 1; j < l; j++) {
+      if (array[i] === array[j]) {
+        j = ++i
+        n.push(array[i])
+      }
+    }
+  }
+  return n
+}
+repeatFor([1, 3, 4, 5, 7, 2, 3])
+// [1, 3, 4, 5, 7, 2]
+```
+
+## 排序后相邻去除法
+给传入数组排序，排序后相同值相邻，然后遍历时新数组只加入不与前一值重复的值。
+
+``` javascript
+function repeatNext(array) {
+  array.sort()
+  var n = [array[0]]
+  for (var i = 1; i < array.length; i++) {
+    if (array[i] != n[n.length - 1]) {
+      n.push(array[i])
+    }
+  }
+  return n
+}
+repeatNext([1, 3, 4, 5, 7, 2, 3])
+// [1, 3, 4, 5, 7, 2]
+```
+
+## 数组下标判断法
+如果当前数组的第i项在当前数组中第一次出现的位置不是i，那么表示第i项是重复的，忽略掉。否则存入结果数组
+
+``` javascript
+function repeatId(array) {
+  var n = [array[0]]
+  for (var i = 1; i < array.length; i++) {
+    if (array.indexOf(array[i]) == i) {
+      n.push(array[i])
+    }
+  }
+  return n
+}
+repeatId([1, 3, 4, 5, 7, 2, 3])
+// [1, 3, 4, 5, 7, 2]
+```
+
