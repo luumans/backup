@@ -1,33 +1,25 @@
 title: 原生JS技巧
-date: 2018-02-27 18:29:00
+date: 2018-08-08 18:29:00
 description: 
 categories:
 - JavaScript
 tags:
-- JavaScript
+- Tool
 toc: true
 author:
 comments:
 original:
 permalink: 
 ---
-
 　　**自用笔记：**本文属于自用笔记，不做详解，仅供参考。在此记录自己已理解并开始遵循的前端代码规范。What How Why
-
 <!-- more -->
 
-# 字符串截取
+# 获取浏览器参数
 
-```
-sum = 'localhost:3000/#page-4'
-var sum = sum.substring(sum.indexOf('_') + 1, sum.length) - 0
-=> 4
-```
-
-# URL参数获取
+## URL参数获取
+Split 拆分参数，循环遍历
 ``` javascript
 function urlParams(name) {
-  //获取url中"?"符后的字串
   var url = window.location.href;
   var theRequest = {};
   if (url.indexOf("?") != -1) {
@@ -38,8 +30,22 @@ function urlParams(name) {
   }
   return theRequest[name] || theRequest;
 }
+
 urlParams('push');
+// 数值
+urlParams();
+// 对象
 ```
+
+## 获取URL某个参数的值
+正则匹配，获取指定参数
+
+注意：
+正常网址获取参数
+	var url = window.location.search.substr(1).match(reg);
+
+Vue网址获取参数
+	var url = window.location.href.split('?')[1].match(reg);
 
 ``` javascript
 function getParam(name) {
@@ -50,25 +56,62 @@ function getParam(name) {
   }
 }
 getParam('push');
-
-function GetUrlParam(paraName) {
-	var url = document.location.toString();
-	var arrObj = url.split("?");
-	if (arrObj.length > 1) {
-		var arrPara = arrObj[1].split("&");
-		var arr;
-		for (var i = 0; i < arrPara.length; i++) {
-			arr = arrPara[i].split("=");
-			if (arr != null && arr[0] == paraName) {
-				return arr[1];
-			}
-		}
-		return "";
-	} else {
-		return "";
-	}
+```
+## parseUrl URL参数 ***
+截取参数，删除钩子，提取参数
+``` javascript
+function parseUrl(name) {
+  var _ups = {};
+  var _n1 = window.location.href.indexOf("?");
+  if (_n1 != -1) {
+    var _hash = window.location.href.substr(_n1 + 1);
+    var _n2 = _hash.indexOf("#");
+    if (_n2 != -1)
+      _hash = _hash.substr(0, _n2);
+    var _a = _hash.split("&");
+    var _len = _a.length;
+    for (var i = 0; i < _len; i++) {
+      var _a2 = _a[i].split("=");
+      _ups[_a2[0]] = _a2[1];
+    }
+  }
+  return _ups[name] || _ups;
 }
-GetUrlParam('push');
+var ups = parseUrl();
+```
+
+## pathname
+获取当前相对路径的方法
+
+``` javascript
+function GetUrlRelativePath() {
+	var url = document.location.toString();
+	var arrUrl = url.split('//');
+	var start = arrUrl[1].indexOf('/');
+	var relUrl = arrUrl[1].substring(start);
+	// stop省略，截取从start开始到结尾的所有字符
+	if (relUrl.indexOf('?') != -1) {
+		relUrl = relUrl.split('?')[0];
+	}
+	return relUrl;
+}
+
+GetUrlRelativePath();
+```
+
+名称 | 描述
+-------|------
+assign() | 加载新的文档。
+reload() | 重新加载当前文档。
+replace() | 用新的文档替换当前文档。
+
+``` javascript
+window.location.assign("http://www.w3school.com.cn")
+
+window.location.reload()
+
+window.location.replace("http://www.w3school.com.cn")
+与location.assign()的区别是，location.replace()跳转后的页面不会保存在浏览器历史中，即无法通过返回按钮返回到该页面。
 ```
 
 ## 浏览器编码
@@ -107,6 +150,67 @@ encodeURIComponent('http://www.haorooms.com/My first/')
 decodeURIComponent("http%3A%2F%2Fwww.haorooms.com%2FMy%20first%2F")
 "http://www.haorooms.com/My first/"
 ```
+
+# parseUA 获取UA ***
+Navigator 对象包含有关浏览器的信息
+
+``` javascript
+function parseUA() {
+  var u = navigator.userAgent;
+  var u2 = navigator.userAgent.toLowerCase();
+  return {
+    // IE内核
+    trident: u.indexOf('Trident') > -1,
+    // opera内核
+    presto: u.indexOf('Presto') > -1,
+    // 苹果、谷歌内核
+    webKit: u.indexOf('AppleWebKit') > -1,
+    // 火狐内核
+    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,
+    // 是否为移动终端
+    mobile: !!u.match(/AppleWebKit.*Mobile.*/),
+    // ios终端
+    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+    // android终端或uc浏览器
+    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+    // 是否为iPhone或者QQHD浏览器
+    iPhone: u.indexOf('iPhone') > -1,
+    // 是否iPad
+    iPad: u.indexOf('iPad') > -1,
+    // 是否web应该程序，没有头部与底部
+    webApp: u.indexOf('Safari') == -1,
+    // 是否IOS版本
+    iosv: u.substr(u.indexOf('iPhone OS') + 9, 3),
+    // 是否WeChat
+    weixin: u2.match(/MicroMessenger/i) == "micromessenger",
+    // 是否阿里
+    ali: u.indexOf('AliApp') > -1,
+    // 是否盈科
+    yk: u.indexOf('ykour') > -1,
+  };
+}
+var ua = parseUA();
+```
+
+## 立即执行函数表达式（IIFE）
+``` javascript
+// IIFE 写法
+(function () {
+  var tmp = ...;
+  ...
+}());
+```
+
+# 字符串截取
+
+```
+sum = 'localhost:3000/#page-4'
+var sum = sum.substring(sum.indexOf('_') + 1, sum.length) - 0
+=> 4
+```
+
+
+
 
 ## location
 Location 对象包含有关当前 URL 的信息。Location 对象是 Window 对象的一个部分，可通过 window.location 属性来访问。
@@ -148,39 +252,7 @@ location.search
 ""
 ```
 
-### pathname
-获取当前相对路径的方法
 
-``` javascript
-function GetUrlRelativePath() {
-	var url = document.location.toString();
-	var arrUrl = url.split('//');
-	var start = arrUrl[1].indexOf('/');
-	var relUrl = arrUrl[1].substring(start);
-	// stop省略，截取从start开始到结尾的所有字符
-	if (relUrl.indexOf('?') != -1) {
-		relUrl = relUrl.split('?')[0];
-	}
-	return relUrl;
-}
-
-GetUrlRelativePath();
-```
-
-名称 | 描述
--------|------
-assign() | 加载新的文档。
-reload() | 重新加载当前文档。
-replace() | 用新的文档替换当前文档。
-
-``` javascript
-window.location.assign("http://www.w3school.com.cn")
-
-window.location.reload()
-
-window.location.replace("http://www.w3school.com.cn")
-与location.assign()的区别是，location.replace()跳转后的页面不会保存在浏览器历史中，即无法通过返回按钮返回到该页面。
-```
 
 # API
 ## Notification
@@ -282,6 +354,120 @@ if (window.attachEvent) {
 
 // attachEvent——兼容：IE7、IE8；不兼容firefox、chrome、IE9、IE10、IE11、safari、opera
 // addEventListener——兼容：firefox、chrome、IE、safari、opera；不兼容IE7、IE8
+```
+
+
+
+
+# 右击
+oncontextmenu 在用户使用鼠标右键单击客户区打开上下文菜单时触发。 MouseEvent
+
+## 禁用右键
+``` javascript
+document.oncontextmenu = function(){
+  event.returnValue = false;
+}
+
+// 或者直接返回整个事件
+document.oncontextmenu = function(){
+  return false;
+}
+
+<body oncontextmenu = "return false" ></body>
+```
+
+## 修改右键菜单
+``` javascript
+document.oncontextmenu = function(e) {  
+  awesomeMenu(e);
+}
+function awesomeMenu(e) {
+  var x = e.clientX;
+  var y = e.clientY;
+  // 获取到鼠标位置后就可以自定义菜单了
+}
+```
+
+# 事件禁用网页上选取的内容
+onselectstart 页面开始选择事件 Event
+
+``` javascript
+document.onselectstart = function(){
+  event.returnValue = false;
+}
+// 或者直接返回整个事件
+document.onselectstart = function(){
+  return false;
+}
+
+<body onselectstart = "return false" ></body>
+```
+
+# 事件禁用复制
+oncopy 当用户复制对象或选中区，将其添加到系统剪贴板上时在源元素上触发。 ClipboardEvent
+<!-- ondragstart 事件在用户开始拖动元素或选择的文本时触发。 -->
+onbeforecopy 当选中区复制到系统剪贴板之前在源对象触发。
+
+``` javascript
+document.oncopy = function(){
+  event.returnValue = false;
+}
+
+// 或者直接返回整个事件
+document.oncopy = function(){
+  return false;
+}
+
+<body oncopy = "return false" ></body>
+```
+
+# 禁用鼠标事件
+onmousedown 按下鼠标时触发此事件
+``` javascript
+document.onmousedown = function(e){
+  if (e.which == 2) {
+    // 鼠标滚轮的按下，滚动不触发
+    return false;
+  }
+  if (e.which == 3) {
+    // 鼠标右键
+    return false;
+  }
+}
+```
+
+# 禁用键盘中的ctrl、alt、shift
+
+``` javascript
+document.onkeydown = function(){
+  if (event.ctrlKey) {
+    return false;
+  }
+  if (event.altKey) {
+    return false;
+  }
+  if (event.shiftKey) {
+    return false;
+  }
+}
+```
+
+# 禁止网页另存为
+在<body>后面加入以下代码
+``` javascript
+<noscript>
+  <iframe src="*.htm"></iframe>
+</noscript>
+```
+
+
+
+
+
+
+
+# 页转
+``` javascript
 ```
 
 ### 兼容性
