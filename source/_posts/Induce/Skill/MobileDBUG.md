@@ -1,4 +1,4 @@
-title: 前端网站SEO执行策略
+title: 移动端调试
 date: 2018-03-27 19:29:00
 description: 随着移动设备的普及以及微信庞大的用户量，移动端的需求也随之爆发式增长，平时我们使用 Chrome 进行手机模拟页面开发，但模拟终究是模拟，不可避免的还是需要真机调试，下面就来讲讲几种调试方案，希望能对你有所帮助。
 categories:
@@ -38,3 +38,12 @@ permalink:
 1. 电脑打开 Chrome 浏览器，在地址栏输入：chrome://inspect/#devices 并勾选 Discover USB devices 选项
 
 <!-- https://juejin.im/entry/58b7b35c570c350062028e02 -->
+
+
+
+# Charles
+
+## iphone
+网络设置（设置 -> 网络 -> 配置代理 ->  手动代理）
+网址：笔记本网址
+端口：8888

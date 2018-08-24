@@ -13,10 +13,10 @@ permalink:
 ---
 　　**自用笔记：**本文属于自用笔记，不做详解，仅供参考。在此记录自己已理解并开始遵循的前端代码规范。What How Why
 <!-- more -->
+# 信息API
+## 获取浏览器参数
 
-# 获取浏览器参数
-
-## URL参数获取
+### URL参数获取
 Split 拆分参数，循环遍历
 ``` javascript
 function urlParams(name) {
@@ -37,7 +37,7 @@ urlParams();
 // 对象
 ```
 
-## 获取URL某个参数的值
+### 获取URL某个参数的值
 正则匹配，获取指定参数
 
 注意：
@@ -57,7 +57,7 @@ function getParam(name) {
 }
 getParam('push');
 ```
-## parseUrl URL参数 ***
+### parseUrl URL参数 ***
 截取参数，删除钩子，提取参数
 ``` javascript
 function parseUrl(name) {
@@ -80,7 +80,7 @@ function parseUrl(name) {
 var ups = parseUrl();
 ```
 
-## pathname
+### pathname
 获取当前相对路径的方法
 
 ``` javascript
@@ -114,7 +114,7 @@ window.location.replace("http://www.w3school.com.cn")
 与location.assign()的区别是，location.replace()跳转后的页面不会保存在浏览器历史中，即无法通过返回按钮返回到该页面。
 ```
 
-## 浏览器编码
+### 浏览器编码
 URL只能使用英文字母、阿拉伯数字和某些标点符号，不能使用其他文字和符号。
 1.escape(): 会将所有的标点，空格，特殊字符以及其他非ASCII字符转化成`十六进制`转义序列，类似于%**的格式。返回一个字符的Unicode编码值。
 2.encodeURI(): 不会对某些标点符号进行转码。亦不会对ASCII字母数字编码。不会进行转义的：;/?:@&=+$,#。
@@ -151,7 +151,7 @@ decodeURIComponent("http%3A%2F%2Fwww.haorooms.com%2FMy%20first%2F")
 "http://www.haorooms.com/My first/"
 ```
 
-# parseUA 获取UA ***
+## parseUA 获取UA ***
 Navigator 对象包含有关浏览器的信息
 
 ``` javascript
@@ -201,7 +201,7 @@ var ua = parseUA();
 }());
 ```
 
-# 字符串截取
+## 字符串截取
 
 ```
 sum = 'localhost:3000/#page-4'
@@ -254,7 +254,115 @@ location.search
 
 
 
-# API
+
+
+
+# 操作API
+## 右击
+oncontextmenu 在用户使用鼠标右键单击客户区打开上下文菜单时触发。 MouseEvent
+
+### 禁用右键
+``` javascript
+document.oncontextmenu = function(){
+  event.returnValue = false;
+}
+
+// 或者直接返回整个事件
+document.oncontextmenu = function(){
+  return false;
+}
+
+<body oncontextmenu = "return false" ></body>
+```
+
+### 修改右键菜单
+``` javascript
+document.oncontextmenu = function(e) {  
+  awesomeMenu(e);
+}
+function awesomeMenu(e) {
+  var x = e.clientX;
+  var y = e.clientY;
+  // 获取到鼠标位置后就可以自定义菜单了
+}
+```
+
+## 事件禁用网页上选取的内容
+onselectstart 页面开始选择事件 Event
+
+``` javascript
+document.onselectstart = function(){
+  event.returnValue = false;
+}
+// 或者直接返回整个事件
+document.onselectstart = function(){
+  return false;
+}
+
+<body onselectstart = "return false" ></body>
+```
+
+## 事件禁用复制
+oncopy 当用户复制对象或选中区，将其添加到系统剪贴板上时在源元素上触发。 ClipboardEvent
+<!-- ondragstart 事件在用户开始拖动元素或选择的文本时触发。 -->
+onbeforecopy 当选中区复制到系统剪贴板之前在源对象触发。
+
+``` javascript
+document.oncopy = function(){
+  event.returnValue = false;
+}
+
+// 或者直接返回整个事件
+document.oncopy = function(){
+  return false;
+}
+
+<body oncopy = "return false" ></body>
+```
+
+## 禁用鼠标事件
+onmousedown 按下鼠标时触发此事件
+``` javascript
+document.onmousedown = function(e){
+  if (e.which == 2) {
+    // 鼠标滚轮的按下，滚动不触发
+    return false;
+  }
+  if (e.which == 3) {
+    // 鼠标右键
+    return false;
+  }
+}
+```
+
+## 禁用键盘中的ctrl、alt、shift
+
+``` javascript
+document.onkeydown = function(){
+  if (event.ctrlKey) {
+    return false;
+  }
+  if (event.altKey) {
+    return false;
+  }
+  if (event.shiftKey) {
+    return false;
+  }
+}
+```
+
+## 禁止网页另存为
+在<body>后面加入以下代码
+``` javascript
+<noscript>
+  <iframe src="*.htm"></iframe>
+</noscript>
+```
+
+
+
+
+# 通知API
 ## Notification
 Notification API 是 HTML5 新增的桌面通知 API，用于向用户显示通知信息。该通知是脱离浏览器的，即使用户没有停留在当前标签页，甚至最小化了浏览器，该通知信息也一样会置顶显示出来。
 
@@ -268,11 +376,11 @@ Notification.permission 表明当前通知显示的授权状态
 1. denied ：用户拒绝。
 
 ``` javascript
-if(Notification.permission === 'granted'){
+if (Notification.permission === 'granted') {
   console.log('用户允许通知');
-}else if(Notification.permission === 'denied'){
+} else if (Notification.permission === 'denied') {
   console.log('用户拒绝通知');
-}else{
+} else {
   console.log('用户还没选择，去向用户申请权限吧');
 }
 ```
@@ -356,120 +464,6 @@ if (window.attachEvent) {
 // addEventListener——兼容：firefox、chrome、IE、safari、opera；不兼容IE7、IE8
 ```
 
-
-
-
-# 右击
-oncontextmenu 在用户使用鼠标右键单击客户区打开上下文菜单时触发。 MouseEvent
-
-## 禁用右键
-``` javascript
-document.oncontextmenu = function(){
-  event.returnValue = false;
-}
-
-// 或者直接返回整个事件
-document.oncontextmenu = function(){
-  return false;
-}
-
-<body oncontextmenu = "return false" ></body>
-```
-
-## 修改右键菜单
-``` javascript
-document.oncontextmenu = function(e) {  
-  awesomeMenu(e);
-}
-function awesomeMenu(e) {
-  var x = e.clientX;
-  var y = e.clientY;
-  // 获取到鼠标位置后就可以自定义菜单了
-}
-```
-
-# 事件禁用网页上选取的内容
-onselectstart 页面开始选择事件 Event
-
-``` javascript
-document.onselectstart = function(){
-  event.returnValue = false;
-}
-// 或者直接返回整个事件
-document.onselectstart = function(){
-  return false;
-}
-
-<body onselectstart = "return false" ></body>
-```
-
-# 事件禁用复制
-oncopy 当用户复制对象或选中区，将其添加到系统剪贴板上时在源元素上触发。 ClipboardEvent
-<!-- ondragstart 事件在用户开始拖动元素或选择的文本时触发。 -->
-onbeforecopy 当选中区复制到系统剪贴板之前在源对象触发。
-
-``` javascript
-document.oncopy = function(){
-  event.returnValue = false;
-}
-
-// 或者直接返回整个事件
-document.oncopy = function(){
-  return false;
-}
-
-<body oncopy = "return false" ></body>
-```
-
-# 禁用鼠标事件
-onmousedown 按下鼠标时触发此事件
-``` javascript
-document.onmousedown = function(e){
-  if (e.which == 2) {
-    // 鼠标滚轮的按下，滚动不触发
-    return false;
-  }
-  if (e.which == 3) {
-    // 鼠标右键
-    return false;
-  }
-}
-```
-
-# 禁用键盘中的ctrl、alt、shift
-
-``` javascript
-document.onkeydown = function(){
-  if (event.ctrlKey) {
-    return false;
-  }
-  if (event.altKey) {
-    return false;
-  }
-  if (event.shiftKey) {
-    return false;
-  }
-}
-```
-
-# 禁止网页另存为
-在<body>后面加入以下代码
-``` javascript
-<noscript>
-  <iframe src="*.htm"></iframe>
-</noscript>
-```
-
-
-
-
-
-
-
-# 页转
-``` javascript
-```
-
 ### 兼容性
 1. PC端的还好大多都能支持，除了IE
 1. 移动端的几乎全倒
@@ -478,5 +472,70 @@ document.onkeydown = function(){
 [React Notification](https://github.com/react-component/notification "")
 [Vue notification](https://github.com/vue-bulma/notification "Notification component for Vue Bulma")
 [notification](https://github.com/rentiansheng/notification "浏览器桌面通知")
+
+
+# 时间处理
+## 转换为时间间隔
+
+``` javascript
+function formatTimeRead (time) {
+  let date = (typeof time === 'number') ? new Date(time) : new Date((time || '').replace(/-/g, '/'))
+  let diff = (((new Date()).getTime() - date.getTime()) / 1000)
+  console.log((new Date()).getTime() - date.getTime())
+  console.log(diff)
+  let dayDiff = Math.floor(diff / 86400)
+
+  let isValidDate = Object.prototype.toString.call(date) === '[object Date]' && !isNaN(date.getTime())
+
+  if (!isValidDate) {
+    console.error('not a valid date')
+  }
+  const formatDate = function (date) {
+    let today = new Date(date)
+    let year = today.getFullYear()
+    let month = ('0' + (today.getMonth() + 1)).slice(-2)
+    let day = ('0' + today.getDate()).slice(-2)
+    let hour = today.getHours()
+    let minute = today.getMinutes()
+    let second = today.getSeconds()
+    return `${year}-${month}-${day} ${hour}:${minute}:${second}`
+  }
+
+  if (isNaN(dayDiff) || dayDiff < 0 || dayDiff >= 31) {
+    return formatDate(date)
+  }
+
+  return dayDiff === 0 && (
+      diff < 60 && '刚刚' ||
+      diff < 120 && '1分钟前' ||
+      diff < 3600 && Math.floor(diff / 60) + '分钟前' ||
+      diff < 7200 && '1小时前' ||
+      diff < 86400 && Math.floor(diff / 3600) + '小时前') ||
+    dayDiff === 1 && '昨天' ||
+    dayDiff < 7 && dayDiff + '天前' ||
+    dayDiff < 31 && Math.ceil(dayDiff / 7) + '周前'
+}
+
+// http://www.cnblogs.com/zhangpengshou/archive/2012/07/19/2599053.html
+// [1, 'Just Now', 'Just Now'],
+// [2, '1 Second Ago', '1 Second From Now'],
+// [60, 'Seconds', 1],                         // 60
+// [120, '1 Minute Ago', '1 Minute From Now'], // 60*2
+// [3600, 'Minutes', 60],                      // 60*60, 60
+// [7200, '1 Hour Ago', '1 Hour From Now'],    // 60*60*2
+// [86400, 'Hours', 3600],                     // 60*60*24, 60*60
+// [172800, 'Yesterday', 'Tomorrow'],          // 60*60*24*2
+// [604800, 'Days', 86400],                    // 60*60*24*7, 60*60*24
+// [1209600, 'Last Week', 'Next Week'],        // 60*60*24*7*4*2
+// [2628000, 'Weeks', 604800],                 // 30.416 days
+// [5256000, 'Last Month', 'Next Month'],      // 60.832 days
+// [31557600, 'Months', 2628000],              // 365.25 days
+// [63115200, 'Last Year', 'Next Year']
+```
+
+# 页转
+``` javascript
+```
+
 
 ## 
