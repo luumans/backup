@@ -153,6 +153,27 @@ routes: [
 ]
 ```
 
+## 错误页面
+默认访问：layouts/error.vue
+
+``` javascript
+<template>
+  <div class="container">
+    <h1 v-if="error.statusCode === 404">页面不存在</h1>
+    <h1 v-else>应用发生错误异常</h1>
+    <nuxt-link to="/">首 页</nuxt-link>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['error'],
+  layout: 'blog' // 你可以为错误页面指定自定义的布局
+}
+</script>
+```
+
+# 页面方法
 ## asyncData 异步获取数据
 你可能想要在服务器端获取并渲染数据。Nuxt.js添加了asyncData方法使得你能够在渲染组件之前异步获取数据。
 
@@ -166,6 +187,7 @@ export default {
 	}
 }
 ```
+
 asyncData方法：会在组件`（限于页面组件）`每次加载之前被调用。它可以在服务端或路由更新之前被调用。在这个方法被调用的时候，第一个参数被设定为当前页面的上下文对象，你可以利用 asyncData方法来获取数据并返回给当前组件。
 
 | 属性字段 | 类型            | 可用            | 描述                                                                                                                   |
@@ -184,6 +206,7 @@ asyncData方法：会在组件`（限于页面组件）`每次加载之前被调
 | error    | Function        | 客户端 & 服务端 | 用这个方法展示错误页：error(params)。params 参数应该包含 statusCode 和 message 字段。                                  |
 
 ### 错误处理
+
 > error
 
 Nuxt.js 在上下文对象context中提供了一个 error(params) 方法，你可以通过调用该方法来显示错误信息页面。params.statusCode 可用于指定服务端返回的请求状态码。
@@ -204,17 +227,88 @@ export default {
 
 > callback
 
-## 配置文件
+## metaInfo
+Nuxt.js 使用了 vue-meta 更新应用的 头部标签(Head) 和 html 属性。
+
+``` javascript
+head () {
+  return {
+    title: 'title', // 标题
+    meta: [
+      {
+        hid: 'Keywords', // 唯一标识
+        name: 'Keywords1', // 名称
+        content: 'Keywords2' // 内容
+      }
+    ],
+    link: [
+      {
+	      rel: 'icon',
+	      type: 'image/x-icon',
+	      href: '/favicon.ico'
+      }
+    ]
+  }
+},
+```
+
+注意：为了避免子组件中的meta标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为meta标签配一个唯一的标识编号。
+
+## fetch
+fetch 方法用于在渲染页面前填充应用的状态树（store）数据， 与 asyncData 方法类似，不同的是它不会设置组件的数据。
+
+``` javascript
+fetch ({ store, params }) {
+  return axios.get('http://my-api/stars')
+  .then((res) => {
+    store.commit('setStars', res.data)
+  })
+}
+```
+
+你也可以使用 async 或 await 的模式简化代码如下
+
+``` javascript
+async fetch ({ store, params }) {
+  let { data } = await axios.get('http://my-api/stars')
+  store.commit('setStars', data)
+}
+```
+
+## layout
+根目录下的所有文件都属于个性化布局文件，可以在页面组件中利用 layout 属性来引用。
+
+``` javascript
+export default {
+  layout: 'blog',
+  // 或
+  layout (context) {
+    return 'blog'
+  }
+}
+```
+
+``` javascript
+```
+
+# 配置文件
 目录下的 nuxt.config.js 是我们唯一的配置入口，默认的给力我们三个配置 ·head·css·loading· 分别是头部设置，全局css，loading进度条
 
-| 属性    | 名称 |
-| ------- | ---- |
-| modules |      |
-| plugins |      |
-| router  |      |
-| head    |      |
-| loading |      |
-| build   |      |
+| 属性       | 名称     |
+| ---------- | -------- |
+| build      | 模块管理 |
+| cache      | 组件缓存 |
+| css        | 全局样式 |
+| dev        | 开发配置 |
+| env        | 环境配置 |
+| generate   | 静态配置 |
+| head       |  全局头部配置  |
+| loading    | 加载配置 |
+| plugins    | 插件配置 |
+| rootDir    | 配置     |
+| router     | 路由配置 |
+| srcDir     | 配置     |
+| transition | 动画配置 |
 
 ## build
 Nuxt.js 允许你在自动生成的 vendor.bundle.j 文件中添加一些模块，以减少应用 bundle的体积。如果你的应用依赖第三方模块，这个配置项是十分实用的。
