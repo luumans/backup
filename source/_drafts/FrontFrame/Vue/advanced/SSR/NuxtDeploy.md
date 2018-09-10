@@ -4,7 +4,7 @@ description:
 categories:
 - FrontFrame
 tags:
-- Vue
+- Nuxt
 toc: true
 author:
 comments:

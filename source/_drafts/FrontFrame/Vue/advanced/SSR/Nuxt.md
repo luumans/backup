@@ -4,7 +4,7 @@ description:
 categories:
 - FrontFrame
 tags:
-- Vue
+- Nuxt
 toc: true
 author:
 comments:
@@ -132,29 +132,48 @@ routes: [
 ]
 ```
 
-### 隐藏路由
-在文件名前加 _
+### 动态路由
+
 
 ``` javascript
-|-- pages
-    |-- _about.vue
-    |-- index.vue
+pages/
+--| _slug/
+-----| comments.vue
+-----| index.vue
+--| users/
+-----| _id.vue
+--| index.vue
 
 => 生成
-routes: [
-	{
-		path: '/',
-		component: '~pages/index.vue'
-	},
-	{
-		path: '/:about',
-		component: '~pages/_about.vue'
-	},
-]
+router: {
+  routes: [
+    {
+      name: 'index',
+      path: '/',
+      component: 'pages/index.vue'
+    },
+    {
+      name: 'users-id',
+      path: '/users/:id?',
+      component: 'pages/users/_id.vue'
+    },
+    {
+      name: 'slug',
+      path: '/:slug',
+      component: 'pages/_slug/index.vue'
+    },
+    {
+      name: 'slug-comments',
+      path: '/:slug/comments',
+      component: 'pages/_slug/comments.vue'
+    }
+  ]
+}
 ```
 
 ## 错误页面
 默认访问：layouts/error.vue
+error => ~/layouts/error.vue
 
 ``` javascript
 <template>
@@ -165,17 +184,21 @@ routes: [
   </div>
 </template>
 
-<script>
 export default {
   props: ['error'],
   layout: 'blog' // 你可以为错误页面指定自定义的布局
 }
-</script>
 ```
+
+| statusCode | Name       |
+| ---------- | ---------- |
+| 404        | 页面不存在 |
+|            |            |
+
 
 # 页面方法
 ## asyncData 异步获取数据
-你可能想要在服务器端获取并渲染数据。Nuxt.js添加了asyncData方法使得你能够在渲染组件之前异步获取数据。
+Nuxt.js 扩展了 Vue.js，增加了一个叫 asyncData 的方法，使得我们可以在设置组件的数据之前能异步获取或处理数据。
 
 ``` javascript
 export default {
@@ -185,6 +208,29 @@ export default {
 	asyncData (context) {
 		return { project: 'nuxt' }
 	}
+}
+```
+### 返回 Promise
+
+``` javascript
+export default {
+  asyncData ({ params }) {
+    return axios.get(`https://my-api/posts/${params.id}`)
+    .then((res) => {
+      return { title: res.data.title }
+    })
+  }
+}
+```
+
+### 使用 async或await
+
+``` javascript
+export default {
+  async asyncData ({ params }) {
+    let { data } = await axios.get(`https://my-api/posts/${params.id}`)
+    return { title: data.title }
+  }
 }
 ```
 
@@ -220,6 +266,7 @@ export default {
 		})
 		.catch((e) => {
 			error({ statusCode: 404, message: 'Post not found' })
+			// 执行后直接跳转error页面
 		})
 	}
 }
@@ -227,7 +274,42 @@ export default {
 
 > callback
 
-## metaInfo
+``` javascript
+export default {
+  asyncData ({ params }, callback) {
+    axios.get(`https://my-api/posts/${params.id}`)
+    .then((res) => {
+      callback(null, { title: res.data.title })
+    })
+    .catch((e) => {
+      callback({ statusCode: 404, message: 'Post not found' })
+    })
+  }
+}
+```
+
+## fetch
+fetch 方法用于在渲染页面前填充应用的状态树（store）数据， 与 asyncData 方法类似，不同的是它不会设置组件的数据。
+
+``` javascript
+fetch ({ store, params }) {
+  return axios.get('http://my-api/stars')
+  .then((res) => {
+    store.commit('setStars', res.data)
+  })
+}
+```
+
+你也可以使用 async 或 await 的模式简化代码如下
+
+``` javascript
+async fetch ({ store, params }) {
+  let { data } = await axios.get('http://my-api/stars')
+  store.commit('setStars', data)
+}
+```
+
+## head
 Nuxt.js 使用了 vue-meta 更新应用的 头部标签(Head) 和 html 属性。
 
 ``` javascript
@@ -254,26 +336,6 @@ head () {
 
 注意：为了避免子组件中的meta标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 hid 键为meta标签配一个唯一的标识编号。
 
-## fetch
-fetch 方法用于在渲染页面前填充应用的状态树（store）数据， 与 asyncData 方法类似，不同的是它不会设置组件的数据。
-
-``` javascript
-fetch ({ store, params }) {
-  return axios.get('http://my-api/stars')
-  .then((res) => {
-    store.commit('setStars', res.data)
-  })
-}
-```
-
-你也可以使用 async 或 await 的模式简化代码如下
-
-``` javascript
-async fetch ({ store, params }) {
-  let { data } = await axios.get('http://my-api/stars')
-  store.commit('setStars', data)
-}
-```
 
 ## layout
 根目录下的所有文件都属于个性化布局文件，可以在页面组件中利用 layout 属性来引用。
@@ -288,27 +350,72 @@ export default {
 }
 ```
 
+## middleware
+在应用中的特定页面设置中间件，在服务器中返回。
+
 ``` javascript
+export default {
+	middleware: 'stats'
+}
+
+export default function (context) {
+  context.userAgent = context.isServer ? context.req.headers['user-agent'] : navigator.userAgent
+}
+```
+
+## scrollToTop
+
+``` javascript
+<template>
+  <h1>子页面组件</h1>
+</template>
+
+export default {
+  scrollToTop: true
+}
+```
+
+## transition
+
+``` javascript
+export default {
+  // 可以是字符
+  transition: ''
+  // 或对象
+  transition: {}
+  // 或函数
+  transition (to, from) {}
+}
+```
+
+## validate
+Nuxt.js 可以让你在动态路由对应的页面组件中配置一个校验方法用于校验动态路由参数的有效性。
+
+``` javascript
+validate({ params, query }) {
+  return true // 如果参数有效
+  return false // 参数无效，Nuxt.js 停止渲染当前页面并显示错误页面
+}
 ```
 
 # 配置文件
 目录下的 nuxt.config.js 是我们唯一的配置入口，默认的给力我们三个配置 ·head·css·loading· 分别是头部设置，全局css，loading进度条
 
-| 属性       | 名称     |
-| ---------- | -------- |
-| build      | 模块管理 |
-| cache      | 组件缓存 |
-| css        | 全局样式 |
-| dev        | 开发配置 |
-| env        | 环境配置 |
-| generate   | 静态配置 |
-| head       |  全局头部配置  |
-| loading    | 加载配置 |
-| plugins    | 插件配置 |
-| rootDir    | 配置     |
-| router     | 路由配置 |
-| srcDir     | 配置     |
-| transition | 动画配置 |
+| 属性       | 名称         |
+| ---------- | ------------ |
+| build      | 模块管理     |
+| cache      | 组件缓存     |
+| css        | 全局样式     |
+| dev        | 开发配置     |
+| env        | 环境配置     |
+| generate   | 静态配置     |
+| head       | 全局头部配置 |
+| loading    | 加载配置     |
+| plugins    | 插件配置     |
+| rootDir    | 配置         |
+| router     | 路由配置     |
+| srcDir     | 配置         |
+| transition | 动画配置     |
 
 ## build
 Nuxt.js 允许你在自动生成的 vendor.bundle.j 文件中添加一些模块，以减少应用 bundle的体积。如果你的应用依赖第三方模块，这个配置项是十分实用的。
@@ -685,7 +792,6 @@ components/loading.vue
   </div>
 </template>
 
-<script>
 export default {
   data: () => ({
     loading: false
@@ -699,7 +805,6 @@ export default {
     }
   }
 }
-</script>
 
 <style scoped>
 .loading-page {
@@ -731,8 +836,8 @@ plugins: [
 
 ## rootDir
 ``` javascript
-```
 该配置项用于配置 Nuxt.js 应用的根目录。
+```
 
 关于 rootDir 配置项的详细文档
 
@@ -854,8 +959,8 @@ module.exports = {
 
 ## srcDir
 ``` javascript
-```
 该配置项用于配置应用的源码目录路径。
+```
 
 关于 srcDir 配置项的详细文档
 
@@ -886,7 +991,6 @@ module.exports = {
 
 | 属性字段         | 类型    | 默认值   | 描述                                                                                                                                    |
 | ---------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-|                  |         |          |                                                                                                                                         |
 | name             | String  | "page"   | 所有路由过渡都会用到的过渡名称。                                                                                                        |
 | mode             | String  | "out-in" | 所有路由都用到的过渡模式，见 Vue.js transition 使用文档。                                                                               |
 | css              | Boolean | true     | 是否给页面组件根元素添加 CSS 过渡类名。如果值为 false，路由过渡时将触发页面组件事件注册的 Javascript 钩子方法。                         |
