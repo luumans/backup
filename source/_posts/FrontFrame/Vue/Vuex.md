@@ -97,6 +97,7 @@ export const COM_NAV_STATUS = 'COM_NAV_STATUS'
 export const COM_HEADER_STATUS = 'COM_HEADER_STATUS'
 export const COM_LOADING_STATUS = 'COM_LOADING_STATUS'
 ```
+
 ## 流程
 通过Getters映射，控制Actions改变状态，从而控制mutations状态控制数据变化。
 
